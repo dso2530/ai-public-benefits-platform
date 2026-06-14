@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../../../shared/components/ui/card';
 
 interface Props {
-  eligibleCount: number;
-  pendingCount: number;
-  totalAmount: number;
+  readonly eligibleCount: number;
+  readonly pendingCount: number;
+  readonly totalAmount: number;
 }
 
 export function BenefitsCard({
