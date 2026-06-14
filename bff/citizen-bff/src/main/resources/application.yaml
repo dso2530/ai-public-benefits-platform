@@ -1,0 +1,25 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: citizen-bff
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+services:
+  profile:
+    url: http://localhost:8081
+
+  eligibility:
+    url: http://localhost:8082
+
+  notification:
+    url: http://localhost:8083
+
+  document:
+    url: http://localhost:8085
