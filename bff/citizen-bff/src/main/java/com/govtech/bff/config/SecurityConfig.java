@@ -1,30 +1,37 @@
-package com.govtech.bff.security;
+package com.govtech.bff.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import com.govtech.bff.auth.handler.KeycloakSuccessHandler;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Bean
-    SecurityFilterChain securityFilterChain(
+        private final KeycloakSuccessHandler successHandler;    
+
+        @Bean
+        SecurityFilterChain securityFilterChain(
             HttpSecurity http) throws Exception {
 
-        http
-                .cors(cors -> {})
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
+                http
+                        .cors(Customizer.withDefaults())
+                        .csrf(csrf -> csrf.disable())
+                        .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                "/api/auth/**",
                                 "/actuator/**",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
                         ).permitAll()
-                        //.anyRequest().authenticated()
-                        .anyRequest().permitAll()
-                );
+                        .anyRequest().authenticated())
+                        .oauth2Login(oauth ->
+                        oauth.successHandler(successHandler));
                 /* .oauth2ResourceServer(oauth ->
                         oauth.jwt(Customizer.withDefaults()));*/
 

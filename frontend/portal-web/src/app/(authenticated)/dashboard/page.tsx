@@ -5,9 +5,12 @@ import { BenefitsCard } from '../../../features/dashboard/components/benefits-ca
 import { NotificationsCard } from '../../../features/dashboard/components/notifications-card';
 import { QuickActions } from '../../../features/dashboard/components/quick-actions';
 import { useDashboard } from '../../../features/dashboard/hooks/use-dashboard';
+import { AuthGuard } from "../../../features/auth/components/auth-guard";
+
 
 export default function DashboardPage() {
   const { data, isLoading } = useDashboard();
+  
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -18,6 +21,8 @@ export default function DashboardPage() {
   }
 
   return (
+    <AuthGuard>
+
     <div className="container mx-auto space-y-6 p-6">
       <h1 className="text-3xl font-bold">
         Dashboard
@@ -37,7 +42,11 @@ export default function DashboardPage() {
         <NotificationsCard
           {...data.notifications}
         />
-      </div>
+
+         
+          
+        </div>
     </div>
+    </AuthGuard>
   );
 }

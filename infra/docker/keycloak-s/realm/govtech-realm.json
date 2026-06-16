@@ -1,0 +1,46 @@
+{
+  "realm": "govtech",
+  "enabled": true,
+
+  "clients": [
+    {
+      "clientId": "citizen-bff",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "citizen-bff-secret",
+
+      "redirectUris": [
+        "http://localhost:8084/login/oauth2/code/keycloak"
+      ],
+
+      "webOrigins": [
+        "http://localhost:3000"
+      ],
+
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true
+    }
+  ],
+
+  "users": [
+    {
+      "username": "citizen",
+
+      "enabled": true,
+
+      "email": "citizen@test.fr",
+
+      "firstName": "John",
+
+      "lastName": "Citizen",
+
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

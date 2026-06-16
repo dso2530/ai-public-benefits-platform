@@ -1,4 +1,4 @@
-package com.govtech.bff.dto;
+package com.govtech.bff.dashboard.dto;
 
 public record NotificationsDto(
         Integer unreadCount

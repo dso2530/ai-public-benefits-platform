@@ -1,0 +1,37 @@
+{"properties": [
+  {
+    "name": "services.profile.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.profile.url'"
+  },
+  {
+    "name": "services.eligibility.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.eligibility.url'"
+  },
+  {
+    "name": "services.notification.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.notification.url'"
+  },
+  {
+    "name": "services.document.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.document.url'"
+  },
+  {
+    "name": "services.identity.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.identity.url'"
+  },
+  {
+    "name": "spring.security.oauth2.resourceserver.jwt.secret-key",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.security.oauth2.resourceserver.jwt.secret-key'"
+  },
+  {
+    "name": "security.jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'security.jwt.secret'"
+  }
+]}

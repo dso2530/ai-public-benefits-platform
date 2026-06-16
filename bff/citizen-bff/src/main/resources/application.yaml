@@ -4,7 +4,30 @@ server:
 spring:
   application:
     name: citizen-bff
-
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: ${JWT_SECRET}
+      client:
+        registration:
+          keycloak:
+            client-id: citizen-bff
+            client-secret: citizen-bff-secret
+            scope:
+              - openid
+              - profile
+              - email
+            authorization-grant-type:
+              authorization_code
+            redirect-uri:
+              "{baseUrl}/login/oauth2/code/keycloak"
+        provider:
+          keycloak:
+            issuer-uri:
+              http://localhost:9090/realms/govtech
+        
+       
 management:
   endpoints:
     web:
@@ -12,6 +35,9 @@ management:
         include: health,info,prometheus
 
 services:
+  identity:
+    url: http://localhost:8086
+
   profile:
     url: http://localhost:8081
 
@@ -23,3 +49,8 @@ services:
 
   document:
     url: http://localhost:8085
+
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    
