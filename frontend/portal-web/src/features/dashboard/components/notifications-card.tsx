@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../../../shared/components/ui/card';
 
 interface Props {
-  unreadCount: number;
+  readonly unreadCount: number;
 }
 
 export function NotificationsCard({

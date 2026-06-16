@@ -12,7 +12,7 @@ export function HouseholdCard({
   housingStatus,
   children,
   singleParent,
-}: Props) {
+}: Readonly<Props>) {
   return (
     <Card>
       <CardHeader>

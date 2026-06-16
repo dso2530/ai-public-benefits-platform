@@ -1,4 +1,4 @@
-import { api } from '../../../services/api/axios';
+import { api } from '../../../shared/api/axios';
 import { DashboardData } from '../types/dashboard.types';
 
 export async function getDashboard(): Promise<DashboardData> {

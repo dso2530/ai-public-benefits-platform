@@ -1,5 +1,7 @@
-package com.govtech.bff.dto;
+package com.govtech.bff.dashboard.dto;
+import lombok.Builder;
 
+@Builder
 public record DashboardResponse(
         HouseholdDto household,
         BenefitsDto benefits,

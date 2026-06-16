@@ -1,15 +1,18 @@
-/*package com.govtech.bff.config;
+package com.govtech.bff.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestClient;
 
 @Configuration
 public class RestClientConfig {
 
     @Bean
-    public RestClient restClient(RestClient.Builder builder) {
-        return builder.build();
+    public RestClient restClient() {
+        return RestClient.builder()
+                .baseUrl("https://api.example.com") // URL de base pour toutes les requêtes
+                .requestFactory(new HttpComponentsClientHttpRequestFactory()) // Personnalisation de la requête HTTP
+                .build();
     }
-
-}*/
+}
