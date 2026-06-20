@@ -4,7 +4,8 @@ import lombok.Builder;
 @Builder
 public record DashboardResponse(
         HouseholdDto household,
-        BenefitsDto benefits,
-        NotificationsDto notifications
+        EligibilitySummaryDto benefits,
+        NotificationSummaryDto notifications,
+        DocumentSummaryDto documents
 ) {
 }

@@ -1,11 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../../../shared/components/ui/card';
 
 interface Props {
-  readonly unreadCount: number;
+  readonly total: number;
+  readonly unread: number;
+
 }
 
 export function NotificationsCard({
-  unreadCount,
+  total, 
+  unread
 }: Props) {
   return (
     <Card>
@@ -13,9 +16,12 @@ export function NotificationsCard({
         <CardTitle>Notifications</CardTitle>
       </CardHeader>
 
-      <CardContent>
-        <p>{unreadCount} unread notifications</p>
+      <CardContent className="space-y-2">
+        <p>{total} notifications</p>
+        <p>{unread} unread notifications</p>
       </CardContent>
+
+      
     </Card>
   );
 }

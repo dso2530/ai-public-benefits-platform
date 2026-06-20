@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.govtech.bff.auth.dto.InternalUser;
 import com.govtech.bff.auth.dto.MeResponse;
 
 @RestController
@@ -17,11 +18,11 @@ public class MeController {
 
     @GetMapping
     public MeResponse me(
-            @AuthenticationPrincipal OidcUser user) {
+            @AuthenticationPrincipal InternalUser user) {
 
         return new MeResponse(
-                user.getSubject(),
-                user.getFullName(),
-                user.getEmail());
+                user.subject(),
+                user.name(),
+                user.email());
     }
 }

@@ -1,12 +1,16 @@
 package com.govtech.bff.auth.handler;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.govtech.bff.auth.dto.InternalUser;
 import com.govtech.bff.auth.service.JwtService;
 
 import jakarta.servlet.http.Cookie;
@@ -33,6 +37,17 @@ public class KeycloakSuccessHandler
         String jwt = jwtService.generateToken(
                 user.getSubject(),
                 user.getEmail());
+
+
+        InternalUser internalUser = new InternalUser(user.getSubject(), user.getEmail(), jwt, user.getFullName() );
+
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+                internalUser,
+                null,
+                List.of()
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(auth);
 
         Cookie cookie = new Cookie("access_token", jwt);
 

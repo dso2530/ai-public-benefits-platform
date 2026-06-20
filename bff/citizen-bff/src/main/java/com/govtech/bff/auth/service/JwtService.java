@@ -1,5 +1,6 @@
 package com.govtech.bff.auth.service;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -18,10 +19,10 @@ public class JwtService {
     @Value("${security.jwt.secret}")
     private String secret;
 
-    public String generateToken(String subject, String email) {
+    public String  generateToken(String subject, String email) {
         SecretKey key =
                 Keys.hmacShaKeyFor(
-                        secret.getBytes());
+                        secret.getBytes(StandardCharsets.UTF_8));
 
         return Jwts.builder()
                 .subject(subject)
@@ -33,7 +34,7 @@ public class JwtService {
                                 Instant.now()
                                         .plus(8,
                                                 ChronoUnit.HOURS)))
-                .signWith(key)
+                .signWith(key, Jwts.SIG.HS384)
                 .compact();
     }
 }

@@ -12,11 +12,19 @@ export interface BenefitSummary {
 }
 
 export interface NotificationSummary {
-  unreadCount: number;
+  total: number;
+  unread: number;
+}
+
+export interface DocumentSummary {
+  total: number;
+  validated: number;
+  pending: number;
 }
 
 export interface DashboardData {
   household: HouseholdSummary;
   benefits: BenefitSummary;
   notifications: NotificationSummary;
+  documents : DocumentSummary;
 }

@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS documents (
+    id BIGSERIAL PRIMARY KEY,
+    subject VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    uploaded_at TIMESTAMP NOT NULL
+);

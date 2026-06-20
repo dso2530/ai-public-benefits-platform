@@ -1,10 +1,14 @@
 package com.govtech.bff.clients;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import com.govtech.bff.dashboard.dto.BenefitsDto;
+import com.govtech.bff.dashboard.dto.EligibilityDto;
+import com.govtech.bff.dashboard.dto.EligibilitySummaryDto;
 
 @Component
 @RequiredArgsConstructor
@@ -15,18 +19,18 @@ public class EligibilityClient {
     @Value("${services.eligibility.url}")
     private String eligibilityUrl;
 
-    public BenefitsDto getSummary() {
+    public EligibilitySummaryDto getSummary() {      
 
-        BenefitsDto benefits =
-                new BenefitsDto(
-                        7,
-                        2,
-                        4280
-                );
-
-        return benefits;/*restClient.get()
+        return restClient.get()
                 .uri(eligibilityUrl + "/api/eligibility/summary")
                 .retrieve()
-                .body(BenefitsDto.class);*/
+                .body(EligibilitySummaryDto.class);
+    }
+
+    public List<EligibilityDto>  eligibilities()  {
+        return restClient.get()
+                .uri(eligibilityUrl + "/api/eligibility")
+                .retrieve()
+                .body(List.class); 
     }
 }
