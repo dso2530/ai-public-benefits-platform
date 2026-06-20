@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
+import com.govtech.bff.auth.dto.ProfileDto;
 import com.govtech.bff.dashboard.dto.HouseholdDto;
 
 @Component
@@ -17,17 +18,16 @@ public class ProfileClient {
 
     public HouseholdDto getHousehold() {
 
-        HouseholdDto household =
-                new HouseholdDto(
-                        "Roubaix",
-                        "TENANT",
-                        2,
-                        true
-                );
-
-        return household;/*restClient.get()
-                .uri(profileUrl + "/api/profile")
+         ProfileDto profileDto = restClient.get()
+                .uri(profileUrl + "/api/profile/me")
                 .retrieve()
-                .body(HouseholdDto.class)*/ 
+                .body(ProfileDto.class);
+        
+        return HouseholdDto.builder()
+            .city(profileDto.city())
+            .housingStatus(profileDto.housingStatus())
+            .children(profileDto.childrenCount())
+            .singleParent(profileDto.singleParent())            
+            .build();
     }
 }

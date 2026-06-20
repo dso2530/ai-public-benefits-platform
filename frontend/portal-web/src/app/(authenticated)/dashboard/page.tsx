@@ -6,6 +6,7 @@ import { NotificationsCard } from '../../../features/dashboard/components/notifi
 import { QuickActions } from '../../../features/dashboard/components/quick-actions';
 import { useDashboard } from '../../../features/dashboard/hooks/use-dashboard';
 import { AuthGuard } from "../../../features/auth/components/auth-guard";
+import { DocumentsCard } from '@/src/features/dashboard/components/documents-card';
 
 
 export default function DashboardPage() {
@@ -40,8 +41,14 @@ export default function DashboardPage() {
         />
 
         <NotificationsCard
-          {...data.notifications}
+          {...data.notifications}        
         />
+
+        <DocumentsCard
+          {...data.documents}        
+        />
+        
+
 
          
           
