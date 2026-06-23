@@ -4,8 +4,12 @@ name: Core Services
 
 on:
   pull_request:
+    paths:
+      - 'backend/core-services/**'
   push:
     branches: [main]
+    paths:
+      - 'backend/core-services/**'
 
 jobs:
   core-services:

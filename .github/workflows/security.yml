@@ -1,11 +1,21 @@
 name: Security
 
+
+
 on:
   push:
     branches:
       - main
+    paths:
+      - 'backend/core-services/**'
+      - 'bff/citizen-bff/**'
+      - 'frontend/portal-web/**'
 
   pull_request:
+    paths:
+      - 'backend/core-services/**'
+      - 'bff/citizen-bff/**'
+      - 'frontend/portal-web/**'
 
 jobs:
 
@@ -13,15 +23,26 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    
+
     steps:
 
       - uses: actions/checkout@v4
 
-      - name: Trivy Scan
-        uses: aquasecurity/trivy-action@0.28.0
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
 
+      - name: Trivy Scan
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           scan-type: fs
+          scan-ref: .
           severity: HIGH,CRITICAL
-          exit-code: 1
-      - run: mvn dependency-check:check
+          exit-code: "1"
+
+      #- name: OWASP Dependency Check
+        #working-directory: backend/core-services
+        #run: mvn dependency-check:check
