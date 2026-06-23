@@ -32,6 +32,11 @@ jobs:
 
       - run: |
           mvn clean verify sonar:sonar \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
           -Dsonar.token=${{ secrets.SONAR_TOKEN }}
-
+      - name: Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   

@@ -44,22 +44,8 @@
     </dependencyManagement>
 
     <build>
-        <profiles>
-            <profile>
-                <id>security-scan</id>
-                <build>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.owasp</groupId>
-                            <artifactId>dependency-check-maven</artifactId>
-                            <version>12.1.0</version>
-                        </plugin>
-                    </plugins>
-                </build>
-            </profile>
-        </profiles>
+        
         <pluginManagement>
-
             <plugins>
 
                 <plugin>
@@ -134,4 +120,18 @@
 
     </build>
 
-</project>
+    <profiles>
+        <profile>
+            <id>security-scan</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>12.1.0</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        </profiles>
+</project> 
