@@ -19,11 +19,7 @@
     "type": "java.lang.String",
     "description": "A description for 'services.document.url'"
   },
-  {
-    "name": "services.identity.url",
-    "type": "java.lang.String",
-    "description": "A description for 'services.identity.url'"
-  },
+  
   {
     "name": "spring.security.oauth2.resourceserver.jwt.secret-key",
     "type": "java.lang.String",

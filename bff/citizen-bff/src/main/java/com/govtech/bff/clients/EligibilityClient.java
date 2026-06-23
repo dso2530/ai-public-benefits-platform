@@ -4,11 +4,12 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import com.govtech.bff.dashboard.dto.EligibilityDto;
 import com.govtech.bff.dashboard.dto.EligibilitySummaryDto;
+import com.govtech.bff.eligibility.dto.EligibilityDto;
 
 @Component
 @RequiredArgsConstructor
@@ -31,6 +32,6 @@ public class EligibilityClient {
         return restClient.get()
                 .uri(eligibilityUrl + "/api/eligibility")
                 .retrieve()
-                .body(List.class); 
+                 .body(new ParameterizedTypeReference<List<EligibilityDto>>() {}); 
     }
 }

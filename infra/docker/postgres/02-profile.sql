@@ -1,25 +1,29 @@
 \connect profiledb;
 
-CREATE TABLE profiles (
-    id BIGSERIAL PRIMARY KEY,
-    subject VARCHAR(255) UNIQUE NOT NULL,
-    first_name VARCHAR(100),
-    last_name VARCHAR(100),
-    email VARCHAR(255),
-    city VARCHAR(100)
-);
-
-INSERT INTO profiles (
+INSERT INTO citizens (
+    id,
     subject,
+    email,
     first_name,
     last_name,
-    email,
-    city
-)
-VALUES (
-    'aed0ddab-a7c3-4691-a473-d6d3af16d93b',
-    'John',
-    'Citizen',
-    'citizen@test.fr',
-    'Lille'
+    street,
+    postal_code,
+    city,
+    country,
+    housing_status,
+    children_count,
+    single_parent
+) VALUES (
+    '11111111-2222-3333-4444-555555555555',
+    'ed633384-afba-4dfa-8fb3-49cf6070affe',
+    'citizen@example.com',
+    'Fatoumata',
+    'Diallo',
+    '10 Rue de Lille',
+    '59200',
+    'Tourcoing',
+    'France',
+    'TENANT',
+    2,
+    false
 );

@@ -1,9 +1,15 @@
 server:
   port: 8084
 
-spring:
+spring:  
   application:
     name: citizen-bff
+  
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
   security:
     oauth2:
       client:
@@ -21,8 +27,7 @@ spring:
               "{baseUrl}/login/oauth2/code/keycloak"
         provider:
           keycloak:
-            issuer-uri:
-              http://localhost:9090/realms/govtech
+            issuer-uri: ${SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI:http://localhost:9090/realms/govtech}
         
        
 management:
@@ -32,24 +37,21 @@ management:
         include: health,info,prometheus
 
 services:
-  identity:
-    url: http://localhost:8086
-
   profile:
-    url: http://localhost:8081
+    url: ${SERVICES_PROFILE_URL:http://localhost:8081}
 
   eligibility:
-    url: http://localhost:8082
+    url: ${SERVICES_ELIGIBILITY_URL:http://localhost:8082}
 
   notification:
-    url: http://localhost:8083
+    url: ${SERVICES_NOTIFICATION_URL:http://localhost:8083}
 
   document:
-    url: http://localhost:8085
+    url: ${SERVICES_DOCUMENT_URL:http://localhost:8085}
 
 security:
   jwt:
-    secret: ${JWT_SECRET}
+    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
     
 logging:
   level:

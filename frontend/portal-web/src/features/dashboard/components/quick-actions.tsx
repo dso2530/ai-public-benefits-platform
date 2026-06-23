@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button } from '../../../shared/components/ui/button';
-import { ProfileCard } from '../../profile/component/profile-card';
+import { ProfileCard } from '../../profile/components/profile-card';
 import { LogoutButton } from '../../auth/components/logout-button';
 
 export function QuickActions() {
@@ -8,19 +8,19 @@ export function QuickActions() {
     <div className="flex flex-wrap gap-4">
       <Button asChild>
         <Link href="/documents">
-          Upload Documents
+          📄 Documents
         </Link>
       </Button>
 
       <Button asChild variant="secondary">
         <Link href="/benefits">
-          View Benefits
+          💰 View Benefits
         </Link>
       </Button>
 
       <Button asChild variant="outline">
         <Link href="/profile">
-          Edit Profile
+          👤 Edit Profile
         </Link>
       </Button>
 
