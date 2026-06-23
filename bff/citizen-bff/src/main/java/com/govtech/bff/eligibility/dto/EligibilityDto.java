@@ -1,4 +1,4 @@
-package com.govtech.bff.dashboard.dto;
+package com.govtech.bff.eligibility.dto;
 
 import java.math.BigDecimal;
 

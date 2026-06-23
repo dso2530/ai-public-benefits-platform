@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: '10mb', // Autorise l'envoi de gros PDFs d'avis d'imposition
+      bodySizeLimit: '20mb', // Autorise l'envoi de gros PDFs d'avis d'imposition
     },
   },
   // Headers de sécurité stricts (Protection contre les failles XSS / Clickjacking)
