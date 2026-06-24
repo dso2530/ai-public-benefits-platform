@@ -1,11 +1,13 @@
-# .github/workflows/frontend.yml
-
 name: Frontend
 
 on:
   pull_request:
+    paths:
+      - 'frontend/portal-web/**'
   push:
     branches: [main]
+    paths:
+      - 'frontend/portal-web/**'
 
 jobs:
   frontend:
