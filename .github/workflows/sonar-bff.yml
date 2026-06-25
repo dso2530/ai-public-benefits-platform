@@ -40,7 +40,7 @@ jobs:
       - name: Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
         with:
-         scanMetadataReportFile: bff/citizen-bff/.scannerwork/report-task.txt
+         scanMetadataReportFile: bff/citizen-bff/target/sonar/report-task.txt
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
