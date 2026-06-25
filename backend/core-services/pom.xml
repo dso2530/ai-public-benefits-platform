@@ -20,7 +20,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <spring.boot.version>3.5.3</spring.boot.version>
+        <spring.boot.version>4.1.0</spring.boot.version>
         <lombok.version>1.18.38</lombok.version>
         <sonar.coverage.jacoco.xmlReportPaths>
             **/target/site/jacoco/jacoco.xml
