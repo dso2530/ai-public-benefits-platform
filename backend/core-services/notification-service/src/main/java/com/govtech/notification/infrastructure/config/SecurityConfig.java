@@ -33,7 +33,6 @@ public class SecurityConfig {
                 NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withSecretKey(key)
                 .macAlgorithm(MacAlgorithm.HS384)  // Spécifie HS384
                 .build();
-               // jwtDecoder.setJwtValidator(JwtValidators.createDefault()); 
                 return  jwtDecoder;
         }
 
@@ -43,7 +42,6 @@ public class SecurityConfig {
 
                 http
                         .cors(Customizer.withDefaults())
-                        .csrf(csrf -> csrf.disable())
                         .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/actuator/**",
