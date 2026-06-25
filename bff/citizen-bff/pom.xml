@@ -27,7 +27,8 @@
         <sonar.coverage.jacoco.xmlReportPaths>
             ${project.basedir}/target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.organization>govtech-aides</sonar.organization>
+        <sonar.organization>govtech-aids</sonar.organization>
+        <sonar.projectKey>citizen-bff</sonar.projectKey>
     </properties>
 
     <dependencies>

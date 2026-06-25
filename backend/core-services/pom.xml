@@ -24,7 +24,11 @@
         <lombok.version>1.18.38</lombok.version>
         <sonar.coverage.jacoco.xmlReportPaths>
             **/target/site/jacoco/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>    
+        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.organization>govtech-aids</sonar.organization>
+        <sonar.projectKey>core-services</sonar.projectKey>
+
+    
     </properties>
     
     <dependencyManagement>
