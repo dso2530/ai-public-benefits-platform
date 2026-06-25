@@ -23,7 +23,7 @@
         <spring.boot.version>3.5.3</spring.boot.version>
         <lombok.version>1.18.38</lombok.version>
         <sonar.coverage.jacoco.xmlReportPaths>
-            ${project.basedir}/target/site/jacoco/jacoco.xml
+            **/target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>    
     </properties>
     
@@ -95,13 +95,10 @@
 
                         <execution>
                             <id>report</id>
-
                             <phase>verify</phase>
-
                             <goals>
                                 <goal>report</goal>
                             </goals>
-
                         </execution>
 
                     </executions>

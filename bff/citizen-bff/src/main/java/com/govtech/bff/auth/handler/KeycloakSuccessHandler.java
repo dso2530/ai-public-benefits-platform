@@ -55,7 +55,6 @@ public class KeycloakSuccessHandler
         cookie.setPath("/");
         cookie.setMaxAge(86400);
         cookie.setSecure(true);
-
         response.addCookie(cookie);
 
         response.sendRedirect(
