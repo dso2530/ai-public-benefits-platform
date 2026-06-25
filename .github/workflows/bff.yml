@@ -1,0 +1,47 @@
+name: BFF
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'bff/citizen-bff/**'
+
+  pull_request:
+    paths:
+      - 'bff/citizen-bff/**'
+
+jobs:
+
+   citizen-bff:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: bff/citizen-bff
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Cache Maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: Build
+        run: mvn clean verify
+
+      - name: Upload Jacoco
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco
+          path: target/site/jacoco

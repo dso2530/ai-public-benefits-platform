@@ -21,9 +21,11 @@ public class LogoutController {
                         "access_token",
                         "");
 
+        
         cookie.setMaxAge(0);
         cookie.setPath("/");
-
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
         response.addCookie(cookie);
 
         return ResponseEntity.noContent()

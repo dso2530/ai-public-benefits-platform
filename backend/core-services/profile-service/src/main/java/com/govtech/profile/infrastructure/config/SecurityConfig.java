@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -34,7 +33,6 @@ public class SecurityConfig {
                 NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withSecretKey(key)
                 .macAlgorithm(MacAlgorithm.HS384)  // Spécifie HS384
                 .build();
-               // jwtDecoder.setJwtValidator(JwtValidators.createDefault()); 
                 return  jwtDecoder;
         }
 
@@ -44,7 +42,6 @@ public class SecurityConfig {
 
                 http
                         .cors(Customizer.withDefaults())
-                        .csrf(csrf -> csrf.disable())
                         .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/actuator/**",

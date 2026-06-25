@@ -7,12 +7,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.govtech.document.application.dto.DocumentDto;
@@ -41,7 +44,7 @@ public class DocumentService implements DocumentServiceUsecase {
         @Override
         @Transactional(readOnly = true)
         public List<DocumentDto> getDocuments(
-                String subject) {
+                final @NonNull String subject) {
 
                 return repository
                         .findBySubjectOrderByUploadedAtDesc(subject)
@@ -60,7 +63,7 @@ public class DocumentService implements DocumentServiceUsecase {
         @Override
         @Transactional(readOnly = true)
         public DocumentSummaryDto getSummary(
-                String subject) {
+                 final @NonNull String subject) {
 
                 long total =
                         repository.countBySubject(subject);
@@ -78,44 +81,89 @@ public class DocumentService implements DocumentServiceUsecase {
         }
 
         @Override
-        public DocumentDto upload(String subject, MultipartFile file, String type) throws IOException {
+        public DocumentDto upload(final @NonNull  String subject, final @NonNull MultipartFile file, final @NonNull  String type) throws IOException {
                 
-                String storedFileName =
-                        UUID.randomUUID() + "-" + file.getOriginalFilename();
+                
+   
 
-                Path uploadDir = Path.of(storagePath);
+                // Nom original uniquement pour l'affichage
+                String originalFileName = StringUtils.cleanPath(
+                        Objects.requireNonNull(file.getOriginalFilename()));
+
+                // Extraction sécurisée de l'extension
+                String extension = "";
+
+                int lastDotIndex = originalFileName.lastIndexOf('.');
+                if (lastDotIndex > 0) {
+                extension = originalFileName.substring(lastDotIndex);
+                }
+
+                // Nom physique stocké sur disque
+                String storedFileName =
+                        UUID.randomUUID() + extension;
+
+                Path uploadDir = Path.of(storagePath)
+                        .toAbsolutePath()
+                        .normalize();
 
                 Files.createDirectories(uploadDir);
 
-                Path target = uploadDir.resolve(storedFileName);
+                Path target = uploadDir
+                        .resolve(storedFileName)
+                        .normalize();
+
+                // Protection contre Path Traversal
+                if (!target.startsWith(uploadDir)) {
+                throw new SecurityException(
+                        "Invalid file path");
+                }
 
                 Files.copy(
                         file.getInputStream(),
                         target,
-                        StandardCopyOption.REPLACE_EXISTING
-                );
+                        StandardCopyOption.REPLACE_EXISTING);
 
-                DocumentJpaEntity document = DocumentJpaEntity.builder()
-                        .subject(subject)
-                        .name(DocumentType.valueOf(type).getName())
-                        .documentType(DocumentType.valueOf(type))
-                        .status("UPLOADED")
-                        .fileName(file.getOriginalFilename())
-                        .filePath(target.toString())
-                        .fileSize(file.getSize())
-                        .contentType(file.getContentType())
-                        .uploadedAt(Instant.now())
-                        .build();
+                DocumentJpaEntity entity =
+                        new DocumentJpaEntity();
 
-                 return mapper.toDto(
-                repository.save(document));
+                entity.setSubject(subject);
+
+                // Nom original visible par l'utilisateur
+                entity.setName(originalFileName);
+
+                // Nom physique sur disque
+                entity.setFileName(storedFileName);
+
+                entity.setDocumentType(
+                        DocumentType.valueOf(type));
+
+                entity.setUploadedAt(Instant.now());
+
+                DocumentJpaEntity saved =
+                        repository.save(entity);
+
+                return mapToDto(saved);
+    }
+
+    private DocumentDto mapToDto(
+            DocumentJpaEntity entity) {
+
+        return DocumentDto.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .fileName(entity.getFileName())
+                .documentType(
+                        entity.getDocumentType().name())
+                .uploadedAt(entity.getUploadedAt())
+                .build();
+    }
 
 
 
-        }
+
 
         @Override
-        public void delete(@NonNull Long id, String subject) throws IOException {
+        public void delete(final @NonNull Long id, final @NonNull String subject) throws IOException {
                 DocumentJpaEntity document =
                         repository.findById(id)
                                 .orElseThrow(() ->
@@ -137,7 +185,7 @@ public class DocumentService implements DocumentServiceUsecase {
 
         @Override
         @Transactional(readOnly = true)
-        public DownloadedDocument download(Long id, String subject) throws AccessDeniedException {
+        public DownloadedDocument download(final @NonNull Long id, final @NonNull String subject) throws AccessDeniedException {
                 DocumentJpaEntity document =
                 repository.findById(id)
                         .orElseThrow(() ->
