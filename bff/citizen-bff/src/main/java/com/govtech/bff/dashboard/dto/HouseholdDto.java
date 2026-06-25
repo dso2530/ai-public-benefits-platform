@@ -4,9 +4,4 @@ import lombok.Builder;
 
 @Builder
 public record HouseholdDto(
-        String city,
-        String housingStatus,
-        Integer children,
-        Boolean singleParent
-) {
-}
+    String city, String housingStatus, Integer children, Boolean singleParent) {}

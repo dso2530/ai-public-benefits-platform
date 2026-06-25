@@ -4,6 +4,5 @@ import com.govtech.profile.application.dto.ProfileDto;
 
 public interface GetProfileUseCase {
 
-    ProfileDto getProfile(
-            String subject);
+  ProfileDto getProfile(String subject);
 }

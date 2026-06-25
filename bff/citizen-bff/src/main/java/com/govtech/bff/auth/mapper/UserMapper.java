@@ -7,13 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    public CreateUserRequest toCreateUserRequest(
-            OidcUser oidcUser) {
+  public CreateUserRequest toCreateUserRequest(OidcUser oidcUser) {
 
-        return new CreateUserRequest(
-                        oidcUser.getSubject(),
-                        oidcUser.getGivenName(),
-                        oidcUser.getFamilyName(),
-                        oidcUser.getEmail());
-    }
+    return new CreateUserRequest(
+        oidcUser.getSubject(),
+        oidcUser.getGivenName(),
+        oidcUser.getFamilyName(),
+        oidcUser.getEmail());
+  }
 }

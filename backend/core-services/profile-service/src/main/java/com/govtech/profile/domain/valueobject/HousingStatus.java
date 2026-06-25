@@ -1,12 +1,11 @@
 package com.govtech.profile.domain.valueobject;
 
 public enum HousingStatus {
+  OWNER,
 
-    OWNER,
+  TENANT,
 
-    TENANT,
+  HOSTED,
 
-    HOSTED,
-
-    HOMELESS
+  HOMELESS
 }
