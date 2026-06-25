@@ -1,0 +1,45 @@
+# .github/workflows/core-services.yml
+
+name: Core Services
+
+on:
+  pull_request:
+    paths:
+      - 'backend/core-services/**'
+  push:
+    branches: [main]
+    paths:
+      - 'backend/core-services/**'
+
+jobs:
+  core-services:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend/core-services
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Cache Maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: Build
+        run: mvn clean verify
+
+      - name: Upload Jacoco
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco
+          path: target/site/jacoco

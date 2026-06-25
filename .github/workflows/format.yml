@@ -1,0 +1,31 @@
+name: Code Format
+
+on:
+    pull_request:
+        paths:
+            - "backend/core-services/**"
+    push:
+        branches:
+            - main
+        paths:
+            - "backend/core-services/**"
+
+jobs:
+    spotless:
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: backend/core-services
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-java@v4
+              with:
+                  distribution: temurin
+                  java-version: 21
+                  cache: maven
+
+            - name: Check formatting
+              run: mvn spotless:check
