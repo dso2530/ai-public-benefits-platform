@@ -3,12 +3,12 @@ name: Code Format
 on:
     pull_request:
         paths:
-            - "backend/core-services/**"
+            - 'backend/core-services/**'
     push:
         branches:
             - main
         paths:
-            - "backend/core-services/**"
+            - 'backend/core-services/**'
 
 jobs:
     spotless:

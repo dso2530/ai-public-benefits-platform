@@ -20,7 +20,6 @@ public class CitizenRepositoryAdapter implements CitizenRepository {
 
   @Override
   public Citizen save(Citizen citizen) {
-    // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'save'");
   }
 }

@@ -1,10 +1,10 @@
 server:
   port: 8084
 
-spring:  
+spring:
   application:
     name: citizen-bff
-  
+
   servlet:
     multipart:
       max-file-size: 50MB
@@ -21,15 +21,12 @@ spring:
               - openid
               - profile
               - email
-            authorization-grant-type:
-              authorization_code
-            redirect-uri:
-              "{baseUrl}/login/oauth2/code/keycloak"
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
         provider:
           keycloak:
             issuer-uri: ${SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI:http://localhost:9090/realms/govtech}
-        
-       
+
 management:
   endpoints:
     web:
@@ -52,8 +49,8 @@ services:
 security:
   jwt:
     secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
-    
+
 logging:
   level:
-    org.springframework.security: DEBUG
+    org.springframework.security: TRACE
     org.springframework.boot.autoconfigure.security: DEBUG
