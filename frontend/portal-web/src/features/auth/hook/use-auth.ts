@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { api } from "../../../shared/api/axios";
 
 export interface User {
@@ -11,57 +11,48 @@ export interface User {
 }
 
 export const useAuth = () => {
-
   const router = useRouter();
 
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const {
+    data: user,
+    isLoading: loading,
+    refetch: refreshUser,
+  } = useQuery<User | null>({
+    queryKey: ["me"],
+    queryFn: async () => {
+      try {
+        const response = await api.get("/api/me", {
+          withCredentials: true,
+        });
+
+        return response.data;
+      } catch {
+        return null;
+      }
+    },
+    retry: false,
+  });
 
   const login = () => {
-
-    window.location.href =
+    globalThis.location.href =
       "http://localhost:8084/oauth2/authorization/keycloak";
   };
 
   const logout = async () => {
-
     try {
       await api.post("/api/auth/logout");
     } finally {
-      setUser(null);
       router.push("/login");
+      refreshUser();
     }
   };
 
-  const loadUser = async () => {
-
-    try {
-
-      const response = await api.get("/api/me", {
-        withCredentials: true,
-      });
-
-      setUser(response.data);
-
-    } catch {
-
-      setUser(null);
-
-    } finally {
-
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadUser();
-  }, []);
   return {
     user,
     loading,
     isAuthenticated: !!user,
     login,
     logout,
-    refreshUser: loadUser,
+    refreshUser,
   };
 };

@@ -22,32 +22,32 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-        @Value("${security.jwt.secret}")
-        private String jwtSecret;
+  @Value("${security.jwt.secret}")
+  private String jwtSecret;
 
-        @Bean
-        public JwtDecoder jwtDecoder() {
-                SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
-                return NimbusJwtDecoder.withSecretKey(key)
-                                .macAlgorithm(MacAlgorithm.HS384) // Spécifie HS384
-                                .build();
-        }
+  @Bean
+  public JwtDecoder jwtDecoder() {
+    SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+    return NimbusJwtDecoder.withSecretKey(key)
+        .macAlgorithm(MacAlgorithm.HS384) // Spécifie HS384
+        .build();
+  }
 
-        @Bean
-        SecurityFilterChain securityFilterChain(HttpSecurity http) {
+  @Bean
+  SecurityFilterChain securityFilterChain(HttpSecurity http) {
 
-                http.cors(Customizer.withDefaults())
-                                .csrf(AbstractHttpConfigurer::disable)
-                                .sessionManagement(session -> session
-                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .authorizeHttpRequests(
-                                                auth -> auth.requestMatchers("/actuator/**", "/swagger-ui/**",
-                                                                "/v3/api-docs/**")
-                                                                .permitAll()
-                                                                .anyRequest()
-                                                                .authenticated())
-                                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())));
+    http.cors(Customizer.withDefaults())
+        .csrf(AbstractHttpConfigurer::disable)
+        .sessionManagement(
+            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(
+            auth ->
+                auth.requestMatchers("/actuator/**", "/swagger-ui/**", "/v3/api-docs/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated())
+        .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())));
 
-                return http.build();
-        }
+    return http.build();
+  }
 }
