@@ -2,9 +2,8 @@ package com.govtech.profile.infrastructure.persistence;
 
 import com.govtech.profile.domain.valueobject.HousingStatus;
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.UUID;
+import lombok.*;
 
 @Entity
 @Table(name = "citizens")
@@ -15,36 +14,36 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CitizenJpaEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
-    @Column(nullable = false, unique = true)
-    private String subject;
+  @Column(nullable = false, unique = true)
+  private String subject;
 
-    @Column(nullable = false)
-    private String email;
+  @Column(nullable = false)
+  private String email;
 
-    private String firstName;
+  private String firstName;
 
-    private String lastName;
+  private String lastName;
 
-    // Address
+  // Address
 
-    private String street;
+  private String street;
 
-    private String postalCode;
+  private String postalCode;
 
-    private String city;
+  private String city;
 
-    private String country;
+  private String country;
 
-    // Household
+  // Household
 
-    @Enumerated(EnumType.STRING)
-    private HousingStatus housingStatus;
+  @Enumerated(EnumType.STRING)
+  private HousingStatus housingStatus;
 
-    private Integer childrenCount;
+  private Integer childrenCount;
 
-    private Boolean singleParent;
+  private Boolean singleParent;
 }

@@ -1,7 +1,3 @@
 package com.govtech.bff.dashboard.dto;
 
-public record NotificationSummaryDto(
-        int total,
-        int unread
-) {
-}
+public record NotificationSummaryDto(int total, int unread) {}

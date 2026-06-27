@@ -1,41 +1,33 @@
 package com.govtech.bff.documents.service;
 
-import java.io.IOException;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.govtech.bff.clients.DocumentClient;
 import com.govtech.bff.documents.dto.DocumentDto;
-
+import java.io.IOException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
 public class DocumentService {
 
-    private final DocumentClient documentClient;
+  private final DocumentClient documentClient;
 
-    public List<DocumentDto> documents() {
-        return documentClient.getDocuments();
-    }
+  public List<DocumentDto> documents() {
+    return documentClient.getDocuments();
+  }
 
-    public DocumentDto upload(
-            MultipartFile file,
-            String documentType) throws IOException {
+  public DocumentDto upload(MultipartFile file, String documentType) throws IOException {
 
-        return documentClient.upload(
-                file,
-                documentType
-        );
-    }
+    return documentClient.upload(file, documentType);
+  }
 
-    public void delete(Long id) {
-        documentClient.delete(id);
-    }
+  public void delete(Long id) {
+    documentClient.delete(id);
+  }
 
-    public byte[] download(Long id) {
-        return documentClient.download(id);
-    }
+  public byte[] download(Long id) {
+    return documentClient.download(id);
+  }
 }

@@ -4,3 +4,5 @@ target/
 .vscode/
 *.iml
 README.md
+storage/documents/*
+!storage/documents/.gitkeep

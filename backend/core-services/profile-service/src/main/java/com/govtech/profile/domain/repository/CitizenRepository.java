@@ -1,14 +1,11 @@
 package com.govtech.profile.domain.repository;
 
-import java.util.Optional;
-
 import com.govtech.profile.domain.model.Citizen;
+import java.util.Optional;
 
 public interface CitizenRepository {
 
-    Optional<Citizen> findBySubject(
-            String subject);
+  Optional<Citizen> findBySubject(String subject);
 
-    Citizen save(
-            Citizen citizen);
+  Citizen save(Citizen citizen);
 }

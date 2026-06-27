@@ -1,7 +1,7 @@
 package com.govtech.profile.application.usecase;
 
-import com.govtech.profile.domain.repository.CitizenRepository;
 import com.govtech.profile.application.dto.ProfileDto;
+import com.govtech.profile.domain.repository.CitizenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +9,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GetProfileService implements GetProfileUseCase {
 
-    private final CitizenRepository citizenRepository;
+  private final CitizenRepository citizenRepository;
 
-    @Override
-    public ProfileDto getProfile(String subject) {
+  @Override
+  public ProfileDto getProfile(String subject) {
 
-        var citizen = citizenRepository
-                .findBySubject(subject)
-                .orElseThrow();
+    var citizen = citizenRepository.findBySubject(subject).orElseThrow();
 
-        return ProfileDto.from(citizen);
-    }
+    return ProfileDto.from(citizen);
+  }
 }

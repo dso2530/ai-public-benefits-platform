@@ -1,8 +1,7 @@
 package com.govtech.notification.infrastructure.persistence;
 
-import java.time.Instant;
-
 import jakarta.persistence.*;
+import java.time.Instant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,24 +17,24 @@ import lombok.Setter;
 @AllArgsConstructor
 public class NotificationJpaEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(nullable = false)
-    private String subject;
+  @Column(nullable = false)
+  private String subject;
 
-    @Column(nullable = false)
-    private String title;
+  @Column(nullable = false)
+  private String title;
 
-    @Column(nullable = false, length = 1000)
-    private String message;
+  @Column(nullable = false, length = 1000)
+  private String message;
 
-    @Column(name = "is_read")
-    private boolean read;
+  @Column(name = "is_read")
+  private boolean read;
 
-    @Column(nullable = false)
-    private Instant createdAt;
+  @Column(nullable = false)
+  private Instant createdAt;
 
-    // getters/setters
+  // getters/setters
 }

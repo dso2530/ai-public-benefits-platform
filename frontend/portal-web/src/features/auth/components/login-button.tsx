@@ -4,7 +4,7 @@ export function LoginButton() {
 
   const login = () => {
 
-   window.location.href = "http://localhost:8084/oauth2/authorization/keycloak";
+    globalThis.location.href = "http://localhost:8084/oauth2/authorization/keycloak";
   };
 
   return (

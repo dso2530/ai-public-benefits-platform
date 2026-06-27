@@ -9,20 +9,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    @Bean
-    public OpenAPI citizenBffOpenAPI() {
+  @Bean
+  public OpenAPI citizenBffOpenAPI() {
 
-        return new OpenAPI()
-                .info(
-                        new Info()
-                                .title("Citizen BFF API")
-                                .version("1.0.0")
-                                .description("AI Public Benefits Platform")
-                                .contact(
-                                        new Contact()
-                                                .name("GovTech Team")
-                                                .email("contact@govtech.fr")
-                                )
-                );
-    }
+    return new OpenAPI()
+        .info(
+            new Info()
+                .title("Citizen BFF API")
+                .version("1.0.0")
+                .description("AI Public Benefits Platform")
+                .contact(new Contact().name("GovTech Team").email("contact@govtech.fr")));
+  }
 }
