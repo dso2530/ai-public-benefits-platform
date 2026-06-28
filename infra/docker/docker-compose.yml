@@ -112,12 +112,51 @@ services:
       SERVICES_DOCUMENT_URL: http://document-service:8085
       SERVICES_IDENTITY_URL: http://identity-service:8086
       JWT_SECRET: my-super-secret-key-for-local-development-at-least-32-chars
- 
     depends_on:
       - profile-service
       - eligibility-service
       - notification-service
       - document-service
+
+  prometheus:
+    image: prom/prometheus
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+    - "9099:9090"
+    volumes:
+    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+   image: grafana/grafana
+   ports:
+    - "3001:3000"
+   depends_on:
+    - prometheus
+
+  jaeger:
+   image: jaegertracing/all-in-one:latest
+   ports:
+    - "16686:16686"
+    - "4317:4317"
+    - "4318:4318"
+
+  loki:
+   image: grafana/loki:3.5.2
+   ports:
+    - "3100:3100"
+   command: -config.file=/etc/loki/local-config.yaml
+
+
+  promtail:
+   image: grafana/promtail:3.5.2
+   ports:
+    - "9080:9080"
+   volumes:
+    - /var/log/citizen-bff:/logs/citizen-bff:ro
+    #- ./var/log/document-service/logs:/logs/document-service:ro
+    #- /var/log/notification-service/logs:/logs/notification-service:ro
+    - ./grafana/promtail-config.yml:/etc/promtail/config.yml:ro
+   command: -config.file=/etc/promtail/config.yml
 
 volumes:
   postgres-data:

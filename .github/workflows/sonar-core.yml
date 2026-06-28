@@ -8,6 +8,8 @@ on:
       - "backend/core-services/**"
 
   pull_request:
+    paths:
+      - "backend/core-services/**"
 
 jobs:
   sonar-core:
@@ -32,7 +34,7 @@ jobs:
       - name: Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
         with:
-          scanMetadataReportFile: target/sonar/report-task.txt
+          scanMetadataReportFile: backend/core-services/target/sonar/report-task.txt
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
