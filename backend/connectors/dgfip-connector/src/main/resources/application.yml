@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: dgfip-connector
+
+dgfip:
+  base-url: https://api.dgfip.gouv.fr
+
+  oauth2:
+    token-uri: https://api.dgfip.gouv.fr/oauth/token
+
+    client-id: ${DGFIP_CLIENT_ID}
+
+    client-secret: ${DGFIP_CLIENT_SECRET}
+
+    scope: income.read,taxnotice.read
+
+  api:
+    income: /income/{id}
+
+    latest-tax-notice: /tax-notices/latest/{id}

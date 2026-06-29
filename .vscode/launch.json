@@ -4,7 +4,6 @@
     
     {
       "type": "java",
-      "name": "Attach to Spring Boot",
       "request": "attach",
       "hostName": "localhost",
       "port": 5005 // Port par défaut pour le débogage Java

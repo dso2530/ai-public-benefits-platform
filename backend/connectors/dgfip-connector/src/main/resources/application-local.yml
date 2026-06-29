@@ -1,0 +1,11 @@
+dgfip:
+
+  base-url: http://localhost:8089
+
+  oauth2:
+
+    token-uri: http://localhost:8090/oauth/token
+
+    client-id: local-client
+
+    client-secret: local-secret
