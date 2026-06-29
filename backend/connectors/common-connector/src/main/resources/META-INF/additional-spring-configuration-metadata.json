@@ -1,0 +1,127 @@
+{"properties": [
+  {
+    "name": "connectors.default.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.default.connect-timeout'"
+  },
+  {
+    "name": "connectors.default.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.default.read-timeout'"
+  },
+  {
+    "name": "connectors.default.retry.max-attempts",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.default.retry.max-attempts'"
+  },
+  {
+    "name": "connectors.default.retry.backoff",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.default.retry.backoff'"
+  },
+  {
+    "name": "connectors.default.oauth2.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.default.oauth2.read-timeout'"
+  },
+  {
+    "name": "connectors.default.oauth2.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.default.oauth2.connect-timeout'"
+  },
+  {
+    "name": "management.endpoints.web.exposure.include",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoints.web.exposure.include'"
+  },
+  {
+    "name": "management.endpoint.health.show-details",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoint.health.show-details'"
+  },
+  {
+    "name": "dgfip.base-url",
+    "type": "java.lang.String",
+    "description": "A description for 'dgfip.base-url'"
+  },
+  {
+    "name": "dgfip.oauth2.token-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'dgfip.oauth2.token-uri'"
+  },
+  {
+    "name": "dgfip.oauth2.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'dgfip.oauth2.client-id'"
+  },
+  {
+    "name": "dgfip.oauth2.client-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'dgfip.oauth2.client-secret'"
+  },
+  {
+    "name": "dgfip.oauth2.scope",
+    "type": "java.lang.String",
+    "description": "A description for 'dgfip.oauth2.scope'"
+  },
+  {
+    "name": "dgfip.api.income",
+    "type": "java.lang.String",
+    "description": "A description for 'dgfip.api.income'"
+  },
+  {
+    "name": "dgfip.api.latest-tax-notice",
+    "type": "java.lang.String",
+    "description": "A description for 'dgfip.api.latest-tax-notice'"
+  },
+  {
+    "name": "connector.default.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.default.connect-timeout'"
+  },
+  {
+    "name": "connector.default.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.default.read-timeout'"
+  },
+  {
+    "name": "connector.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.connect-timeout'"
+  },
+  {
+    "name": "connector.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.read-timeout'"
+  },
+  {
+    "name": "connector.retry.max-attempts",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.retry.max-attempts'"
+  },
+  {
+    "name": "connector.retry.backoff",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.retry.backoff'"
+  },
+  {
+    "name": "connector.oauth2.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.oauth2.connect-timeout'"
+  },
+  {
+    "name": "connector.oauth2.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.oauth2.read-timeout'"
+  },
+  {
+    "name": "connector.retry.delay",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.retry.delay'"
+  },
+  {
+    "name": "connector.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.connect-timeout'"
+  }
+]}

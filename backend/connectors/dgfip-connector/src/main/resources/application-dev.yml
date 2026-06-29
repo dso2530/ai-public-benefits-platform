@@ -1,0 +1,11 @@
+dgfip:
+
+  base-url: https://sandbox.api.dgfip.gouv.fr
+
+  oauth2:
+
+    token-uri: https://sandbox.api.dgfip.gouv.fr/oauth/token
+
+    client-id: ${DGFIP_CLIENT_ID}
+
+    client-secret: ${DGFIP_CLIENT_SECRET}

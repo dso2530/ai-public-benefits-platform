@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: common-connector
+
+  threads:
+    virtual:
+      enabled: true
+
+connector:
+  connect-timeout: 2s
+  read-timeout: 2s
+
+  retry:
+    max-attempts: 3
+    delay: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.govtech.connectors: INFO

@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: dgfip-connector-test
+
+dgfip:
+    base-url: http://localhost:8089
+    oauth2:
+        token-uri: http://localhost:8089/oauth/token
+        client-id: test
+        client-secret: test
+connector:
+    connect-timeout: 1s
+    read-timeout: 2s
+
+    retry:
+        max-attempts: 3
+        delay: 1000
