@@ -13,7 +13,6 @@ management:
   tracing:
     sampling:
       probability: 1.0
-  
 
   otlp:
     tracing:
@@ -42,12 +41,25 @@ spring:
       hibernate:
         format_sql: true
 
-security:
-  jwt:
-    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
+#security:
+#jwt:
+#secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
+minio:
+  enabled: true
 
-documents:
-  storage-path: ./storage/documents
+kafka:
+  enabled: true
+
+storage:
+  endpoint: ${STORAGE_ENDPOINT:http://localhost:9000}
+  access-key: ${STORAGE_ACCESS_KEY:admin}
+  secret-key: ${STORAGE_SECRET_KEY:admin123456}
+  bucket: ${STORAGE_BUCKET:documents}
+
+messaging:
+  kafka:
+    bootstrap-servers: ${KAFKA_BRK:kafka:29092}
+    schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091}
 
 logging:
   level:
@@ -55,3 +67,5 @@ logging:
     org.springframework.security.oauth2: DEBUG # Logs OAuth2 (JWT, Resource Server, etc.)
     org.springframework.security.web: DEBUG # Logs des requêtes HTTP et filtres
     org.springframework.boot.context.config: DEBUG # Logs de configuration (optionnel)
+    org.apache.kafka: DEBUG
+    org.springframework.kafka: DEBUG

@@ -7,19 +7,21 @@ import com.govtech.document.application.dto.DownloadedDocument;
 import com.govtech.document.application.mapper.DocumentMapper;
 import com.govtech.document.infrastructure.persistence.DocumentJpaEntity;
 import com.govtech.document.infrastructure.persistence.DocumentJpaRepository;
+import com.govtech.events.DocumentUploadedEvent;
+import com.govtech.platform.messaging.topics.Topics;
+import com.govtech.platform.storage.config.StorageProperties;
+import com.govtech.platform.storage.service.StorageService;
+
 import jakarta.persistence.EntityNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.nio.file.AccessDeniedException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,11 +31,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class DocumentService implements DocumentServiceUsecase {
 
-  @Value("${documents.storage-path:/data/documents}")
-  private String storagePath;
-
+  private final StorageService storageService;
   private final DocumentJpaRepository repository;
   private final DocumentMapper mapper;
+  private final DocumentEventService documentEventService;
 
   @Override
   @Transactional(readOnly = true)
@@ -41,15 +42,14 @@ public class DocumentService implements DocumentServiceUsecase {
 
     return repository.findBySubjectOrderByUploadedAtDesc(subject).stream()
         .map(
-            doc ->
-                new DocumentDto(
-                    doc.getId(),
-                    doc.getName(),
-                    doc.getDocumentType().name(),
-                    doc.getStatus(),
-                    doc.getFileName(),
-                    doc.getFileSize(),
-                    doc.getUploadedAt()))
+            doc -> new DocumentDto(
+                doc.getId(),
+                doc.getName(),
+                doc.getDocumentType().name(),
+                doc.getStatus(),
+                doc.getFileName(),
+                doc.getFileSize(),
+                doc.getUploadedAt()))
         .toList();
   }
 
@@ -66,73 +66,78 @@ public class DocumentService implements DocumentServiceUsecase {
 
   @Override
   public DocumentDto upload(
-      final @NonNull String subject, final @NonNull MultipartFile file, final @NonNull String type)
-      throws IOException {
+      @NonNull String subject,
+      @NonNull MultipartFile file,
+      @NonNull String type) throws IOException {
 
-    String storedFileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
+    String objectKey = "citizens/%s/%s-%s".formatted(
+        subject,
+        UUID.randomUUID(),
+        file.getOriginalFilename());
 
-    Path uploadDir = Path.of(storagePath);
+    storageService.upload(
+        file.getInputStream(),
+        file.getSize(),
+        file.getContentType(),
+        objectKey);
 
-    Files.createDirectories(uploadDir);
+    DocumentJpaEntity document = DocumentJpaEntity.builder()
+        .subject(subject)
+        .name(DocumentType.valueOf(type).getName())
+        .documentType(DocumentType.valueOf(type))
+        .status("UPLOADED")
+        .fileName(file.getOriginalFilename())
+        .objectKey(objectKey) // clé MinIO
+        .fileSize(file.getSize())
+        .contentType(file.getContentType())
+        .uploadedAt(Instant.now())
+        .build();
 
-    Path target = uploadDir.resolve(storedFileName).normalize();
+    DocumentJpaEntity saved = repository.save(document);
 
-    if (!target.startsWith(uploadDir)) {
-      throw new SecurityException("Invalid file path");
-    }
+    documentEventService.publishUploaded(saved);
 
-    Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
-
-    DocumentJpaEntity document =
-        DocumentJpaEntity.builder()
-            .subject(subject)
-            .name(DocumentType.valueOf(type).getName())
-            .documentType(DocumentType.valueOf(type))
-            .status("UPLOADED")
-            .fileName(file.getOriginalFilename())
-            .filePath(target.toString())
-            .fileSize(file.getSize())
-            .contentType(file.getContentType())
-            .uploadedAt(Instant.now())
-            .build();
-
-    return mapper.toDto(repository.save(document));
+    return mapper.toDto(saved);
   }
 
   @Override
-  public void delete(@NonNull Long id, @NonNull String subject) throws IOException {
-    DocumentJpaEntity document =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+  public void delete(@NonNull Long id, @NonNull String subject)
+      throws AccessDeniedException {
+
+    DocumentJpaEntity document = repository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
 
     if (!document.getSubject().equals(subject)) {
       throw new AccessDeniedException("Document does not belong to user");
     }
 
-    Files.deleteIfExists(Path.of(document.getFilePath()));
+    storageService.delete(document.getObjectKey());
 
     repository.delete(document);
   }
 
   @Override
   @Transactional(readOnly = true)
-  public DownloadedDocument download(final @NonNull Long id, final @NonNull String subject)
+  public DownloadedDocument download(
+      @NonNull Long id,
+      @NonNull String subject)
       throws AccessDeniedException {
-    DocumentJpaEntity document =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+
+    DocumentJpaEntity document = repository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
 
     if (!document.getSubject().equals(subject)) {
       throw new AccessDeniedException("Document does not belong to user");
     }
 
-    try {
+    try (InputStream inputStream = storageService.download(document.getObjectKey())) {
 
-      byte[] content = Files.readAllBytes(Path.of(document.getFilePath()));
+      byte[] content = inputStream.readAllBytes();
 
-      return new DownloadedDocument(document.getFileName(), document.getContentType(), content);
+      return new DownloadedDocument(
+          document.getFileName(),
+          document.getContentType(),
+          content);
 
     } catch (IOException e) {
       throw new UncheckedIOException(e);

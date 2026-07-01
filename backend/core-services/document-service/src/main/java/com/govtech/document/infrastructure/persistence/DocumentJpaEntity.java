@@ -45,7 +45,8 @@ public class DocumentJpaEntity {
 
   private String contentType;
 
-  private String filePath;
+  @Column(nullable = false)
+  private String objectKey;
 
   private Long fileSize;
 

@@ -5,8 +5,6 @@ spring:
   application:
     name: eligibility-service
 
-  
-
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/eligibilitydb}
     username: ${DB_USERNAME:postgres}
@@ -22,13 +20,19 @@ spring:
       hibernate:
         format_sql: true
 
-security:
-  jwt:
-    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
-  
+#security:
+#jwt:
+#secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
+
+minio:
+  enabled: false
+
+kafka:
+  enabled: false
+
 logging:
   level:
-    org.springframework.security: DEBUG  # Logs globaux de Spring Security
-    org.springframework.security.oauth2: DEBUG  # Logs OAuth2 (JWT, Resource Server, etc.)
-    org.springframework.security.web: DEBUG  # Logs des requêtes HTTP et filtres
-    org.springframework.boot.context.config: DEBUG  # Logs de configuration (optionnel)
+    org.springframework.security: DEBUG # Logs globaux de Spring Security
+    org.springframework.security.oauth2: DEBUG # Logs OAuth2 (JWT, Resource Server, etc.)
+    org.springframework.security.web: DEBUG # Logs des requêtes HTTP et filtres
+    org.springframework.boot.context.config: DEBUG # Logs de configuration (optionnel)

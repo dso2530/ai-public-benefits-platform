@@ -23,14 +23,10 @@
          <dependency>
             <groupId>com.govtech</groupId>
             <artifactId>platform-starter</artifactId>
-            <version>${project.version}</version>        
+            <version>${project.version}</version>       
         </dependency>  
 
-        <dependency>
-            <groupId>com.govtech</groupId>
-            <artifactId>platform-starter</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+      
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
