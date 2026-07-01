@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
@@ -26,7 +27,7 @@ public class SecurityConfig {
     requestHandler.setCsrfRequestAttributeName("_csrf");
 
     http.cors(Customizer.withDefaults())
-        .csrf(csrf -> csrf.csrfTokenRepository(repository).csrfTokenRequestHandler(requestHandler))
+        .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
             auth ->
                 auth.requestMatchers(

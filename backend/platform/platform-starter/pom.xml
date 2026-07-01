@@ -32,8 +32,13 @@
             <groupId>com.govtech</groupId>
             <artifactId>platform-observability</artifactId>
             <version>${project.version}</version>
-        </dependency> 
-    
+        </dependency>
+
+        <dependency>
+            <groupId>com.govtech</groupId>
+            <artifactId>platform-messaging</artifactId>
+            <version>${project.version}</version>
+        </dependency>    
        
 
         <!-- Validation -->
@@ -48,6 +53,17 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         
 
     </dependencies>

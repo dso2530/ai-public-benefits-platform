@@ -5,7 +5,7 @@ WORKDIR /workspace
 
 COPY . .
 
-RUN mvn clean package -pl document-service -am -DskipTests
+RUN mvn clean package -pl core-services/document-service -am -DskipTests -DskipIT=true
 
 # ===== Runtime =====
 FROM eclipse-temurin:21-jre-alpine
@@ -15,7 +15,7 @@ RUN addgroup -S spring && adduser -S spring -G spring
 WORKDIR /app
 
 COPY --from=builder \
-    /workspace/document-service/target/*.jar \
+    /workspace/core-services/document-service/target/*.jar \
     app.jar
 
 USER spring

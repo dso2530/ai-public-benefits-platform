@@ -1,0 +1,14 @@
+{
+  "namespace": "com.govtech.events",
+  "type": "record",
+  "name": "DocumentUploadedEvent",
+  "fields": [
+    { "name": "documentId", "type": "long" },
+    { "name": "subject", "type": "string" },
+    { "name": "bucket", "type": "string" },
+    { "name": "objectKey", "type": "string" },
+    { "name": "documentType", "type": "string" },
+    { "name": "contentType", "type": "string" },
+    { "name": "uploadedAt", "type": "string" }
+  ]
+}

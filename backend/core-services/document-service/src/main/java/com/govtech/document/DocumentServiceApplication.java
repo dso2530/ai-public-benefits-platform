@@ -2,8 +2,10 @@ package com.govtech.document;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.govtech")
+@ConfigurationPropertiesScan("com.govtech")
 public class DocumentServiceApplication {
 
   public static void main(String[] args) {

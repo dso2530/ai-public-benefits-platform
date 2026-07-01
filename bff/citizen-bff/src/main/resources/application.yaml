@@ -28,6 +28,9 @@ spring:
             issuer-uri: ${SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI:http://localhost:9090/realms/govtech}
 
 management:
+  tracing:
+    export:
+      enabled: false
   endpoints:
     web:
       exposure:
@@ -56,13 +59,11 @@ services:
 
 security:
   jwt:
-    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
+    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
 
 logging:
   file:
     path: ${LOG_PATH:logs}
   level:
-    io.opentelemetry: DEBUG
-    io.micrometer.tracing: DEBUG
-    org.springframework.boot.actuate.autoconfigure.tracing: DEBUG
-  
+    logging.level.org.springframework.security: TRACE
+    logging.level.org.springframework.web: DEBUG

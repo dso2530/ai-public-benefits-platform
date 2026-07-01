@@ -1,5 +1,17 @@
-{"properties": [{
-  "name": "security.jwt.secret",
-  "type": "java.lang.String",
-  "description": "A description for 'security.jwt.secret'"
-}]}
+{"properties": [
+  {
+    "name": "security.jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'security.jwt.secret'"
+  },
+  {
+    "name": "minio.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.enabled'"
+  },
+  {
+    "name": "kafka.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.enabled'"
+  }
+]}

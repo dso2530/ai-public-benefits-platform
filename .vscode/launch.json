@@ -1,22 +1,25 @@
 {
   "version": "0.2.0",
   "configurations": [
-    
     {
+      "name": "Java Debug",
       "type": "java",
       "request": "attach",
       "hostName": "localhost",
       "port": 5005 // Port par défaut pour le débogage Java
     },
-
-    
     {
       "name": "Next.js Debug",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "skipFiles": ["<node_internals>/**"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal"
     }
