@@ -7,6 +7,5 @@ import lombok.Data;
 @Builder
 public class DgfipRequest {
 
-    private String fiscalNumber;
-
+  private String fiscalNumber;
 }

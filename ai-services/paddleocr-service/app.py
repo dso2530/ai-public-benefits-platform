@@ -1,0 +1,71 @@
+import os
+import pprint
+import tempfile
+import aiofiles
+from fastapi import FastAPI, UploadFile, File, HTTPException
+from paddleocr import PaddleOCR
+
+app = FastAPI(
+    title="PaddleOCR Service",
+    version="1.0.0"
+)
+
+ocr = PaddleOCR(
+    lang="latin",
+    use_doc_orientation_classify=False,
+    use_doc_unwarping=False,
+    use_textline_orientation=False,
+    text_recognition_model_name="PP-OCRv5_server_rec"
+)
+
+
+@app.get("/health")
+def health():
+    return {
+        "status": "UP"
+    }
+
+
+@app.post("/ocr")
+async def ocr_file(file: UploadFile = File(...)):
+    print(type(file))
+    
+    if file.filename is None:
+        raise HTTPException(
+            status_code=400,
+            detail="Filename is missing."
+        )
+
+    suffix = os.path.splitext(file.filename)[1]
+
+    tmp_path = os.path.join(
+        tempfile.gettempdir(),
+        f"ocr{suffix}"
+    )
+
+    try:
+        async with aiofiles.open(tmp_path, "wb") as tmp:
+            await tmp.write(await file.read())
+
+        result = ocr.predict(tmp_path)
+
+        
+        texts = []
+
+        for page in result:
+           texts.extend(page["rec_texts"])
+
+        return {
+            "filename": file.filename,
+            "text": "\n".join(texts)
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"OCR processing failed: {str(e)}"
+        )
+
+    finally:
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)

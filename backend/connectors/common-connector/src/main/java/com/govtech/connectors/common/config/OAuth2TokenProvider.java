@@ -10,26 +10,25 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OAuth2TokenProvider {
 
-    private final OAuth2AuthorizedClientManager clientManager;
+  private final OAuth2AuthorizedClientManager clientManager;
 
-    public String getAccessToken(String registrationId) {
+  public String getAccessToken(String registrationId) {
 
-        OAuth2AuthorizeRequest request = OAuth2AuthorizeRequest
-                .withClientRegistrationId(registrationId)
-                .principal(
-                        new AnonymousAuthenticationToken(
-                                registrationId,
-                                registrationId,
-                                AuthorityUtils.createAuthorityList("ROLE_SYSTEM")))
-                .build();
+    OAuth2AuthorizeRequest request =
+        OAuth2AuthorizeRequest.withClientRegistrationId(registrationId)
+            .principal(
+                new AnonymousAuthenticationToken(
+                    registrationId,
+                    registrationId,
+                    AuthorityUtils.createAuthorityList("ROLE_SYSTEM")))
+            .build();
 
-        OAuth2AuthorizedClient client = clientManager.authorize(request);
+    OAuth2AuthorizedClient client = clientManager.authorize(request);
 
-        if (client == null) {
-            throw new IllegalStateException(
-                    "Unable to obtain OAuth2 access token for " + registrationId);
-        }
-
-        return client.getAccessToken().getTokenValue();
+    if (client == null) {
+      throw new IllegalStateException("Unable to obtain OAuth2 access token for " + registrationId);
     }
+
+    return client.getAccessToken().getTokenValue();
+  }
 }

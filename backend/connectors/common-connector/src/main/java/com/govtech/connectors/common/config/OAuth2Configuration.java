@@ -8,35 +8,28 @@ import org.springframework.security.oauth2.client.registration.*;
 @Configuration
 public class OAuth2Configuration {
 
-        @Bean
-        ClientRegistrationRepository clientRegistrationRepository(
-                        ClientRegistration registration) {
+  @Bean
+  ClientRegistrationRepository clientRegistrationRepository(ClientRegistration registration) {
 
-                return new InMemoryClientRegistrationRepository(registration);
-        }
+    return new InMemoryClientRegistrationRepository(registration);
+  }
 
-        @Bean
-        OAuth2AuthorizedClientService authorizedClientService(
-                        ClientRegistrationRepository repository) {
+  @Bean
+  OAuth2AuthorizedClientService authorizedClientService(ClientRegistrationRepository repository) {
 
-                return new InMemoryOAuth2AuthorizedClientService(repository);
-        }
+    return new InMemoryOAuth2AuthorizedClientService(repository);
+  }
 
-        @Bean
-        OAuth2AuthorizedClientManager authorizedClientManager(
-                        ClientRegistrationRepository repository,
-                        OAuth2AuthorizedClientService service) {
+  @Bean
+  OAuth2AuthorizedClientManager authorizedClientManager(
+      ClientRegistrationRepository repository, OAuth2AuthorizedClientService service) {
 
-                AuthorizedClientServiceOAuth2AuthorizedClientManager manager = new AuthorizedClientServiceOAuth2AuthorizedClientManager(
-                                repository,
-                                service);
+    AuthorizedClientServiceOAuth2AuthorizedClientManager manager =
+        new AuthorizedClientServiceOAuth2AuthorizedClientManager(repository, service);
 
-                manager.setAuthorizedClientProvider(
-                                OAuth2AuthorizedClientProviderBuilder.builder()
-                                                .clientCredentials()
-                                                .build());
+    manager.setAuthorizedClientProvider(
+        OAuth2AuthorizedClientProviderBuilder.builder().clientCredentials().build());
 
-                return manager;
-        }
-
+    return manager;
+  }
 }

@@ -9,8 +9,8 @@ import org.springframework.web.client.RestClient;
 @EnableConfigurationProperties(ConnectorProperties.class)
 public class CommonConnectorConfiguration {
 
-    @Bean
-    public RestClient.Builder restClientBuilder() {
-        return RestClient.builder();
-    }
+  @Bean
+  public RestClient.Builder restClientBuilder() {
+    return RestClient.builder();
+  }
 }

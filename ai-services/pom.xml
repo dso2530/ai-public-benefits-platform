@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+            http://maven.apache.org/POM/4.0.0
+            https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.govtech</groupId>
+    <artifactId>ai-services</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>ai-services</name>
+
+    <!-- Modules -->
+    <modules>
+
+        <!-- Shared -->
+        <!-- À activer progressivement -->
+        <!--
+        <module>connectors/caf-connector</module>
+        <module>connectors/msa-connector</module>
+        <module>connectors/france-travail-connector</module>
+        <module>connectors/linky-connector</module>
+        -->
+
+        <!-- AI Services -->
+        <module>ocr-service</module>       
+        <module>extraction-service</module> 
+        
+    </modules>
+
+    <properties>
+
+        <java.version>21</java.version>
+        <spring-retry.version>2.0.12</spring-retry.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
+
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <lombok.version>1.18.46</lombok.version>
+
+        <skipITs>false</skipITs>
+
+        <sonar.organization>govtech-aids</sonar.organization>
+        <sonar.projectKey>ai-services</sonar.projectKey>
+
+        <sonar.coverage.jacoco.xmlReportPaths>
+            **/target/site/jacoco/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.exclusions>
+            **/mocks/**,
+       </sonar.exclusions>
+
+    </properties>
+
+    <build>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <!-- Java -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+
+                    <configuration>
+                        <release>${java.version}</release>
+
+                        <annotationProcessorPaths>
+
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
+                            </path>
+                              <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok-mapstruct-binding</artifactId>
+                                <version>0.2.0</version>
+                            </path>
+
+                        </annotationProcessorPaths>
+
+                    </configuration>
+                </plugin>
+
+                <!-- Tests -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                </plugin>
+                <!-- Tests IT -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <skipITs>${skipITs}</skipITs>
+                    </configuration>
+                </plugin>
+
+                <!-- Couverture -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.12</version>
+
+                    <executions>
+
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+
+                        <execution>
+                            <id>report</id>
+                            <phase>verify</phase>
+
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+
+                        </execution>
+
+                    </executions>
+
+                </plugin>
+
+                <!-- Analyse OWASP -->
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>12.1.0</version>
+
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+
+                </plugin>
+
+                <!-- Formatage -->
+                <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>2.46.1</version>
+
+                    <configuration>
+
+                        <java>
+                            <googleJavaFormat>
+                                <version>1.24.0</version>
+                            </googleJavaFormat>
+                        </java>
+
+                    </configuration>
+
+                    <executions>
+
+                        <execution>
+
+                            <phase>validate</phase>
+
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+
+                        </execution>
+
+                    </executions>
+
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
+
+    </build>
+
+    <profiles>
+
+        <profile>
+
+            <id>security-scan</id>
+
+            <build>
+
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>12.1.0</version>
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+    </profiles>
+
+</project>

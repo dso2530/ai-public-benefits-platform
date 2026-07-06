@@ -1,0 +1,37 @@
+
+spring:
+    application:
+        name: ocr-service
+
+ocr:
+    provider: paddle
+    base-url: ${OCR_BASE_URL:http://localhost:8000}
+
+minio:
+    enabled: true
+
+kafka:
+    enabled: true
+
+storage:
+    endpoint: ${STORAGE_ENDPOINT:http://localhost:9000}
+    access-key: ${STORAGE_ACCESS_KEY:admin}
+    secret-key: ${STORAGE_SECRET_KEY:admin123456}
+    bucket: ${STORAGE_BUCKET:documents}
+
+messaging:
+    kafka:
+        bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+        schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+        group-id: ocr-service
+security:
+    jwt:
+        secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
+logging:
+    level:
+        org.springframework.kafka: DEBUG
+        org.apache.kafka.clients.consumer: DEBUG
+
+        org.springframework.web.client: TRACE
+        org.springframework.http.client: TRACE
+        org.springframework.http.converter: TRACE

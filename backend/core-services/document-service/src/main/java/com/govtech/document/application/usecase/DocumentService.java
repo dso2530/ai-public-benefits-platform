@@ -7,11 +7,7 @@ import com.govtech.document.application.dto.DownloadedDocument;
 import com.govtech.document.application.mapper.DocumentMapper;
 import com.govtech.document.infrastructure.persistence.DocumentJpaEntity;
 import com.govtech.document.infrastructure.persistence.DocumentJpaRepository;
-import com.govtech.events.DocumentUploadedEvent;
-import com.govtech.platform.messaging.topics.Topics;
-import com.govtech.platform.storage.config.StorageProperties;
 import com.govtech.platform.storage.service.StorageService;
-
 import jakarta.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,14 +38,15 @@ public class DocumentService implements DocumentServiceUsecase {
 
     return repository.findBySubjectOrderByUploadedAtDesc(subject).stream()
         .map(
-            doc -> new DocumentDto(
-                doc.getId(),
-                doc.getName(),
-                doc.getDocumentType().name(),
-                doc.getStatus(),
-                doc.getFileName(),
-                doc.getFileSize(),
-                doc.getUploadedAt()))
+            doc ->
+                new DocumentDto(
+                    doc.getId(),
+                    doc.getName(),
+                    doc.getDocumentType().name(),
+                    doc.getStatus(),
+                    doc.getFileName(),
+                    doc.getFileSize(),
+                    doc.getUploadedAt()))
         .toList();
   }
 
@@ -66,32 +63,26 @@ public class DocumentService implements DocumentServiceUsecase {
 
   @Override
   public DocumentDto upload(
-      @NonNull String subject,
-      @NonNull MultipartFile file,
-      @NonNull String type) throws IOException {
+      @NonNull String subject, @NonNull MultipartFile file, @NonNull String type)
+      throws IOException {
 
-    String objectKey = "citizens/%s/%s-%s".formatted(
-        subject,
-        UUID.randomUUID(),
-        file.getOriginalFilename());
+    String objectKey =
+        "citizens/%s/%s-%s".formatted(subject, UUID.randomUUID(), file.getOriginalFilename());
 
-    storageService.upload(
-        file.getInputStream(),
-        file.getSize(),
-        file.getContentType(),
-        objectKey);
+    storageService.upload(file.getInputStream(), file.getSize(), file.getContentType(), objectKey);
 
-    DocumentJpaEntity document = DocumentJpaEntity.builder()
-        .subject(subject)
-        .name(DocumentType.valueOf(type).getName())
-        .documentType(DocumentType.valueOf(type))
-        .status("UPLOADED")
-        .fileName(file.getOriginalFilename())
-        .objectKey(objectKey) // clé MinIO
-        .fileSize(file.getSize())
-        .contentType(file.getContentType())
-        .uploadedAt(Instant.now())
-        .build();
+    DocumentJpaEntity document =
+        DocumentJpaEntity.builder()
+            .subject(subject)
+            .name(DocumentType.valueOf(type).getName())
+            .documentType(DocumentType.valueOf(type))
+            .status("UPLOADED")
+            .fileName(file.getOriginalFilename())
+            .objectKey(objectKey) // clé MinIO
+            .fileSize(file.getSize())
+            .contentType(file.getContentType())
+            .uploadedAt(Instant.now())
+            .build();
 
     DocumentJpaEntity saved = repository.save(document);
 
@@ -101,11 +92,12 @@ public class DocumentService implements DocumentServiceUsecase {
   }
 
   @Override
-  public void delete(@NonNull Long id, @NonNull String subject)
-      throws AccessDeniedException {
+  public void delete(@NonNull Long id, @NonNull String subject) throws AccessDeniedException {
 
-    DocumentJpaEntity document = repository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+    DocumentJpaEntity document =
+        repository
+            .findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
 
     if (!document.getSubject().equals(subject)) {
       throw new AccessDeniedException("Document does not belong to user");
@@ -118,13 +110,13 @@ public class DocumentService implements DocumentServiceUsecase {
 
   @Override
   @Transactional(readOnly = true)
-  public DownloadedDocument download(
-      @NonNull Long id,
-      @NonNull String subject)
+  public DownloadedDocument download(@NonNull Long id, @NonNull String subject)
       throws AccessDeniedException {
 
-    DocumentJpaEntity document = repository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+    DocumentJpaEntity document =
+        repository
+            .findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
 
     if (!document.getSubject().equals(subject)) {
       throw new AccessDeniedException("Document does not belong to user");
@@ -134,10 +126,7 @@ public class DocumentService implements DocumentServiceUsecase {
 
       byte[] content = inputStream.readAllBytes();
 
-      return new DownloadedDocument(
-          document.getFileName(),
-          document.getContentType(),
-          content);
+      return new DownloadedDocument(document.getFileName(), document.getContentType(), content);
 
     } catch (IOException e) {
       throw new UncheckedIOException(e);

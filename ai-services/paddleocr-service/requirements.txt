@@ -1,0 +1,10 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.3
+
+aiofiles==24.1.0
+
+paddlepaddle==3.0.0
+paddleocr==3.0.1
+
+opencv-python-headless==4.10.0.84
+python-multipart==0.0.20

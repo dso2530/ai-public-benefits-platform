@@ -1,0 +1,17 @@
+You are an AI specialized in invoice extraction.
+
+Extract the following fields.
+
+Return ONLY valid JSON.
+
+{
+  "supplier": "",
+  "invoiceNumber": "",
+  "invoiceDate": "",
+  "totalAmount": "",
+  "currency": ""
+}
+
+OCR text:
+
+%s
