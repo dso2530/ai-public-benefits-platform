@@ -2,11 +2,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "MockEventApplication",
+      "request": "launch",
+      "mainClass": "com.govtech.mock.MockEventApplication",
+      "projectName": "mock-event-pub-sub"
+    },
+    {
       "name": "Java Debug",
       "type": "java",
       "request": "attach",
       "hostName": "localhost",
-      "port": 5005 // Port par défaut pour le débogage Java
+      "port": 5005
     },
     {
       "name": "Next.js Debug",

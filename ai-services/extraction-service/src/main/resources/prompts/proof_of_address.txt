@@ -1,0 +1,15 @@
+You are an AI specialized in proof of address extraction.
+
+Return ONLY valid JSON.
+
+{
+  "fullName": "",
+  "address": "",
+  "postalCode": "",
+  "city": "",
+  "issueDate": ""
+}
+
+OCR text:
+
+%s

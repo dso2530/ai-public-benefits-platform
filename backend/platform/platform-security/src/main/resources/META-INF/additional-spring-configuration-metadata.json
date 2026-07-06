@@ -1,5 +1,92 @@
-{"properties": [{
-  "name": "security.jwt.secret",
-  "type": "java.lang.String",
-  "description": "A description for 'security.jwt.secret'"
-}]}
+{"properties": [
+  {
+    "name": "security.jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'security.jwt.secret'"
+  },
+  {
+    "name": "ocr.provider",
+    "type": "java.lang.String",
+    "description": "A description for 'ocr.provider'"
+  },
+  {
+    "name": "ocr.base-url",
+    "type": "java.lang.String",
+    "description": "A description for 'ocr.base-url'"
+  },
+  {
+    "name": "ocr.provider",
+    "type": "java.lang.String",
+    "description": "A description for 'ocr.provider'"
+  },
+  {
+    "name": "minio.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.enabled'"
+  },
+  {
+    "name": "kafka.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "storage.endpoint",
+    "type": "java.lang.String",
+    "description": "A description for 'storage.endpoint'"
+  },
+  {
+    "name": "storage.access-key",
+    "type": "java.lang.String",
+    "description": "A description for 'storage.access-key'"
+  },
+  {
+    "name": "storage.secret-key",
+    "type": "java.lang.String",
+    "description": "A description for 'storage.secret-key'"
+  },
+  {
+    "name": "storage.bucket",
+    "type": "java.lang.String",
+    "description": "A description for 'storage.bucket'"
+  },
+  {
+    "name": "messaging.kafka.bootstrap-servers",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.bootstrap-servers'"
+  },
+  {
+    "name": "messaging.kafka.bootstrap-servers",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.bootstrap-servers'"
+  },
+  {
+    "name": "messaging.kafka.schema-registry-url",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.schema-registry-url'"
+  },
+  {
+    "name": "messaging.kafka.group-id",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.group-id'"
+  },
+  {
+    "name": "llm.provider",
+    "type": "java.lang.String",
+    "description": "A description for 'llm.provider'"
+  },
+  {
+    "name": "llm.provider",
+    "type": "java.lang.String",
+    "description": "A description for 'llm.provider'"
+  },
+  {
+    "name": "llm.model",
+    "type": "java.lang.String",
+    "description": "A description for 'llm.model'"
+  },
+  {
+    "name": "llm.base-url",
+    "type": "java.lang.String",
+    "description": "A description for 'llm.base-url'"
+  }
+]}

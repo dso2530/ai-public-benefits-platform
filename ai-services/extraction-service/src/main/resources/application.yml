@@ -1,0 +1,32 @@
+server:
+    port: 9084
+
+spring:
+    application:
+        name: extraction-service
+
+llm:
+    provider: ollama
+    model: qwen3:8b
+    base-url: http://localhost:11434
+
+kafka:
+    enabled: true
+
+messaging:
+    kafka:
+        bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+        schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+        group-id: extraction-service
+
+security:
+    jwt:
+        secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
+
+logging:
+    level:
+        org.springframework.kafka: DEBUG
+        org.apache.kafka.clients.consumer: DEBUG
+        org.springframework.web.client: TRACE
+        org.springframework.http.client: TRACE
+        org.springframework.http.converter: TRACE

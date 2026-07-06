@@ -54,6 +54,8 @@
 
 
         <module>mocks/mock-dgfip</module>
+        <module>mocks/mock-event-pub-sub</module>
+
 
 
 

@@ -5,10 +5,9 @@ import java.time.Period;
 
 public final class DateUtils {
 
-    private DateUtils() {
-    }
+  private DateUtils() {}
 
-    public static int age(LocalDate birthDate) {
-        return Period.between(birthDate, LocalDate.now()).getYears();
-    }
+  public static int age(LocalDate birthDate) {
+    return Period.between(birthDate, LocalDate.now()).getYears();
+  }
 }

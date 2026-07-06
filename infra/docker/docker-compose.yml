@@ -77,6 +77,9 @@ services:
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
 
+    volumes:
+      - kafka-data:/tmp/kafka-logs
+
 
     healthcheck:
       test: ["CMD", "/opt/kafka/bin/kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
@@ -114,6 +117,18 @@ services:
       --partitions 3
       --replication-factor 1;
       "
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "9088:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://apicurio-registry:8080/apis/ccompat/v7
+    depends_on:
+      - kafka
+      - apicurio-registry
 
   profile-service:
     build:
@@ -180,14 +195,52 @@ services:
       KAFKA_BRK: kafka:29092
       SCHEMA_REGISTRY_URL: http://apicurio-registry:8080/apis/ccompat/v7
 
-
-
-    depends_on:
+    depends_on: 
       - postgres
       - minio
 
     
 
+  ocr-service:
+    build:
+      context: ../../ai-services
+      dockerfile: ocr-service/Dockerfile
+    container_name: ocr-service
+    ports:
+      - "8099:8080"
+    environment:
+      PADDLE_OCR_URL: http://paddleocr-service:8000
+
+      STORAGE_ENDPOINT: http://minio:9000
+      STORAGE_ACCESS_KEY: admin
+      STORAGE_SECRET_KEY: admin123456
+      STORAGE_BUCKET: documents
+
+
+      KAFKA_BRK: kafka:29092
+      APICURIO_URL: http://apicurio-registry:8091/apis/registry/v3
+    
+    depends_on:
+      minio:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      apicurio-registry:
+        condition: service_started
+      paddleocr-service:
+        condition: service_started
+
+  paddleocr-service:
+    build: 
+      context: ../../ai-services/paddleocr-service
+    container_name: paddleocr-service
+    ports:
+      - "8000:8000"
+    volumes:
+    - paddleocr-cache:/root/.paddlex
+ 
+ 
+ 
   prometheus:
     image: prom/prometheus
     extra_hosts:
@@ -231,3 +284,5 @@ services:
 volumes:
   postgres-data:
   minio-data:
+  paddleocr-cache:
+  kafka-data:

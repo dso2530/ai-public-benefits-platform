@@ -18,5 +18,30 @@
     "name": "spring.kafka.properties.schema.registry.url",
     "type": "java.lang.String",
     "description": "A description for 'spring.kafka.properties.schema.registry.url'"
+  },
+  {
+    "name": "spring.kafka.properties.apicurio.registry.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.kafka.properties.apicurio.registry.url'"
+  },
+  {
+    "name": "kafka.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "spring.kafka.properties.schema-registry-url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.kafka.properties.schema-registry-url'"
+  },
+  {
+    "name": "messaging.kafka.bootstrap-servers",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.bootstrap-servers'"
+  },
+  {
+    "name": "messaging.kafka.schema-registry-url",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.schema-registry-url'"
   }
 ]}

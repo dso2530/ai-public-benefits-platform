@@ -5,5 +5,4 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootApplication(scanBasePackages = "com.govtech")
 @ActiveProfiles("test")
-public class TestApplication {
-}
+public class TestApplication {}
