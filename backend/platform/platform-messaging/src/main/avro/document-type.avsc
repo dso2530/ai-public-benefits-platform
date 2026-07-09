@@ -1,0 +1,17 @@
+{
+  "type": "enum",
+  "name": "DocumentType",
+  "namespace": "com.govtech.events.common",
+  "symbols": [
+    "TAX_NOTICE",
+    "IDENTITY_CARD",
+    "PASSPORT",
+    "BANK_ACCOUNT_DETAILS",
+    "PROOF_OF_ADDRESS",
+    "PAYSLIP",
+    "BIRTH_CERTIFICATE",
+    "FAMILY_RECORD_BOOK",
+    "DRIVING_LICENSE",
+    "RESIDENCE_PERMIT"
+  ]
+}

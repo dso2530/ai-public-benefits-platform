@@ -24,16 +24,16 @@ services:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: admin123456
     ports:
-      - "9000:9000"   # API S3
-      - "9001:9001"   # Console Web
+      - "9000:9000" # API S3
+      - "9001:9001" # Console Web
     volumes:
       - minio-data:/data
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
       interval: 10s
       timeout: 5s
       retries: 5
-  
+
   keycloak:
     image: quay.io/keycloak/keycloak:26.2
     container_name: keycloak
@@ -80,9 +80,8 @@ services:
     volumes:
       - kafka-data:/tmp/kafka-logs
 
-
     healthcheck:
-      test: ["CMD", "/opt/kafka/bin/kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
+      test: [ "CMD", "/opt/kafka/bin/kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list" ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -91,15 +90,18 @@ services:
     image: apicurio/apicurio-registry:3.0.7
     container_name: apicurio-registry
     ports:
-    - "8091:8080"
+      - "8091:8080"
     environment:
       APICURIO_STORAGE_KIND: sql
+      APICURIO_DATASOURCE_URL: jdbc:postgresql://postgres:5432/registry
+      APICURIO_DATASOURCE_USERNAME: postgres
+      APICURIO_DATASOURCE_PASSWORD: postgres
       APICURIO_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      APICURIO_STORAGE_SQL_KIND: postgresql
 
     depends_on:
       kafka:
         condition: service_healthy
-
 
   kafka-init:
     image: apache/kafka:3.7.2
@@ -109,14 +111,7 @@ services:
         condition: service_healthy
 
     entrypoint: >
-      sh -c "
-      /opt/kafka/bin/kafka-topics.sh
-      --bootstrap-server kafka:9092
-      --create --if-not-exists
-      --topic document.uploaded
-      --partitions 3
-      --replication-factor 1;
-      "
+      sh -c " /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic document.uploaded --partitions 3 --replication-factor 1; "
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
@@ -140,7 +135,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/profiledb
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-
 
     ports:
       - "8081:8081"
@@ -186,7 +180,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/documentdb
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-      
+
       STORAGE_ENDPOINT: http://minio:9000
       STORAGE_ACCESS_KEY: admin
       STORAGE_SECRET_KEY: admin123456
@@ -195,11 +189,9 @@ services:
       KAFKA_BRK: kafka:29092
       SCHEMA_REGISTRY_URL: http://apicurio-registry:8080/apis/ccompat/v7
 
-    depends_on: 
+    depends_on:
       - postgres
       - minio
-
-    
 
   ocr-service:
     build:
@@ -216,10 +208,9 @@ services:
       STORAGE_SECRET_KEY: admin123456
       STORAGE_BUCKET: documents
 
-
       KAFKA_BRK: kafka:29092
       APICURIO_URL: http://apicurio-registry:8091/apis/registry/v3
-    
+
     depends_on:
       minio:
         condition: service_healthy
@@ -231,55 +222,52 @@ services:
         condition: service_started
 
   paddleocr-service:
-    build: 
+    build:
       context: ../../ai-services/paddleocr-service
     container_name: paddleocr-service
     ports:
       - "8000:8000"
     volumes:
-    - paddleocr-cache:/root/.paddlex
- 
- 
- 
+      - paddleocr-cache:/root/.paddlex
+
   prometheus:
     image: prom/prometheus
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
-    - "9099:9090"
+      - "9099:9090"
     volumes:
-    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
   grafana:
-   image: grafana/grafana
-   ports:
-    - "3001:3000"
-   depends_on:
-    - prometheus
+    image: grafana/grafana
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
 
   jaeger:
-   image: jaegertracing/all-in-one:latest
-   ports:
-    - "16686:16686"
-    - "4317:4317"
-    - "4318:4318"
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
 
   loki:
-   image: grafana/loki:3.5.2
-   ports:
-    - "3100:3100"
-   command: -config.file=/etc/loki/local-config.yaml
-
+    image: grafana/loki:3.5.2
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
 
   promtail:
-   image: grafana/promtail:3.5.2
-   ports:
-    - "9080:9080"
-   volumes:
-    - /var/log/citizen-bff:/logs/citizen-bff:ro
-    #- ./var/log/document-service/logs:/logs/document-service:ro
-    #- /var/log/notification-service/logs:/logs/notification-service:ro
-    - ./grafana/promtail-config.yml:/etc/promtail/config.yml:ro
-   command: -config.file=/etc/promtail/config.yml
+    image: grafana/promtail:3.5.2
+    ports:
+      - "9080:9080"
+    volumes:
+      - /var/log/citizen-bff:/logs/citizen-bff:ro
+      #- ./var/log/document-service/logs:/logs/document-service:ro
+      #- /var/log/notification-service/logs:/logs/notification-service:ro
+      - ./grafana/promtail-config.yml:/etc/promtail/config.yml:ro
+    command: -config.file=/etc/promtail/config.yml
 
 volumes:
   postgres-data:

@@ -13,5 +13,10 @@
     "name": "kafka.enabled",
     "type": "java.lang.String",
     "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "messaging.kafka.auto-offset-reset",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.auto-offset-reset'"
   }
 ]}

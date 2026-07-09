@@ -12,28 +12,42 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
-
+      ddl-auto: update # validate avec Flyway
     show-sql: true
-
+    open-in-view: false
     properties:
       hibernate:
         format_sql: true
 
-#security:
-#jwt:
-#secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
 
 minio:
   enabled: false
 
 kafka:
-  enabled: false
+  enabled: true
+
+messaging:
+  kafka:
+    bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+    schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+    group-id: profile-service-v3
+    auto-offset-reset: earliest
 
 logging:
   level:
-    org.springframework.security: DEBUG # Logs globaux de Spring Security
-    org.springframework.security.oauth2: DEBUG # Logs OAuth2 (JWT, Resource Server, etc.)
-    org.springframework.security.web: DEBUG # Logs des requêtes HTTP et filtres
-    org.springframework.boot.context.config: DEBUG # Logs de configuration (optionnel)
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
     org.springframework.security.oauth2.server.resource: DEBUG
+    org.springframework.security.web: DEBUG
+
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+
+    org.springframework.boot.context.config: DEBUG

@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.govtech.profile.infrastructure.persistence.entity.CitizenJpaEntity;
+
 public interface CitizenJpaRepository extends JpaRepository<CitizenJpaEntity, UUID> {
 
   Optional<CitizenJpaEntity> findBySubject(String subject);

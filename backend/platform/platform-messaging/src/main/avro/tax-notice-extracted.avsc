@@ -1,0 +1,142 @@
+{
+  "type": "record",
+  "name": "TaxNoticeExtractedData",
+  "namespace": "com.govtech.events.tax",
+  "fields": [
+
+    {
+      "name": "taxYear",
+      "type": ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "assessmentYear",
+      "type": ["null", "int"],
+      "default": null
+    },
+    { "name": "documentType", "type": "string" },
+
+    { "name": "documentSummary", "type": "string" },
+
+    { "name": "taxOffice", "type": "string" },
+    { "name": "taxOfficeAddress", "type": "string" },
+
+    {
+      "name": "taxpayer1",
+      "type": "com.govtech.events.common.Taxpayer"
+    },
+
+    {
+      "name": "taxpayer2",
+      "type": [
+        "null",
+        "com.govtech.events.common.Taxpayer"
+      ],
+      "default": null
+    },
+
+   {
+      "name": "street",
+      "type": ["null", "string"],
+      "default": null
+   },
+    {
+      "name": "postalCode",
+      "type": ["null", "string"],
+      "default": null
+    }
+    ,
+    {
+      "name": "city",
+       "type": ["null", "string"],
+       "default": null
+    },
+
+    {
+      "name": "referenceNumber",
+      "type": "string"
+    },
+
+    {
+      "name": "issueDate",
+      "type": "string"
+    },
+
+    {
+      "name": "collectionDate",
+      "type": "string"
+    },
+
+    {
+      "name": "referenceIncome",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "numberOfShares",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "incomeTax",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "refundAmount",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "amountToPay",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "refundDate",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "bankIban",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "bankBic",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}

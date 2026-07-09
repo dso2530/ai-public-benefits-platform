@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "IdentityCardExtractedData",
+  "namespace": "com.govtech.events.identity",
+  "fields": [
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    },
+    {
+      "name": "birthDate",
+      "type": "string"
+    },
+    {
+      "name": "birthPlace",
+      "type": "string"
+    },
+    {
+      "name": "nationality",
+      "type": "string"
+    },
+    {
+      "name": "documentNumber",
+      "type": "string"
+    },
+    {
+      "name": "issueDate",
+      "type": "string"
+    },
+    {
+      "name": "expiryDate",
+      "type": "string"
+    }
+  ]
+}

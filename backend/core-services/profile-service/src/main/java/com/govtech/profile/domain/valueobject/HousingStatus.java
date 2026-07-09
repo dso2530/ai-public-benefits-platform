@@ -1,5 +1,7 @@
 package com.govtech.profile.domain.valueobject;
 
+
+
 public enum HousingStatus {
   OWNER,
 

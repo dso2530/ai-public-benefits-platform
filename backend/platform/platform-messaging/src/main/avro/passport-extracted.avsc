@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "PassportExtractedData",
+  "namespace": "com.govtech.events.passport",
+  "fields": [
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    },
+    {
+      "name": "birthDate",
+      "type": "string"
+    },
+    {
+      "name": "birthPlace",
+      "type": "string"
+    },
+    {
+      "name": "nationality",
+      "type": "string"
+    },
+    {
+      "name": "passportNumber",
+      "type": "string"
+    },
+    {
+      "name": "issueDate",
+      "type": "string"
+    },
+    {
+      "name": "expiryDate",
+      "type": "string"
+    }
+  ]
+}

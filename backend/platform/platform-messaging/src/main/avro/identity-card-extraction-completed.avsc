@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "IdentityCardExtractionCompletedEvent",
+  "namespace": "com.govtech.events.identity",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": "IdentityCardExtractedData"
+    }
+  ]
+}

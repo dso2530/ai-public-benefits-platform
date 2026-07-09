@@ -1,15 +1,27 @@
 package com.govtech.profile.domain.valueobject;
 
-public record Address(String street, String postalCode, String city, String country) {
+public record Address(
+    String street,
+    String postalCode,
+    String city,
+    String country)
+    implements Mergeable<Address> {
 
-  public Address {
+  @Override
+  public Address merge(Address incoming) {
 
-    if (city == null || city.isBlank()) {
-      throw new IllegalArgumentException("City is required");
+    if (incoming == null) {
+      return this;
     }
 
-    if (country == null || country.isBlank()) {
-      throw new IllegalArgumentException("Country is required");
-    }
+    return new Address(
+        merge(street, incoming.street()),
+        merge(postalCode, incoming.postalCode()),
+        merge(city, incoming.city()),
+        merge(country, incoming.country()));
+  }
+
+  private static <T> T merge(T current, T incoming) {
+    return incoming != null ? incoming : current;
   }
 }

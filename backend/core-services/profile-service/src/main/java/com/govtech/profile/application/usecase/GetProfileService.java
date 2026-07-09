@@ -1,6 +1,7 @@
 package com.govtech.profile.application.usecase;
 
-import com.govtech.profile.application.dto.ProfileDto;
+import com.govtech.profile.api.dto.ProfileDto;
+import com.govtech.profile.domain.exception.CitizenNotFoundException;
 import com.govtech.profile.domain.repository.CitizenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class GetProfileService implements GetProfileUseCase {
   @Override
   public ProfileDto getProfile(String subject) {
 
-    var citizen = citizenRepository.findBySubject(subject).orElseThrow();
+    var citizen = citizenRepository.findBySubject(subject).orElseThrow(() -> new CitizenNotFoundException(subject));
 
     return ProfileDto.from(citizen);
   }

@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "Taxpayer",
+  "namespace": "com.govtech.events.common",
+  "fields": [
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    },
+    {
+      "name": "taxNumber",
+      "type": "string"
+    }
+  ]
+}

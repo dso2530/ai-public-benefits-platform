@@ -1,6 +1,6 @@
 package com.govtech.profile.api;
 
-import com.govtech.profile.application.dto.ProfileDto;
+import com.govtech.profile.api.dto.ProfileDto;
 import com.govtech.profile.application.usecase.GetProfileUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

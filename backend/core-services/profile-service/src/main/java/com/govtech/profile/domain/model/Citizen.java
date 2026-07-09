@@ -1,72 +1,86 @@
 package com.govtech.profile.domain.model;
 
+import com.govtech.profile.application.dto.UpdateProfileCommand;
 import com.govtech.profile.domain.valueobject.Address;
+import com.govtech.profile.domain.valueobject.BankAccount;
 import com.govtech.profile.domain.valueobject.Household;
+import com.govtech.profile.domain.valueobject.Identity;
+import com.govtech.profile.domain.valueobject.Mergeable;
+import com.govtech.profile.domain.valueobject.TaxInformation;
+
+import lombok.Builder;
+import lombok.Getter;
+
 import java.util.UUID;
 
+@Builder(toBuilder = true)
+@Getter
 public class Citizen {
 
   private UUID id;
-
   private String subject;
-
   private String email;
-
-  private String firstName;
-
-  private String lastName;
-
+  private Identity identity;
   private Address address;
-
   private Household household;
+  private TaxInformation taxInformation;
+  private BankAccount bankAccount;
 
   public Citizen(
       UUID id,
       String subject,
       String email,
-      String firstName,
-      String lastName,
+      Identity identity,
       Address address,
       Household household) {
-
     this.id = id;
     this.subject = subject;
     this.email = email;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.identity = identity;
     this.address = address;
     this.household = household;
   }
 
-  public UUID getId() {
-    return id;
+  public Citizen(
+      UUID id,
+      String subject,
+      String email,
+      Identity identity,
+      Address address,
+      Household household,
+      TaxInformation taxInformation,
+      BankAccount bankAccount) {
+
+    this.id = id;
+    this.subject = subject;
+    this.email = email;
+    this.identity = identity;
+    this.address = address;
+    this.household = household;
+    this.taxInformation = taxInformation;
+    this.bankAccount = bankAccount;
+
   }
 
-  public String getSubject() {
-    return subject;
+  public void update(UpdateProfileCommand command) {
+
+    identity = merge(identity, command.identity());
+    address = merge(address, command.address());
+    household = merge(household, command.household());
+    taxInformation = merge(taxInformation, command.taxInformation());
+    bankAccount = merge(bankAccount, command.bankAccount());
   }
 
-  public String getEmail() {
-    return email;
-  }
+  private <T extends Mergeable<T>> T merge(T current, T incoming) {
 
-  public String getFirstName() {
-    return firstName;
-  }
+    if (incoming == null) {
+      return current;
+    }
 
-  public String getLastName() {
-    return lastName;
-  }
-
-  public Address getAddress() {
-    return address;
-  }
-
-  public Household getHousehold() {
-    return household;
+    return current == null ? incoming : current.merge(incoming);
   }
 
   public String getFullName() {
-    return firstName + " " + lastName;
+    return identity.firstName() + " " + identity.lastName();
   }
 }
