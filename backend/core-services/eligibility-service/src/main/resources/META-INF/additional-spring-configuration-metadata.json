@@ -13,5 +13,45 @@
     "name": "kafka.enabled",
     "type": "java.lang.String",
     "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "eligibility.rsa.max-income",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.rsa.max-income'"
+  },
+  {
+    "name": "clients.profile.base-url",
+    "type": "java.lang.String",
+    "description": "A description for 'clients.profile.base-url'"
+  },
+  {
+    "name": "eligibility.rsa.estimated-amount",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.rsa.estimated-amount'"
+  },
+  {
+    "name": "eligibility.prime-activite.income-ceiling",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.prime-activite.income-ceiling'"
+  },
+  {
+    "name": "eligibility.prime-activite.estimated-amount",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.prime-activite.estimated-amount'"
+  },
+  {
+    "name": "messaging.kafka.auto-offset-reset",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.auto-offset-reset'"
+  },
+  {
+    "name": "eligibility.apl.income-ceiling",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.apl.income-ceiling'"
+  },
+  {
+    "name": "eligibility.apl.estimated-amount",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.apl.estimated-amount'"
   }
 ]}

@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "ProfileUpdatedEvent",
+  "namespace": "com.govtech.events.profile",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.BaseEvent"
+    }
+  ]
+}

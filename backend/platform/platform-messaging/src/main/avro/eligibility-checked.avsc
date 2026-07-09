@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "name": "EligibilityCheckedEvent",
+  "namespace": "com.govtech.events.eligibility",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.BaseEvent"
+    },
+    {
+      "name": "eligibilities",
+      "type": {
+        "type": "array",
+        "items": "com.govtech.events.eligibility.EligibilityResult"
+      }
+    }
+  ]
+}

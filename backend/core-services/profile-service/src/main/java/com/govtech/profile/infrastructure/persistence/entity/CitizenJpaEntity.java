@@ -2,7 +2,6 @@ package com.govtech.profile.infrastructure.persistence.entity;
 
 import com.govtech.profile.domain.valueobject.Address;
 import com.govtech.profile.domain.valueobject.BankAccount;
-import com.govtech.profile.domain.valueobject.Household;
 import com.govtech.profile.domain.valueobject.Identity;
 import com.govtech.profile.domain.valueobject.TaxInformation;
 

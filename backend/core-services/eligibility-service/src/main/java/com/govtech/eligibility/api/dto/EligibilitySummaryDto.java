@@ -1,4 +1,4 @@
-package com.govtech.eligibility.application.dto;
+package com.govtech.eligibility.api.dto;
 
 import java.math.BigDecimal;
 

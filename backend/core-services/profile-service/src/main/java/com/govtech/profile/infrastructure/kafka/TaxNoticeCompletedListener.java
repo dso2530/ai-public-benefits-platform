@@ -26,6 +26,7 @@ public class TaxNoticeCompletedListener {
 
         UpdateProfileCommand updateProfileCommand = TaxNoticeProfileMapper.toCommand(event);
 
-        updateProfileTaxUseCase.update(event.getMetadata().getSubject(), updateProfileCommand);
+        updateProfileTaxUseCase.updateProfileTaxUseCase(event.getMetadata().getSubject(), updateProfileCommand);
+
     }
 }
