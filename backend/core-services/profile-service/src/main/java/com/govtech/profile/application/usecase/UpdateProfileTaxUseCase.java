@@ -4,6 +4,6 @@ import com.govtech.profile.application.dto.UpdateProfileCommand;
 
 public interface UpdateProfileTaxUseCase {
 
-    void update(String subject, UpdateProfileCommand command);
+    void updateProfileTaxUseCase(String subject, UpdateProfileCommand command);
 
 }

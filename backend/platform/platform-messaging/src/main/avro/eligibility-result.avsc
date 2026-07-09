@@ -1,0 +1,35 @@
+{
+  "type": "record",
+  "name": "EligibilityResult",
+  "namespace": "com.govtech.events.eligibility",
+  "fields": [
+    {
+      "name": "aidCode",
+      "type": "string"
+    },
+    {
+      "name": "aidName",
+      "type": "string"
+    },
+    {
+      "name": "eligible",
+      "type": "boolean"
+    },
+    {
+      "name": "reason",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "estimatedAmount",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}

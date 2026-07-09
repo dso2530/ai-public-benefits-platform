@@ -20,15 +20,37 @@ spring:
       hibernate:
         format_sql: true
 
-#security:
-#jwt:
-#secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-32-chars}
+security:
+  jwt:
+    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
 
 minio:
   enabled: false
 
 kafka:
-  enabled: false
+  enabled: true
+
+messaging:
+  kafka:
+    bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+    schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+    group-id: eligibility-service-v4
+    auto-offset-reset: earliest
+
+eligibility:
+  rsa:
+    max-income: 12000
+    estimated-amount: "635.71 €/mois"
+  prime-activite:
+    income-ceiling: 20000
+    estimated-amount: "À partir de 200 €/mois"
+  apl:
+    income-ceiling: 30000
+    estimated-amount: "Entre 150 € et 350 € / mois"
+
+clients:
+  profile:
+    base-url: ${PROFILE_SERVICE:http://localhost:8081}
 
 logging:
   level:

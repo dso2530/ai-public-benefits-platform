@@ -1,17 +1,25 @@
 package com.govtech.eligibility.application.usecase;
 
-import com.govtech.eligibility.application.dto.EligibilityDto;
 import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+import com.govtech.eligibility.api.dto.EligibilityDto;
+import com.govtech.eligibility.domain.repository.EligibilityRepository;
+
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class GetEligibilityListService {
 
-  public List<EligibilityDto> execute() {
+    private final EligibilityRepository eligibilityRepository;
 
-    return List.of(
-        new EligibilityDto("APL", "Aide au logement", BigDecimal.valueOf(280)),
-        new EligibilityDto("RSA", "Revenu de solidarité active", BigDecimal.valueOf(607)));
-  }
+    public List<EligibilityDto> execute(String subject) {
+
+        return eligibilityRepository.findLatestBySubject(subject)
+                .stream()
+                .map(EligibilityDto::from)
+                .toList();
+    }
 }

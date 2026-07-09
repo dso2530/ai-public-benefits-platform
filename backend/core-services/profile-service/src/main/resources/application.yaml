@@ -37,7 +37,7 @@ messaging:
   kafka:
     bootstrap-servers: ${KAFKA_BRK:localhost:9092}
     schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
-    group-id: profile-service-v3
+    group-id: profile-service-v5
     auto-offset-reset: earliest
 
 logging:
