@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "TaxNoticeExtractionCompletedEvent",
+  "namespace": "com.govtech.events.tax",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": "TaxNoticeExtractedData"
+    }
+  ]
+}

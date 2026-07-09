@@ -1,0 +1,75 @@
+{
+  "type": "record",
+  "name": "DocumentBaseEvent",
+  "namespace": "com.govtech.events.common",
+  "doc": "Common metadata shared by all document events.",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Unique identifier of the event."
+    },
+    {
+      "name": "occurredAt",
+      "type": {
+        "type": "string",
+        "logicalType": "timestamp-iso8601",
+        "avro.java.string": "String"
+      },
+      "doc": "Event creation timestamp."
+    },
+    {
+      "name": "documentId",
+      "type": {
+        "type": "long",
+        "avro.java.long": "Long"
+      }
+    },
+    {
+      "name": "subject",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      }
+    },
+    {
+      "name": "bucket",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      }
+    },
+    {
+      "name": "objectKey",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      }
+    },
+    {
+      "name": "contentType",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      }
+    },
+    {
+      "name": "documentType",
+      "type": "DocumentType"
+    },
+    {
+      "name": "model",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
+    }
+  ]
+}

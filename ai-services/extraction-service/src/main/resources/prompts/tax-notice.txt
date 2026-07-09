@@ -5,16 +5,28 @@ Return ONLY valid JSON.
 Rules:
 - Do not invent missing values.
 - Use null for missing fields.
+- Return only the JSON object.
+- Do not use markdown.
 - Keep dates in DD/MM/YYYY format.
 - Keep monetary amounts as strings (example: "356,00 €").
-- Return only the JSON object, without markdown or explanations.
+- numberOfShares must be a JSON number (not a string).
+- Use '.' as decimal separator for numberOfShares.
+- Examples:
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+- Never output:
+  - "2"
+  - "2,5"
+  - "2.5"
 
 Expected JSON schema:
 
 {
-  "taxYear": "",
-  "assessmentYear": "",
-  "documentType": "",
+  "taxYear": 2024,
+  "assessmentYear": 2025,
+  "documentType": "Avis d'impôt sur le revenu",
   "taxOffice": "",
   "taxOfficeAddress": "",
   "taxpayer1": {
@@ -22,11 +34,7 @@ Expected JSON schema:
     "firstName": "",
     "taxNumber": ""
   },
-  "taxpayer2": {
-    "lastName": "",
-    "firstName": "",
-    "taxNumber": ""
-  },
+  "taxpayer2": null,
   "address": "",
   "postalCode": "",
   "city": "",
@@ -34,7 +42,7 @@ Expected JSON schema:
   "issueDate": "",
   "collectionDate": "",
   "referenceIncome": "",
-  "numberOfShares": "",
+  "numberOfShares": 2.5,
   "incomeTax": "",
   "refundAmount": "",
   "refundDate": "",

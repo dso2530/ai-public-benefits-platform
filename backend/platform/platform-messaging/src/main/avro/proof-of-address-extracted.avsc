@@ -1,0 +1,40 @@
+{
+  "type": "record",
+  "name": "ProofOfAddressExtractedData",
+  "namespace": "com.govtech.events.proofofaddress",
+  "fields": [
+    {
+      "name": "holderFirstName",
+      "type": "string"
+    },
+    {
+      "name": "holderLastName",
+      "type": "string"
+    },
+    {
+      "name": "street",
+      "type": "string"
+    },
+    {
+      "name": "postalCode",
+      "type": "string"
+    },
+    {
+      "name": "city",
+      "type": "string"
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "default": "France"
+    },
+    {
+      "name": "provider",
+      "type": "string"
+    },
+    {
+      "name": "documentDate",
+      "type": "string"
+    }
+  ]
+}

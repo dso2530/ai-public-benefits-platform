@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "ProofOfAddressExtractedCompletedEvent",
+  "namespace": "com.govtech.events.proofofaddress",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": "ProofOfAddressExtractedData"
+    }
+  ]
+}

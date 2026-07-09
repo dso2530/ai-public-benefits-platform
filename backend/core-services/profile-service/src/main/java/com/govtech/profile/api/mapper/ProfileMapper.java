@@ -1,27 +1,20 @@
-package com.govtech.profile.application.dto;
+package com.govtech.profile.api.mapper;
 
+import com.govtech.profile.api.dto.ProfileDto;
 import com.govtech.profile.domain.model.Citizen;
-import lombok.Builder;
 
-@Builder
-public record ProfileDto(
-    String subject,
-    String email,
-    String firstName,
-    String lastName,
-    String city,
-    String postalCode,
-    String housingStatus,
-    Integer childrenCount,
-    Boolean singleParent) {
+public final class ProfileMapper {
 
-  public static ProfileDto from(Citizen citizen) {
+  private ProfileMapper() {
+  }
+
+  public static ProfileDto toDto(Citizen citizen) {
 
     return ProfileDto.builder()
         .subject(citizen.getSubject())
         .email(citizen.getEmail())
-        .firstName(citizen.getFirstName())
-        .lastName(citizen.getLastName())
+        .firstName(citizen.getIdentity().firstName())
+        .lastName(citizen.getIdentity().lastName())
         .city(citizen.getAddress().city())
         .postalCode(citizen.getAddress().postalCode())
         .housingStatus(citizen.getHousehold().housingStatus().name())

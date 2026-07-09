@@ -1,6 +1,6 @@
 package com.govtech.profile.application.usecase;
 
-import com.govtech.profile.application.dto.ProfileDto;
+import com.govtech.profile.api.dto.ProfileDto;
 
 public interface GetProfileUseCase {
 

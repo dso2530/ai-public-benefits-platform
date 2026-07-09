@@ -2,6 +2,9 @@ package com.govtech.profile.infrastructure.persistence;
 
 import com.govtech.profile.domain.model.Citizen;
 import com.govtech.profile.domain.repository.CitizenRepository;
+import com.govtech.profile.infrastructure.persistence.entity.CitizenJpaEntity;
+import com.govtech.profile.infrastructure.persistence.mapper.CitizenJpaMapper;
+
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,6 +23,8 @@ public class CitizenRepositoryAdapter implements CitizenRepository {
 
   @Override
   public Citizen save(Citizen citizen) {
-    throw new UnsupportedOperationException("Unimplemented method 'save'");
+    CitizenJpaEntity entity = CitizenJpaMapper.toEntity(citizen);
+    CitizenJpaEntity saved = repository.save(entity);
+    return CitizenJpaMapper.toDomain(saved);
   }
 }
