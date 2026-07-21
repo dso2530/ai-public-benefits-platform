@@ -7,11 +7,12 @@ import { QuickActions } from '../../../features/dashboard/components/quick-actio
 import { useDashboard } from '../../../features/dashboard/hooks/use-dashboard';
 import { AuthGuard } from "../../../features/auth/components/auth-guard";
 import { DocumentsCard } from '@/src/features/dashboard/components/documents-card';
+import { ApplicationsCard } from "@/src/features/dashboard/components/applications-card";
 
 
 export default function DashboardPage() {
   const { data, isLoading } = useDashboard();
-  
+
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -24,36 +25,40 @@ export default function DashboardPage() {
   return (
     <AuthGuard>
 
-    <div className="container mx-auto space-y-6 p-6">
-      <h1 className="text-3xl font-bold">
-        Dashboard
-      </h1>
+      <div className="container mx-auto space-y-6 p-6">
+        <h1 className="text-3xl font-bold">
+          Dashboard
+        </h1>
 
-      <QuickActions />
+        <QuickActions />
 
-      <div className="grid gap-6 md:grid-cols-3">
-        <HouseholdCard
-          {...data.household}
-        />
+        <div className="grid gap-6 md:grid-cols-3">
+          <HouseholdCard
+            {...data.household}
+          />
 
-        <BenefitsCard
-          {...data.benefits}
-        />
+          <BenefitsCard
+            {...data.benefits}
+          />
 
-        <NotificationsCard
-          {...data.notifications}        
-        />
+          <NotificationsCard
+            {...data.notifications}
+          />
 
-        <DocumentsCard
-          {...data.documents}        
-        />
-        
+          <DocumentsCard
+            {...data.documents}
+          />
+
+          <ApplicationsCard
+            {...data.applications}
+          />
 
 
-         
-          
+
+
+
         </div>
-    </div>
+      </div>
     </AuthGuard>
   );
 }

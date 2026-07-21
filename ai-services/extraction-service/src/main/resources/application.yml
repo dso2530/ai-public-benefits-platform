@@ -13,11 +13,14 @@ llm:
 kafka:
     enabled: true
 
+minio:
+    enabled: false
+
 messaging:
     kafka:
         bootstrap-servers: ${KAFKA_BRK:localhost:9092}
         schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
-        group-id: extraction-service
+        group-id: extraction-service-v2
 
 security:
     jwt:

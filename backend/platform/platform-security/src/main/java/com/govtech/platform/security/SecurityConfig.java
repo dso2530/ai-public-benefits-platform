@@ -43,7 +43,7 @@ public class SecurityConfig {
                                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authorizeHttpRequests(
                                                 auth -> auth.requestMatchers("/actuator/**", "/swagger-ui/**",
-                                                                "/v3/api-docs/**", "/internal/**")
+                                                                "/v3/api-docs/**", "/internal/profiles/**", "/internal/documents/**")
                                                                 .permitAll()
                                                                 .anyRequest()
                                                                 .authenticated())

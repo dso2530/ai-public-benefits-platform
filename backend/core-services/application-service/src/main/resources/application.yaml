@@ -1,0 +1,57 @@
+server:
+  port: 8093
+
+spring:
+  application:
+    name: application-service
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/applicationdb}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
+
+minio:
+  enabled: true
+
+kafka:
+  enabled: true
+
+storage:
+  endpoint: ${STORAGE_ENDPOINT:http://localhost:9000}
+  access-key: ${STORAGE_ACCESS_KEY:admin}
+  secret-key: ${STORAGE_SECRET_KEY:admin123456}
+  bucket: ${STORAGE_BUCKET:applications}
+
+messaging:
+  kafka:
+    bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+    schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+    group-id: application-service-v6
+    auto-offset-reset: earliest
+
+clients:
+  profile:
+    base-url: http://localhost:8081
+  document:
+    base-url: http://localhost:8085
+
+logging:
+  level:
+    org.springframework.security: DEBUG # Logs globaux de Spring Security
+    org.springframework.security.oauth2: DEBUG # Logs OAuth2 (JWT, Resource Server, etc.)
+    org.springframework.security.web: DEBUG # Logs des requêtes HTTP et filtres
+    org.springframework.boot.context.config: DEBUG # Logs de configuration (optionnel)

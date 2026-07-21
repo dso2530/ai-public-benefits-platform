@@ -7,7 +7,7 @@ export interface HouseholdSummary {
 
 export interface BenefitSummary {
   eligibleCount: number;
-  pendingCount: number;
+  notEligibleCount: number;
   totalAmount: number;
 }
 
@@ -22,9 +22,19 @@ export interface DocumentSummary {
   pending: number;
 }
 
+export interface ApplicationSummary {
+  total: number;
+  generated: number;
+  readyToSubmit: number;
+  submitted: number;
+  accepted: number;
+  rejected: number;
+}
+
 export interface DashboardData {
   household: HouseholdSummary;
   benefits: BenefitSummary;
   notifications: NotificationSummary;
-  documents : DocumentSummary;
+  documents: DocumentSummary;
+  applications: ApplicationSummary;
 }

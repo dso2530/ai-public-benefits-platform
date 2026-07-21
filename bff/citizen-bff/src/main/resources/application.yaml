@@ -57,6 +57,9 @@ services:
   document:
     url: ${SERVICES_DOCUMENT_URL:http://localhost:8085}
 
+  application:
+    url: ${SERVICES_APPLICATION:http://localhost:8093}
+
 security:
   jwt:
     secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}

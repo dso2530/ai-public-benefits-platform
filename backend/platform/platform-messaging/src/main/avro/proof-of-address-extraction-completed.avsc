@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "ProofOfAddressExtractedCompletedEvent",
+  "name": "ProofOfAddressExtractionCompletedEvent",
   "namespace": "com.govtech.events.proofofaddress",
   "fields": [
     {

@@ -10,9 +10,13 @@ spring:
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
 
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 
     show-sql: true
 
@@ -34,19 +38,31 @@ messaging:
   kafka:
     bootstrap-servers: ${KAFKA_BRK:localhost:9092}
     schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
-    group-id: eligibility-service-v4
+    group-id: eligibility-service-v17
     auto-offset-reset: earliest
 
 eligibility:
+  ars:
+    income-ceiling: 30000
+    estimated-amount: 423.48
+    estimated-amount-label: "À partir de 423,48 € par enfant"
+  css:
+    income-ceiling: 12000
+    estimated-amount: 30
+    estimated-amount-label: "Prise en charge jusqu'à 100 % des dépenses de santé"
   rsa:
     max-income: 12000
-    estimated-amount: "635.71 €/mois"
+    estimated-amount: 635.71
+    estimated-amount-label: "635.71 €/mois"
+
   prime-activite:
     income-ceiling: 20000
-    estimated-amount: "À partir de 200 €/mois"
+    estimated-amount: 200
+    estimated-amount-label: "À partir de 200 €/mois"
   apl:
     income-ceiling: 30000
-    estimated-amount: "Entre 150 € et 350 € / mois"
+    estimated-amount: 150
+    estimated-amount-label: "Entre 150 € et 350 € / mois"
 
 clients:
   profile:

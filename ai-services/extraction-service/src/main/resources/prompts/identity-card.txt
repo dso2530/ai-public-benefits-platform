@@ -16,7 +16,7 @@ Expected JSON schema:
 {
   "documentType": "IDENTITY_CARD",
   "country": "",
-  "cardNumber": "",
+  "documentNumber": "",
   "lastName": "",
   "firstName": "",
   "sex": "",

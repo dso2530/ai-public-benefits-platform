@@ -88,5 +88,10 @@
     "name": "llm.base-url",
     "type": "java.lang.String",
     "description": "A description for 'llm.base-url'"
+  },
+  {
+    "name": "spring.spring.autoconfigure.exclude",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.spring.autoconfigure.exclude'"
   }
 ]}

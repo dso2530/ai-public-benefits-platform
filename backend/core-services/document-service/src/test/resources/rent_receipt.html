@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quittance de loyer</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 800px;
+            margin: 30px auto;
+            color: #222;
+            line-height: 1.5;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 3px solid #1d3557;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            color: #1d3557;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .box {
+            border: 1px solid #bbb;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #999;
+            padding: 10px;
+        }
+
+        th {
+            background: #efefef;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: right;
+        }
+
+        .signature {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div>
+            <h2>Agence Immobilière Lyon Habitat</h2>
+            12 avenue Jean Jaurès<br>
+            69007 Lyon<br>
+            SIRET : 501 456 789 00018
+        </div>
+
+        <div style="text-align:right">
+            <div class="title">QUITTANCE DE LOYER</div>
+            N° QL-2025-0701<br>
+            Date : 05/07/2025
+        </div>
+    </div>
+
+    <div class="box">
+        <b>Locataire</b><br><br>
+
+        Nom : <b>MARTIN</b><br>
+        Prénoms : <b>Lucas Pierre</b><br>
+
+        Adresse du logement :<br>
+        15 rue des Lilas<br>
+        69003 Lyon
+    </div>
+
+    <table>
+        <tr>
+            <th>Période</th>
+            <th>Description</th>
+            <th>Montant</th>
+        </tr>
+
+        <tr>
+            <td>Juillet 2025</td>
+            <td>Loyer principal</td>
+            <td>620,00 €</td>
+        </tr>
+
+        <tr>
+            <td>Juillet 2025</td>
+            <td>Charges locatives</td>
+            <td>20,00 €</td>
+        </tr>
+
+        <tr>
+            <th colspan="2">TOTAL PAYÉ</th>
+            <th>640,00 €</th>
+        </tr>
+    </table>
+
+    <div class="box">
+        Nous soussignés, Agence Immobilière Lyon Habitat, certifions avoir reçu de :
+
+        <b>Lucas Pierre MARTIN</b>
+
+        la somme de <b>640,00 €</b> correspondant au paiement du loyer et des charges pour la période de juillet 2025.
+
+        Le locataire est libre de toute dette de loyer pour cette période.
+    </div>
+
+    <div class="footer">
+        Fait à Lyon, le 06 juillet 2025
+
+        <div class="signature">
+            <b>Le Bailleur</b><br><br><br>
+
+            Agence Immobilière Lyon Habitat
+        </div>
+    </div>
+
+</body>
+
+</html>

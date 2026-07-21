@@ -1,11 +1,13 @@
 package com.govtech.document.application.usecase;
 
-import com.govtech.document.application.dto.DocumentDto;
-import com.govtech.document.application.dto.DocumentSummaryDto;
+import com.govtech.document.api.dto.DocumentDto;
+import com.govtech.document.api.dto.DocumentSummaryDto;
 import com.govtech.document.application.dto.DownloadedDocument;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
+import java.util.UUID;
+
 import lombok.NonNull;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +17,7 @@ public interface DocumentServiceUsecase {
 
   DocumentSummaryDto getSummary(String subject);
 
-  DocumentDto upload(String subject, MultipartFile file, String type) throws IOException;
+  DocumentDto upload(String subject, MultipartFile file, String type, UUID applicationId) throws IOException;
 
   void delete(@NonNull Long id, String subject) throws IOException;
 

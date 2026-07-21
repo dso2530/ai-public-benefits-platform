@@ -8,6 +8,7 @@ import com.govtech.eligibility.domain.model.EligibilityStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
@@ -51,7 +52,9 @@ public class PrimeActiviteEligibilityRule implements EligibilityRule {
                                 .aidCode("PRIME_ACTIVITE")
                                 .aidName("Prime d'activité")
                                 .status(EligibilityStatus.ELIGIBLE)
-                                .estimatedAmount(properties.getPrimeActivite().getEstimatedAmount())
+                                .estimatedAmount(new BigDecimal(properties.getPrimeActivite().getEstimatedAmount()))
+                                .estimatedAmountLabel(
+                                                properties.getPrimeActivite().getEstimatedAmountLabel())
                                 .reason("Le profil satisfait les critères principaux.")
                                 .build());
         }

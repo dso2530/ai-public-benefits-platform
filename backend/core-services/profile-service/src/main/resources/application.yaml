@@ -10,9 +10,13 @@ spring:
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
 
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+
   jpa:
     hibernate:
-      ddl-auto: update # validate avec Flyway
+      ddl-auto: validate
     show-sql: true
     open-in-view: false
     properties:
@@ -37,7 +41,7 @@ messaging:
   kafka:
     bootstrap-servers: ${KAFKA_BRK:localhost:9092}
     schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
-    group-id: profile-service-v5
+    group-id: profile-service-v6
     auto-offset-reset: earliest
 
 logging:

@@ -1,12 +1,14 @@
 package com.govtech.document.api;
 
-import com.govtech.document.application.dto.DocumentDto;
-import com.govtech.document.application.dto.DocumentSummaryDto;
+import com.govtech.document.api.dto.DocumentDto;
+import com.govtech.document.api.dto.DocumentSummaryDto;
 import com.govtech.document.application.dto.DownloadedDocument;
 import com.govtech.document.application.usecase.DocumentService;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
+import java.util.UUID;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -47,10 +49,11 @@ public class DocumentController {
   public DocumentDto upload(
       @RequestParam("file") MultipartFile file,
       @RequestParam("documentType") String type,
+      @RequestParam(value = "applicationId", required = false) UUID applicationId,
       @AuthenticationPrincipal Jwt jwt)
       throws IOException {
 
-    return documentService.upload(jwt.getSubject(), file, type);
+    return documentService.upload(jwt.getSubject(), file, type, applicationId);
   }
 
   @DeleteMapping("/{id}")

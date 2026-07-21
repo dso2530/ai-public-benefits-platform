@@ -3,8 +3,11 @@ package com.govtech.eligibility.infrastructure.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
+
+import com.govtech.eligibility.domain.model.EligibilityStatus;
 
 @Entity
 @Table(name = "eligibilities")
@@ -34,10 +37,15 @@ public class EligibilityJpaEntity {
     @Column(nullable = false)
     private String aidName;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status;
+    private EligibilityStatus status;
 
     private String reason;
 
-    private String estimatedAmount;
+    @Column(precision = 12, scale = 2)
+    private BigDecimal estimatedAmount;
+
+    @Column(nullable = false)
+    private String estimatedAmountLabel;
 }

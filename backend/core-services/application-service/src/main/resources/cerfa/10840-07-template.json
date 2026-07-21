@@ -1,0 +1,1510 @@
+{
+    "formFields": [
+        {
+            "fieldKey": "page1_texte_nom_famille",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Nom de famille :",
+            "label_bbox": [
+                30.3,
+                135.2,
+                94.9,
+                144.2
+            ],
+            "entry_bbox": [
+                97.7,
+                135.2,
+                565.3,
+                144.2
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_prenom",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Prénom :",
+            "entry_bbox": [
+                370.0,
+                135.2,
+                565.3,
+                144.2
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_nom_d_usage",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Nom d'usage :",
+            "label_bbox": [
+                300.3,
+                500.2,
+                86.7,
+                168.2
+            ],
+            "entry_bbox": [
+                89.5,
+                159.2,
+                564.6,
+                168.2
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_date_naissance",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Date de naissance :",
+            "label_bbox": [
+                28.3,
+                183.2,
+                108.3,
+                192.2
+            ],
+            "entry_bbox": [
+                111.3,
+                183.2,
+                308.3,
+                192.2
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_numero_securite_sociale",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Numéro de sécurité sociale :",
+            "label_bbox": [
+                28.3,
+                208.6,
+                144.3,
+                217.6
+            ],
+            "entry_bbox": [
+                147.3,
+                208.6,
+                344.3,
+                217.6
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_adresse_logement_lequel_demandez",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Adresse du logement pour lequel vous demandez l'aide :",
+            "label_bbox": [
+                28.3,
+                221.3,
+                256.6,
+                230.3
+            ],
+            "entry_bbox": [
+                259.4,
+                221.3,
+                564.8,
+                230.3
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_complement",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Complément :",
+            "label_bbox": [
+                28.3,
+                234.0,
+                85.5,
+                243.0
+            ],
+            "entry_bbox": [
+                88.3,
+                234.0,
+                566.0,
+                243.0
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_code_postal",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Code postal :",
+            "label_bbox": [
+                28.3,
+                246.7,
+                81.9,
+                255.7
+            ],
+            "entry_bbox": [
+                150.7,
+                246.7,
+                565.1,
+                255.7
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_numeros_telephone_domicile",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Numéros de téléphone - Domicile :",
+            "label_bbox": [
+                28.3,
+                259.5,
+                169.3,
+                268.5
+            ],
+            "entry_bbox": [
+                314.6,
+                259.5,
+                409.7,
+                268.5
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_adresse_mel",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Adresse mél :",
+            "label_bbox": [
+                28.3,
+                272.2,
+                84.1,
+                281.2
+            ],
+            "entry_bbox": [
+                86.9,
+                272.2,
+                566.0,
+                281.2
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_logement_adresse_principale",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Ce logement est-il votre adresse principale ?",
+            "label_bbox": [
+                28.3,
+                297.6,
+                208.5,
+                306.6
+            ],
+            "entry_bbox": [
+                213.8,
+                294.8,
+                223.9,
+                304.6
+            ]
+        },
+        {
+            "fieldKey": "page1_non_logement_adresse_principale_oui",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Ce logement est-il votre adresse principale ? oui",
+            "label_bbox": [
+                28.3,
+                297.6,
+                239.1,
+                306.6
+            ],
+            "entry_bbox": [
+                255.1,
+                294.8,
+                265.2,
+                304.6
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_sociaux",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "sociaux ?",
+            "label_bbox": [
+                31.9,
+                365.3,
+                70.3,
+                374.3
+            ],
+            "entry_bbox": [
+                75.8,
+                362.2,
+                85.7,
+                372.3
+            ]
+        },
+        {
+            "fieldKey": "page1_non_sociaux_oui",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "sociaux ? oui",
+            "label_bbox": [
+                31.9,
+                365.3,
+                100.9,
+                374.3
+            ],
+            "entry_bbox": [
+                117.1,
+                362.2,
+                127.0,
+                372.3
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_sociaux_oui_non_sociaux",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "sociaux ? oui non sociaux ?",
+            "label_bbox": [
+                31.9,
+                365.3,
+                339.5,
+                374.3
+            ],
+            "entry_bbox": [
+                345.1,
+                362.2,
+                354.9,
+                372.3
+            ]
+        },
+        {
+            "fieldKey": "page1_non_sociaux_oui_non_sociaux",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "sociaux ? oui non sociaux ? oui",
+            "label_bbox": [
+                31.9,
+                365.3,
+                370.1,
+                374.3
+            ],
+            "entry_bbox": [
+                386.4,
+                362.2,
+                396.2,
+                372.3
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_nom_adresse_l_organisme",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Nom et adresse de l'organisme qui la verse :",
+            "label_bbox": [
+                31.9,
+                378.0,
+                212.0,
+                387.0
+            ],
+            "entry_bbox": [
+                214.8,
+                378.0,
+                560.5,
+                387.0
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_date_d_attribution_bourse",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Date d'attribution de la bourse :",
+            "label_bbox": [
+                31.9,
+                403.5,
+                158.5,
+                412.5
+            ],
+            "entry_bbox": [
+                301.2,
+                403.5,
+                427.7,
+                412.5
+            ]
+        },
+        {
+            "fieldKey": "page1_non_oui",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "oui",
+            "label_bbox": [
+                428.4,
+                426.0,
+                440.4,
+                435.0
+            ],
+            "entry_bbox": [
+                448.5,
+                423.2,
+                458.6,
+                433.2
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_etes_rattache_fiscalement_parents",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "• Êtes-vous rattaché fiscalement à vos parents ?",
+            "label_bbox": [
+                31.9,
+                459.6,
+                227.7,
+                468.6
+            ],
+            "entry_bbox": [
+                233.0,
+                456.8,
+                243.1,
+                466.6
+            ]
+        },
+        {
+            "fieldKey": "page1_non_etes_rattache_fiscalement_parents",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "• Êtes-vous rattaché fiscalement à vos parents ? oui",
+            "label_bbox": [
+                31.9,
+                459.6,
+                258.3,
+                468.6
+            ],
+            "entry_bbox": [
+                266.6,
+                456.8,
+                276.5,
+                466.6
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_etes_rattache_fiscalement_parents_2",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "• Êtes-vous rattaché fiscalement à vos parents ? oui non • Est-il rattaché fiscalement à ses parents ?",
+            "label_bbox": [
+                31.9,
+                459.6,
+                477.0,
+                468.6
+            ],
+            "entry_bbox": [
+                490.5,
+                456.8,
+                500.4,
+                466.6
+            ]
+        },
+        {
+            "fieldKey": "page1_non_etes_rattache_fiscalement_parents_2",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "• Êtes-vous rattaché fiscalement à vos parents ? oui non • Est-il rattaché fiscalement à ses parents ? oui",
+            "label_bbox": [
+                31.9,
+                459.6,
+                515.6,
+                468.6
+            ],
+            "entry_bbox": [
+                523.9,
+                456.8,
+                533.7,
+                466.6
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_impots_fortune",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "(impôts sur la fortune) ?",
+            "label_bbox": [
+                39.8,
+                485.0,
+                137.2,
+                494.0
+            ],
+            "entry_bbox": [
+                232.3,
+                482.2,
+                242.4,
+                492.0
+            ]
+        },
+        {
+            "fieldKey": "page1_non_impots_fortune_oui",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "(impôts sur la fortune) ? oui",
+            "label_bbox": [
+                39.8,
+                485.0,
+                257.6,
+                494.0
+            ],
+            "entry_bbox": [
+                265.9,
+                482.2,
+                275.7,
+                492.0
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_impots_fortune_oui_non",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "(impôts sur la fortune) ? oui non (impôts sur la fortune) ?",
+            "label_bbox": [
+                39.8,
+                485.0,
+                406.5,
+                494.0
+            ],
+            "entry_bbox": [
+                491.2,
+                482.2,
+                501.1,
+                492.0
+            ]
+        },
+        {
+            "fieldKey": "page1_non_impots_fortune_oui_non",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "(impôts sur la fortune) ? oui non (impôts sur la fortune) ? oui",
+            "label_bbox": [
+                39.8,
+                485.0,
+                516.3,
+                494.0
+            ],
+            "entry_bbox": [
+                524.6,
+                482.2,
+                534.4,
+                492.0
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_residez_en_foyer_maison",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Résidez-vous en foyer, maison de retraite, résidence universitaire, ... ?",
+            "label_bbox": [
+                36.7,
+                529.9,
+                322.3,
+                538.9
+            ],
+            "entry_bbox": [
+                339.8,
+                526.8,
+                349.9,
+                536.9
+            ]
+        },
+        {
+            "fieldKey": "page1_non_residez_en_foyer_maison",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Résidez-vous en foyer, maison de retraite, résidence universitaire, ... ? oui",
+            "label_bbox": [
+                36.7,
+                529.9,
+                365.1,
+                538.9
+            ],
+            "entry_bbox": [
+                375.8,
+                526.8,
+                385.9,
+                536.9
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_si_residez_seul_en",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Si vous résidez seul en foyer, aidez-vous financièrement votre famille ?",
+            "label_bbox": [
+                36.2,
+                542.6,
+                323.9,
+                551.6
+            ],
+            "entry_bbox": [
+                339.8,
+                539.5,
+                349.9,
+                549.6
+            ]
+        },
+        {
+            "fieldKey": "page1_non_si_residez_seul_en",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Si vous résidez seul en foyer, aidez-vous financièrement votre famille ? oui",
+            "label_bbox": [
+                36.2,
+                542.6,
+                365.1,
+                551.6
+            ],
+            "entry_bbox": [
+                375.8,
+                539.5,
+                385.9,
+                549.6
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_etes_locataire",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Êtes-vous locataire ?",
+            "label_bbox": [
+                36.7,
+                580.8,
+                121.9,
+                589.8
+            ],
+            "entry_bbox": [
+                127.2,
+                577.7,
+                137.3,
+                587.8
+            ]
+        },
+        {
+            "fieldKey": "page1_non_etes_locataire_oui",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Êtes-vous locataire ? oui",
+            "label_bbox": [
+                36.7,
+                580.8,
+                152.5,
+                589.8
+            ],
+            "entry_bbox": [
+                168.5,
+                577.7,
+                178.6,
+                587.8
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_avez_lien_parente_avec",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Avez-vous un lien de parenté avec le propriétaire, y compris par l’intermédiaire d’une société ?",
+            "label_bbox": [
+                36.7,
+                593.5,
+                418.5,
+                602.5
+            ],
+            "entry_bbox": [
+                423.8,
+                590.4,
+                433.9,
+                600.3
+            ]
+        },
+        {
+            "fieldKey": "page1_non_avez_lien_parente_avec",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Avez-vous un lien de parenté avec le propriétaire, y compris par l’intermédiaire d’une société ? oui",
+            "label_bbox": [
+                36.7,
+                593.5,
+                449.1,
+                602.5
+            ],
+            "entry_bbox": [
+                465.1,
+                590.4,
+                475.2,
+                600.3
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_dune_societe",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "d’une société ?",
+            "label_bbox": [
+                36.2,
+                631.7,
+                97.4,
+                640.7
+            ],
+            "entry_bbox": [
+                102.7,
+                628.6,
+                112.8,
+                638.4
+            ]
+        },
+        {
+            "fieldKey": "page1_non_dune_societe_oui",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "d’une société ? oui",
+            "label_bbox": [
+                36.2,
+                631.7,
+                128.0,
+                640.7
+            ],
+            "entry_bbox": [
+                144.0,
+                628.6,
+                154.1,
+                638.4
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_si_oui_indiquez_total",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "• Si oui, indiquez le total des parts de propriété ou d’usufruit ainsi détenues par vous-même ou vos proches (en pourcentage):",
+            "label_bbox": [
+                36.2,
+                644.9,
+                530.7,
+                653.9
+            ],
+            "entry_bbox": [
+                533.7,
+                644.9,
+                567.0,
+                653.9
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_etes_loge_e_employeur",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Êtes-vous logé(e) par votre employeur ?",
+            "label_bbox": [
+                36.7,
+                657.1,
+                199.4,
+                666.1
+            ],
+            "entry_bbox": [
+                204.7,
+                654.0,
+                214.8,
+                664.1
+            ]
+        },
+        {
+            "fieldKey": "page1_non_etes_loge_e_employeur",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Êtes-vous logé(e) par votre employeur ? oui",
+            "label_bbox": [
+                36.7,
+                657.1,
+                230.0,
+                666.1
+            ],
+            "entry_bbox": [
+                246.0,
+                654.0,
+                256.1,
+                664.1
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_mettez_en_sous_location",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Mettez-vous en sous-location une partie de votre logement ?",
+            "label_bbox": [
+                36.7,
+                669.8,
+                280.7,
+                678.8
+            ],
+            "entry_bbox": [
+                286.1,
+                666.7,
+                296.1,
+                676.6
+            ]
+        },
+        {
+            "fieldKey": "page1_non_mettez_en_sous_location",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Mettez-vous en sous-location une partie de votre logement ? oui",
+            "label_bbox": [
+                36.7,
+                669.8,
+                311.3,
+                678.8
+            ],
+            "entry_bbox": [
+                327.3,
+                666.7,
+                337.4,
+                676.6
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_si_oui_depuis_quelle",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Si oui, depuis quelle date ? Surface totale sous-louée :",
+            "label_bbox": [
+                36.2,
+                683.0,
+                374.2,
+                692.0
+            ],
+            "entry_bbox": [
+                414.0,
+                683.0,
+                424.9,
+                692.0
+            ]
+        },
+        {
+            "fieldKey": "page1_oui_logement_comprend_plusieurs_pieces",
+            "page": 1,
+            "type": "case_a_cocher_oui",
+            "label": "Votre logement comprend-il une ou plusieurs pièces à usage professionnel ?",
+            "label_bbox": [
+                36.7,
+                706.5,
+                346.2,
+                715.5
+            ],
+            "entry_bbox": [
+                351.6,
+                703.5,
+                361.7,
+                713.3
+            ]
+        },
+        {
+            "fieldKey": "page1_non_logement_comprend_plusieurs_pieces",
+            "page": 1,
+            "type": "case_a_cocher_non",
+            "label": "Votre logement comprend-il une ou plusieurs pièces à usage professionnel ? oui",
+            "label_bbox": [
+                36.7,
+                706.5,
+                376.8,
+                715.5
+            ],
+            "entry_bbox": [
+                392.9,
+                703.5,
+                402.9,
+                713.3
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_si_oui_depuis_quelle_2",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Si oui, depuis quelle date ? Surface totale des pièces à usage professionnel :",
+            "label_bbox": [
+                36.2,
+                719.7,
+                464.4,
+                728.7
+            ],
+            "entry_bbox": [
+                504.2,
+                719.7,
+                515.1,
+                728.7
+            ]
+        },
+        {
+            "fieldKey": "page1_texte_date_demande",
+            "page": 1,
+            "type": "champ_texte",
+            "label": "Date demande :",
+            "label_bbox": [
+                70.8,
+                771.6,
+                134.7,
+                780.6
+            ],
+            "entry_bbox": [
+                137.7,
+                771.6,
+                334.7,
+                780.6
+            ]
+        },
+        {
+            "fieldKey": "page2_oui_avez_emprunte_acheter_faire",
+            "page": 2,
+            "type": "case_a_cocher_oui",
+            "label": "Avez-vous emprunté pour acheter ou faire construire ? :",
+            "label_bbox": [
+                36.7,
+                112.6,
+                262.1,
+                121.6
+            ],
+            "entry_bbox": [
+                267.6,
+                109.8,
+                277.7,
+                119.6
+            ]
+        },
+        {
+            "fieldKey": "page2_non_avez_emprunte_acheter_faire",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "Avez-vous emprunté pour acheter ou faire construire ? : oui",
+            "label_bbox": [
+                36.7,
+                112.6,
+                292.9,
+                121.6
+            ],
+            "entry_bbox": [
+                308.9,
+                109.8,
+                318.9,
+                119.6
+            ]
+        },
+        {
+            "fieldKey": "page2_oui_avez_emprunte_realiser_travaux",
+            "page": 2,
+            "type": "case_a_cocher_oui",
+            "label": "Avez-vous emprunté pour réaliser des travaux d’augmentation de la surface habitable ? :",
+            "label_bbox": [
+                36.7,
+                128.4,
+                395.1,
+                137.4
+            ],
+            "entry_bbox": [
+                400.5,
+                125.6,
+                410.6,
+                135.4
+            ]
+        },
+        {
+            "fieldKey": "page2_non_avez_emprunte_realiser_travaux",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "Avez-vous emprunté pour réaliser des travaux d’augmentation de la surface habitable ? : oui",
+            "label_bbox": [
+                36.7,
+                128.4,
+                425.8,
+                137.4
+            ],
+            "entry_bbox": [
+                441.8,
+                125.6,
+                451.9,
+                135.4
+            ]
+        },
+        {
+            "fieldKey": "page2_oui_cuisine_salle_bains",
+            "page": 2,
+            "type": "case_a_cocher_oui",
+            "label": "de cuisine ou de salle de bains) ? :",
+            "label_bbox": [
+                37.0,
+                160.1,
+                158.0,
+                169.1
+            ],
+            "entry_bbox": [
+                163.4,
+                157.3,
+                173.5,
+                167.1
+            ]
+        },
+        {
+            "fieldKey": "page2_non_cuisine_salle_bains_oui",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "de cuisine ou de salle de bains) ? : oui",
+            "label_bbox": [
+                37.0,
+                160.1,
+                188.7,
+                169.1
+            ],
+            "entry_bbox": [
+                204.7,
+                157.3,
+                214.8,
+                167.1
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_si_oui_nature_travaux",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "Si oui, nature des travaux :",
+            "label_bbox": [
+                36.2,
+                176.0,
+                144.8,
+                185.0
+            ],
+            "entry_bbox": [
+                147.6,
+                176.0,
+                564.6,
+                185.0
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_autre_cas_precisez",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "Autre cas (précisez :",
+            "label_bbox": [
+                36.7,
+                191.8,
+                114.1,
+                200.8
+            ],
+            "entry_bbox": [
+                116.2,
+                191.8,
+                564.6,
+                200.8
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_surface_totale_logement",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "Surface totale du logement :",
+            "label_bbox": [
+                36.7,
+                207.6,
+                150.8,
+                216.6
+            ],
+            "entry_bbox": [
+                193.2,
+                207.6,
+                408.0,
+                216.6
+            ]
+        },
+        {
+            "fieldKey": "page2_oui_mettez_en_location_partie",
+            "page": 2,
+            "type": "case_a_cocher_oui",
+            "label": "Mettez-vous en location une partie de votre logement ?",
+            "label_bbox": [
+                36.7,
+                223.5,
+                258.4,
+                232.5
+            ],
+            "entry_bbox": [
+                266.4,
+                220.6,
+                276.5,
+                230.5
+            ]
+        },
+        {
+            "fieldKey": "page2_non_mettez_en_location_partie",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "Mettez-vous en location une partie de votre logement ? oui",
+            "label_bbox": [
+                36.7,
+                223.5,
+                291.7,
+                232.5
+            ],
+            "entry_bbox": [
+                307.7,
+                220.6,
+                317.7,
+                230.5
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_si_oui_depuis_quelle",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "Si oui, depuis quelle date ? Surface totale sous-louée :",
+            "label_bbox": [
+                36.2,
+                239.8,
+                374.2,
+                248.8
+            ],
+            "entry_bbox": [
+                414.0,
+                239.8,
+                424.9,
+                248.8
+            ]
+        },
+        {
+            "fieldKey": "page2_oui_logement_comprend_plusieurs_pieces",
+            "page": 2,
+            "type": "case_a_cocher_oui",
+            "label": "Votre logement comprend-il une ou plusieurs pièces à usage professionnel ?",
+            "label_bbox": [
+                36.7,
+                270.0,
+                346.2,
+                279.0
+            ],
+            "entry_bbox": [
+                351.6,
+                267.2,
+                361.7,
+                277.0
+            ]
+        },
+        {
+            "fieldKey": "page2_non_logement_comprend_plusieurs_pieces",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "Votre logement comprend-il une ou plusieurs pièces à usage professionnel ? oui",
+            "label_bbox": [
+                36.7,
+                270.0,
+                376.8,
+                279.0
+            ],
+            "entry_bbox": [
+                392.9,
+                267.2,
+                402.9,
+                277.0
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_si_oui_depuis_quelle_2",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "Si oui, depuis quelle date ? Surface totale des pièces à usage professionnel :",
+            "label_bbox": [
+                36.2,
+                286.3,
+                464.4,
+                295.3
+            ],
+            "entry_bbox": [
+                504.2,
+                286.3,
+                515.1,
+                295.3
+            ]
+        },
+        {
+            "fieldKey": "page2_oui_etes_co_emprunteur_avec",
+            "page": 2,
+            "type": "case_a_cocher_oui",
+            "label": "Êtes-vous co-emprunteur avec une personne autre que votre conjoint(e), concubin(e) ou pacsé(e) ?",
+            "label_bbox": [
+                36.7,
+                316.6,
+                438.1,
+                325.6
+            ],
+            "entry_bbox": [
+                446.1,
+                313.7,
+                456.2,
+                323.6
+            ]
+        },
+        {
+            "fieldKey": "page2_non_etes_co_emprunteur_avec",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "Êtes-vous co-emprunteur avec une personne autre que votre conjoint(e), concubin(e) ou pacsé(e) ? oui",
+            "label_bbox": [
+                36.7,
+                316.6,
+                471.4,
+                325.6
+            ],
+            "entry_bbox": [
+                482.1,
+                313.7,
+                492.2,
+                323.6
+            ]
+        },
+        {
+            "fieldKey": "page2_non_oui",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "oui",
+            "label_bbox": [
+                508.8,
+                362.9,
+                520.8,
+                371.9
+            ],
+            "entry_bbox": [
+                531.6,
+                360.0,
+                541.6,
+                369.9
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_linstallation_sanitaire",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "• l’installation sanitaire :",
+            "label_bbox": [
+                28.3,
+                460.9,
+                108.0,
+                468.9
+            ],
+            "entry_bbox": [
+                111.0,
+                460.9,
+                308.0,
+                468.9
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_si_logement_ne_comporte",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "- si le logement ne comporte qu’une seule pièce, il y a au moins des WC qui peuvent être extérieurs au logement :",
+            "label_bbox": [
+                32.6,
+                483.4,
+                419.3,
+                491.4
+            ],
+            "entry_bbox": [
+                422.3,
+                483.4,
+                567.0,
+                491.4
+            ]
+        },
+        {
+            "fieldKey": "page2_non_oui_2",
+            "page": 2,
+            "type": "case_a_cocher_non",
+            "label": "oui",
+            "label_bbox": [
+                41.5,
+                562.8,
+                53.6,
+                571.8
+            ],
+            "entry_bbox": [
+                64.3,
+                559.9,
+                74.4,
+                569.8
+            ]
+        },
+        {
+            "fieldKey": "page2_texte_date_demande",
+            "page": 2,
+            "type": "champ_texte",
+            "label": "Date demande :",
+            "label_bbox": [
+                70.8,
+                771.6,
+                134.7,
+                780.6
+            ],
+            "entry_bbox": [
+                137.7,
+                771.6,
+                334.7,
+                780.6
+            ]
+        },
+        {
+            "fieldKey": "page3_oui_conjoint_concubin_pacse_detenez",
+            "page": 3,
+            "type": "case_a_cocher_oui",
+            "label": "Vous ou votre conjoint, concubin ou pacsé, détenez-vous un patrimoine financier ?",
+            "label_bbox": [
+                36.7,
+                142.6,
+                398.6,
+                151.6
+            ],
+            "entry_bbox": [
+                448.8,
+                139.5,
+                458.8,
+                149.6
+            ]
+        },
+        {
+            "fieldKey": "page3_non_conjoint_concubin_pacse_detenez",
+            "page": 3,
+            "type": "case_a_cocher_non",
+            "label": "Vous ou votre conjoint, concubin ou pacsé, détenez-vous un patrimoine financier ? oui",
+            "label_bbox": [
+                36.7,
+                142.6,
+                474.0,
+                151.6
+            ],
+            "entry_bbox": [
+                490.0,
+                139.5,
+                500.1,
+                149.6
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_on_entend_patrimoine_financier",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "On entend par patrimoine financier les montants actuels déposés sur les comptes suivants :",
+            "label_bbox": [
+                39.6,
+                156.5,
+                423.2,
+                165.5
+            ],
+            "entry_bbox": [
+                426.2,
+                156.5,
+                567.0,
+                165.5
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_attention",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "! Attention :",
+            "label_bbox": [
+                46.1,
+                204.3,
+                108.1,
+                214.7
+            ],
+            "entry_bbox": [
+                111.1,
+                204.3,
+                566.7,
+                213.3
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_prenom_nom_allocataire",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "Prénom, nom allocataire :",
+            "label_bbox": [
+                214.1,
+                236.9,
+                326.5,
+                245.9
+            ],
+            "entry_bbox": [
+                387.1,
+                236.9,
+                566.2,
+                245.9
+            ]
+        },
+        {
+            "fieldKey": "page3_oui_conjoint_concubin_pacse_detenez_2",
+            "page": 3,
+            "type": "case_a_cocher_oui",
+            "label": "Vous ou votre conjoint, concubin ou pacsé, détenez-vous un patrimoine immobilier ?",
+            "label_bbox": [
+                35.3,
+                296.4,
+                491.2,
+                305.4
+            ],
+            "entry_bbox": [
+                493.9,
+                293.6,
+                504.0,
+                303.4
+            ]
+        },
+        {
+            "fieldKey": "page3_non_conjoint_concubin_pacse_detenez_2",
+            "page": 3,
+            "type": "case_a_cocher_non",
+            "label": "Vous ou votre conjoint, concubin ou pacsé, détenez-vous un patrimoine immobilier ? oui",
+            "label_bbox": [
+                35.3,
+                296.4,
+                519.2,
+                305.4
+            ],
+            "entry_bbox": [
+                535.2,
+                293.6,
+                545.2,
+                303.4
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_attention_2",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "Attention :",
+            "label_bbox": [
+                60.7,
+                332.9,
+                108.4,
+                341.9
+            ],
+            "entry_bbox": [
+                113.0,
+                332.9,
+                565.6,
+                341.9
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_prenom_nom_allocataire_2",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "Prénom, nom allocataire :",
+            "label_bbox": [
+                214.1,
+                357.4,
+                326.5,
+                366.4
+            ],
+            "entry_bbox": [
+                387.1,
+                357.4,
+                566.2,
+                366.4
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_prenom_nom_allocataire_3",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "Prénom, nom allocataire :",
+            "label_bbox": [
+                214.1,
+                463.7,
+                326.5,
+                472.7
+            ],
+            "entry_bbox": [
+                387.1,
+                463.7,
+                566.2,
+                472.7
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_precisez_ci_dessous_ses",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "précisez ci-dessous ses nom, prénom, qualité et adresse :",
+            "label_bbox": [
+                28.3,
+                651.6,
+                229.9,
+                659.6
+            ],
+            "entry_bbox": [
+                232.9,
+                651.6,
+                429.9,
+                659.6
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_declaration_articles_l_114",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "déclaration (Articles L. 114-9 - dépôt de plainte de la Caisse pouvant aboutir à :",
+            "label_bbox": [
+                28.3,
+                708.8,
+                306.3,
+                716.8
+            ],
+            "entry_bbox": [
+                309.1,
+                708.8,
+                566.9,
+                716.8
+            ]
+        },
+        {
+            "fieldKey": "page3_texte_date_demande",
+            "page": 3,
+            "type": "champ_texte",
+            "label": "Date demande :",
+            "label_bbox": [
+                70.8,
+                771.6,
+                134.7,
+                780.6
+            ],
+            "entry_bbox": [
+                137.7,
+                771.6,
+                334.7,
+                780.6
+            ]
+        },
+        {
+            "fieldKey": "page4_texte_que_dossier_soit_traite",
+            "page": 4,
+            "type": "champ_texte",
+            "label": "Pour que votre dossier soit traité rapidement :",
+            "label_bbox": [
+                289.2,
+                106.3,
+                510.6,
+                116.3
+            ],
+            "entry_bbox": [
+                513.6,
+                106.3,
+                567.0,
+                116.3
+            ]
+        },
+        {
+            "fieldKey": "page4_texte_date_demande",
+            "page": 4,
+            "type": "champ_texte",
+            "label": "Date demande :",
+            "label_bbox": [
+                70.8,
+                771.6,
+                134.7,
+                780.6
+            ],
+            "entry_bbox": [
+                137.7,
+                771.6,
+                334.7,
+                780.6
+            ]
+        }
+    ]
+}

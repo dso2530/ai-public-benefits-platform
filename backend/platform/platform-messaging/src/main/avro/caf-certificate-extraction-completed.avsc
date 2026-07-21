@@ -1,0 +1,70 @@
+{
+  "type": "record",
+  "name": "CafCertificateExtractionCompletedEvent",
+  "namespace": "com.govtech.events.caf",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "CafExtractedData",
+        "fields": [
+          {
+            "name": "beneficiaryNumber",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "departmentCode",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "receivesFamilyBenefits",
+            "type": ["null", "boolean"],
+            "default": null
+          },
+          {
+            "name": "receivesHousingBenefits",
+            "type": ["null", "boolean"],
+            "default": null
+          },
+          {
+            "name": "receivesRsa",
+            "type": ["null", "boolean"],
+            "default": null
+          },
+          {
+            "name": "receivesAah",
+            "type": ["null", "boolean"],
+            "default": null
+          },
+          {
+            "name": "receivesPrimeActivite",
+            "type": ["null", "boolean"],
+            "default": null
+          },
+          {
+            "name": "monthlyAmount",
+            "type": ["null", "double"],
+            "default": null
+          },
+          {
+            "name": "rightsStartDate",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "rightsEndDate",
+            "type": ["null", "string"],
+            "default": null
+          }
+        ]
+      }
+    }
+  ]
+}

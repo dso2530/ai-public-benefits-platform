@@ -1,0 +1,29 @@
+{
+  "type": "record",
+  "name": "RentReceiptExtractionCompletedEvent",
+  "namespace": "com.govtech.events.rentreceipt",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "RentReceiptExtractedData",
+        "fields": [
+          { "name": "tenantFirstName", "type": ["null","string"], "default": null },
+          { "name": "tenantLastName", "type": ["null","string"], "default": null },
+          { "name": "landlordName", "type": ["null","string"], "default": null },
+          { "name": "street", "type": ["null","string"], "default": null },
+          { "name": "postalCode", "type": ["null","string"], "default": null },
+          { "name": "city", "type": ["null","string"], "default": null },
+          { "name": "monthlyRent", "type": ["null","double"], "default": null },
+          { "name": "monthlyCharges", "type": ["null","double"], "default": null },
+          { "name": "receiptMonth", "type": ["null","string"], "default": null }
+        ]
+      }
+    }
+  ]
+}

@@ -7,4 +7,5 @@ public record DashboardResponse(
     HouseholdDto household,
     EligibilitySummaryDto benefits,
     NotificationSummaryDto notifications,
-    DocumentSummaryDto documents) {}
+    DocumentSummaryDto documents,
+    ApplicationsSummaryDto applications) {}

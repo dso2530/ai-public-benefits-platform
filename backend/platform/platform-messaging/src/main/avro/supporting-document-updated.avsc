@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "SupportingDocumentUpdatedEvent",
+  "namespace": "com.govtech.events.supportingdocument",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+  "name": "status",
+  "type": {
+    "type": "enum",
+    "name": "SupportingDocumentStatus",
+    "symbols": [
+      "AVAILABLE",
+      "UPDATED",
+      "DELETED"
+    ]
+  },
+  "default": "AVAILABLE"
+}
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "type": "record",
+  "name": "PayslipExtractionCompletedEvent",
+  "namespace": "com.govtech.events.payslip",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "PayslipExtractedData",
+        "fields": [
+          {
+            "name": "employeeFirstName",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "employeeLastName",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "employerName",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "street",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "postalCode",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "city",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "payPeriod",
+            "type": ["null", "string"],
+            "default": null
+          },
+          {
+            "name": "grossSalary",
+            "type": ["null", "double"],
+            "default": null
+          },
+          {
+            "name": "netSalary",
+            "type": ["null", "double"],
+            "default": null
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -24,10 +24,45 @@ public enum DocumentType {
                         "payslip",
                         "document.payslip.extraction.completed"),
 
+        RIB(
+                        "rib",
+                        "rib",
+                        "document.rib.extraction.completed"),
+
         PROOF_OF_ADDRESS(
                         "proof_of_address",
                         "proof-of-address",
-                        "document.proof-of-address.extraction.completed");
+                        "document.proof-of-address.extraction.completed"),
+
+        LEASE(
+                        "lease",
+                        "lease",
+                        "document.lease.extraction.completed"),
+
+        RENT_RECEIPT(
+                        "rent_receipt",
+                        "rent-receipt",
+                        "document.rent-receipt.extraction.completed"),
+
+        ENERGY_BILL(
+                        "energy_bill",
+                        "energy-bill",
+                        "document.energy-bill.extraction.completed"),
+
+        HOME_INSURANCE(
+                        "home_insurance",
+                        "home-insurance",
+                        "document.home-insurance.extraction.completed"),
+
+        HOUSING_TAX(
+                        "housing_tax",
+                        "housing-tax",
+                        "document.housing-tax.extraction.completed"),
+
+        CAF_CERTIFICATE(
+                        "caf_certificate",
+                        "caf-certificate",
+                        "document.caf-certificate.extraction.completed");
 
         private final String code;
         private final String promptName;

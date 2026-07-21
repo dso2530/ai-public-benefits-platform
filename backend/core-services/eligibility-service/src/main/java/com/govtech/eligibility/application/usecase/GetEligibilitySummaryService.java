@@ -1,10 +1,11 @@
 package com.govtech.eligibility.application.usecase;
 
 import java.math.BigDecimal;
+import java.util.Objects;
+
 import org.springframework.stereotype.Service;
 
 import com.govtech.eligibility.api.dto.EligibilitySummaryDto;
-import com.govtech.eligibility.domain.model.Eligibility;
 import com.govtech.eligibility.domain.model.EligibilityStatus;
 import com.govtech.eligibility.domain.repository.EligibilityRepository;
 
@@ -26,22 +27,15 @@ public class GetEligibilitySummaryService {
 
     BigDecimal totalAmount = eligibilities.stream()
         .filter(e -> e.status() == EligibilityStatus.ELIGIBLE)
-        .map(this::toBigDecimal)
+        .map(e -> e.estimatedAmount())
+        .filter(Objects::nonNull)
         .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-    return new EligibilitySummaryDto(
-        eligibilities.size(),
-        (int) eligibleCount,
-        totalAmount);
+    return EligibilitySummaryDto.builder()
+        .eligibleCount(eligibleCount)
+        .notEligibleCount(eligibilities.size() - eligibleCount)
+        .totalAmount(totalAmount).build();
+
   }
 
-  private BigDecimal toBigDecimal(Eligibility eligibility) {
-    try {
-      return eligibility.estimatedAmount() == null
-          ? BigDecimal.ZERO
-          : new BigDecimal(eligibility.estimatedAmount());
-    } catch (NumberFormatException e) {
-      return BigDecimal.ZERO;
-    }
-  }
 }

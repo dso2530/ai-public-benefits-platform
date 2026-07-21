@@ -2,4 +2,8 @@ package com.govtech.eligibility.api.dto;
 
 import java.math.BigDecimal;
 
-public record EligibilitySummaryDto(int eligibleCount, int pendingCount, BigDecimal totalAmount) {}
+import lombok.Builder;
+
+@Builder
+public record EligibilitySummaryDto(long eligibleCount, long notEligibleCount, BigDecimal totalAmount) {
+}

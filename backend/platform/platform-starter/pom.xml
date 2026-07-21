@@ -38,32 +38,33 @@
             <groupId>com.govtech</groupId>
             <artifactId>platform-messaging</artifactId>
             <version>${project.version}</version>
-        </dependency>    
-       
+        </dependency> 
 
-        <!-- Validation -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
+            <groupId>com.govtech</groupId>
+            <artifactId>platform-web</artifactId>
+            <version>${project.version}</version>
+        </dependency>      
+
+        <dependency>
+            <groupId>com.govtech</groupId>
+            <artifactId>platform-storage</artifactId>
+            <version>${project.version}</version>
+        </dependency>         
+   
 
         <!-- Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-        </dependency>
+        </dependency> 
 
         <dependency>
-            <groupId>io.minio</groupId>
-            <artifactId>minio</artifactId>
-            <version>8.5.17</version>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+     
         
 
     </dependencies>

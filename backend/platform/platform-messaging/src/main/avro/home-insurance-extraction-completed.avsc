@@ -1,0 +1,29 @@
+{
+  "type": "record",
+  "name": "HomeInsuranceExtractionCompletedEvent",
+  "namespace": "com.govtech.events.homeinsurance",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "HomeInsuranceExtractedData",
+        "fields": [
+          { "name": "insuredFirstName", "type": ["null","string"], "default": null },
+          { "name": "insuredLastName", "type": ["null","string"], "default": null },
+          { "name": "insuranceCompany", "type": ["null","string"], "default": null },
+          { "name": "policyNumber", "type": ["null","string"], "default": null },
+          { "name": "street", "type": ["null","string"], "default": null },
+          { "name": "postalCode", "type": ["null","string"], "default": null },
+          { "name": "city", "type": ["null","string"], "default": null },
+          { "name": "startDate", "type": ["null","string"], "default": null },
+          { "name": "endDate", "type": ["null","string"], "default": null }
+        ]
+      }
+    }
+  ]
+}

@@ -16,14 +16,7 @@
     <artifactId>ocr-service</artifactId>
     <name>ocr-service</name>
 
-    <dependencies>
-
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>   
-
+    <dependencies>     
        
 
          <dependency>

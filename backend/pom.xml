@@ -46,17 +46,18 @@
         <module>core-services/document-service</module>
         <module>core-services/eligibility-service</module>
         <module>core-services/notification-service</module>
+        <module>core-services/application-service</module>
 
-        <module>platform/platform-starter</module>
+
         <module>platform/platform-security</module>
         <module>platform/platform-observability</module>
         <module>platform/platform-messaging</module>
-
+        <module>platform/platform-web</module>
+        <module>platform/platform-storage</module>
+        <module>platform/platform-database</module>
+        <module>platform/platform-starter</module>
 
         <module>mocks/mock-dgfip</module>
-        <module>mocks/mock-event-pub-sub</module>
-
-
 
 
     </modules>
@@ -85,8 +86,17 @@
             **/mocks/**,
             **/mock-dgfip/**
        </sonar.exclusions>
-
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>2.8.9</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
 

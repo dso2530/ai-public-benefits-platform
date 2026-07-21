@@ -59,7 +59,9 @@ public class RSAEligibilityRule implements EligibilityRule {
                                                                 eligible
                                                                                 ? "Revenu inférieur au plafond"
                                                                                 : "Revenu supérieur au plafond")
-                                                .estimatedAmount(properties.getRsa().getEstimatedAmount())
+                                                .estimatedAmount(new BigDecimal(
+                                                                properties.getRsa().getEstimatedAmount()))
+                                                .estimatedAmountLabel(properties.getRsa().getEstimatedAmountLabel())
                                                 .build());
         }
 

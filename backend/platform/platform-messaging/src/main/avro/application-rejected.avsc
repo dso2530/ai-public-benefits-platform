@@ -1,0 +1,28 @@
+{
+  "type": "record",
+  "name": "ApplicationRejectedEvent",
+  "namespace": "com.govtech.events.application",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.BaseEvent"
+    },
+    {
+      "name": "applicationId",
+      "type": "string"
+    },
+    {
+      "name": "aidCode",
+      "type": "string"
+    },
+    {
+      "name": "reason",
+      "type": "string"
+    },
+    
+    {
+      "name": "status",
+      "type": "string"
+    }
+  ]
+}

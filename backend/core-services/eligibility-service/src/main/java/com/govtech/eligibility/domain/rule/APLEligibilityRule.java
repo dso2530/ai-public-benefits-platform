@@ -4,10 +4,12 @@ import com.govtech.eligibility.application.configuration.EligibilityProperties;
 import com.govtech.eligibility.application.dto.ProfileContractDto;
 import com.govtech.eligibility.domain.model.Eligibility;
 import com.govtech.eligibility.domain.model.EligibilityStatus;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
@@ -46,7 +48,8 @@ public class APLEligibilityRule implements EligibilityRule {
                 .aidCode("APL")
                 .aidName("Aide personnalisée au logement")
                 .status(EligibilityStatus.ELIGIBLE)
-                .estimatedAmount(properties.getApl().getEstimatedAmount())
+                .estimatedAmount(new BigDecimal(properties.getApl().getEstimatedAmount()))
+                .estimatedAmountLabel(properties.getApl().getEstimatedAmountLabel())
                 .reason("Le profil satisfait les critères principaux.")
                 .build());
     }

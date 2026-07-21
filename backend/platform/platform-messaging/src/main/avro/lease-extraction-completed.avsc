@@ -1,0 +1,30 @@
+{
+  "type": "record",
+  "name": "LeaseExtractionCompletedEvent",
+  "namespace": "com.govtech.events.lease",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "LeaseExtractedData",
+        "fields": [
+          { "name": "tenantFirstName", "type": ["null","string"], "default": null },
+          { "name": "tenantLastName", "type": ["null","string"], "default": null },
+          { "name": "landlordName", "type": ["null","string"], "default": null },
+          { "name": "street", "type": ["null","string"], "default": null },
+          { "name": "postalCode", "type": ["null","string"], "default": null },
+          { "name": "city", "type": ["null","string"], "default": null },
+          { "name": "housingType", "type": ["null","string"], "default": null },
+          { "name": "surface", "type": ["null","double"], "default": null },
+          { "name": "monthlyRent", "type": ["null","double"], "default": null },
+          { "name": "entryDate", "type": ["null","string"], "default": null }
+        ]
+      }
+    }
+  ]
+}

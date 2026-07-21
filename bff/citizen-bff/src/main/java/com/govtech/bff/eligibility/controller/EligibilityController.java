@@ -15,6 +15,6 @@ public class EligibilityController {
 
   @GetMapping("/api/eligibility")
   public List<EligibilityDto> benefits() {
-    return eligibilityService.eligibilities();
+    return eligibilityService.getEligibilities();
   }
 }

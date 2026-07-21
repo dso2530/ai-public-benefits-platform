@@ -27,12 +27,13 @@ public class OCRService {
 
     public void process(DocumentUploadedEvent event) {
 
-        try (InputStream stream = storageService.download(
+        try (InputStream stream = storageService.download(event.getBucket(),
                 event.getObjectKey())) {
 
             String text = ocrProvider.extractText(stream);
 
             var completed = DocumentOCRCompletedEvent.newBuilder()
+                    .setApplicationId(event.getApplicationId())
                     .setDocumentId(event.getDocumentId())
                     .setSubject(event.getSubject())
                     .setBucket(event.getBucket())

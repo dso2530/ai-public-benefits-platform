@@ -18,20 +18,16 @@
 
     <dependencies>
 
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>       
+              
 
-       
-
-        <!-- Platform -->
+        <!-- Platforms -->
         <dependency>
             <groupId>com.govtech</groupId>
             <artifactId>platform-starter</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-        </dependency>      
+        </dependency>   
+
+
 
         <!-- Shared -->
         <dependency>

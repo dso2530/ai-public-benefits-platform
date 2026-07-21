@@ -2,6 +2,9 @@ package com.govtech.notification.domain.model;
 
 import java.time.Instant;
 
+import lombok.Builder;
+
+@Builder
 public class Notification {
 
   private NotificationId id;

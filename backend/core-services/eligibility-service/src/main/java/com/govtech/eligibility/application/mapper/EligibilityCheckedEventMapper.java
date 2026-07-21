@@ -43,7 +43,10 @@ public final class EligibilityCheckedEventMapper {
                                 .setAidName(eligibility.aidName())
                                 .setEligible(eligibility.status().isEligible())
                                 .setReason(eligibility.reason())
-                                .setEstimatedAmount(eligibility.estimatedAmount())
+                                .setEstimatedAmount(
+                                                eligibility.estimatedAmount() == null
+                                                                ? null
+                                                                : eligibility.estimatedAmount().toString())
                                 .build();
         }
 

@@ -10,20 +10,26 @@ export default function BenefitsPage() {
     return <div>Chargement...</div>;
   }
 
-  return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">
-        Benefits
-      </h1>
+  return (<div className="mx-auto max-w-5xl p-8">
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {benefits.map((benefit) => (
-          <BenefitCard
-            key={benefit.code}
-            benefit={benefit}
-          />
+    <h1 className="text-4xl font-bold">
+        Prestations
+    </h1>
+
+    <p className="text-muted-foreground mt-2">
+        Consultez les aides auxquelles vous êtes éligible.
+    </p>
+
+    <div className="grid gap-6 mt-8 md:grid-cols-2">
+        {benefits.map(benefit => (
+            <BenefitCard
+                key={benefit.aidCode}
+                benefit={benefit}
+            />
         ))}
-      </div>
     </div>
+
+</div>
+    
   );
 }
