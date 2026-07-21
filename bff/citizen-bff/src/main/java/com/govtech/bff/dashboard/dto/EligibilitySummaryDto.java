@@ -1,4 +1,6 @@
 package com.govtech.bff.dashboard.dto;
 
+import java.math.BigDecimal;
+
 public record EligibilitySummaryDto(
-    Integer eligibleCount, Integer pendingCount, Integer totalAmount) {}
+    long eligibleCount, long notEligibleCount, BigDecimal totalAmount) {}

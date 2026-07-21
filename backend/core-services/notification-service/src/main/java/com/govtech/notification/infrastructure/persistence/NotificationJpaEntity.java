@@ -2,6 +2,8 @@ package com.govtech.notification.infrastructure.persistence;
 
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,8 +20,7 @@ import lombok.Setter;
 public class NotificationJpaEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private UUID id;
 
   @Column(nullable = false)
   private String subject;

@@ -16,7 +16,6 @@ public class DocumentUploadedListener {
 
     @KafkaListener(topics = "document.uploaded", groupId = "${messaging.kafka.group-id}")
     public void consume(DocumentUploadedEvent event) {
-        System.out.println(">>> MESSAGE RECU : " + event);
         ocrService.process(event);
 
     }

@@ -68,5 +68,15 @@
     "name": "kafka.enabled",
     "type": "java.lang.String",
     "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "spring.flyway.locations",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.flyway.locations'"
+  },
+  {
+    "name": "messaging.kafka.auto-offset-reset",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.auto-offset-reset'"
   }
 ]}

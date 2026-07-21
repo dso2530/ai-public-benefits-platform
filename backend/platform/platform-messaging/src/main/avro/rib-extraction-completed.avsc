@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "RibExtractionCompletedEvent",
+  "namespace": "com.govtech.events.bank",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "RibExtractedData",
+        "fields": [
+          { "name": "iban", "type": ["null","string"], "default": null },
+          { "name": "bic", "type": ["null","string"], "default": null },
+          { "name": "bankName", "type": ["null","string"], "default": null },
+          { "name": "accountHolder", "type": ["null","string"], "default": null }
+        ]
+      }
+    }
+  ]
+}

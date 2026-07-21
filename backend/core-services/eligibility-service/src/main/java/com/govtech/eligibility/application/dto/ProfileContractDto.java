@@ -1,6 +1,7 @@
 package com.govtech.eligibility.application.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import lombok.Builder;
 
@@ -14,6 +15,8 @@ public record ProfileContractDto(
                 String firstName,
 
                 String lastName,
+
+                LocalDate birthDate,
 
                 String city,
 

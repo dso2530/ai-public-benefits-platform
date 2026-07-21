@@ -3,6 +3,14 @@ package com.govtech.profile.application.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.govtech.profile.domain.valueobject.CafInformation;
+import com.govtech.profile.domain.valueobject.EnergyBill;
+import com.govtech.profile.domain.valueobject.HomeInsurance;
+import com.govtech.profile.domain.valueobject.HousingInformation;
+import com.govtech.profile.domain.valueobject.HousingTax;
+import com.govtech.profile.domain.valueobject.Lease;
+import com.govtech.profile.domain.valueobject.RentReceipt;
+
 public record ExtractedData(
 
         // Identité
@@ -36,7 +44,18 @@ public record ExtractedData(
         // Foyer
         Integer childrenCount,
         Boolean singleParent,
-        String housingStatus
+        String housingStatus,
+
+        // Logement
+        HousingInformation housingInformation,
+        Lease lease,
+        RentReceipt rentReceipt,
+        EnergyBill energyBill,
+        HomeInsurance homeInsurance,
+        HousingTax housingTax,
+
+        // CAF
+        CafInformation cafInformation
 
 ) {
 }

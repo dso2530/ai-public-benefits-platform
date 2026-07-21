@@ -10,9 +10,13 @@ spring:
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
 
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 
     show-sql: true
 
@@ -24,7 +28,32 @@ minio:
   enabled: false
 
 kafka:
-  enabled: false
+  enabled: true
+
+messaging:
+  kafka:
+    bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+    schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+    group-id: notification-service-v4
+    auto-offset-reset: earliest
+
+notifications:
+  templates:
+    APL:
+      title: "Vous êtes éligible à l'APL"
+      message: "Vous pouvez bénéficier de l'Aide personnalisée au logement."
+
+    CSS:
+      title: "Vous êtes éligible à la Complémentaire Santé Solidaire"
+      message: "Déposez votre demande dès maintenant."
+
+    CHEQUE_ENERGIE:
+      title: "Vous êtes éligible au Chèque Énergie"
+      message: "Votre montant estimé est de {estimatedAmountLabel}."
+
+    RSA:
+      title: "Résultat de votre éligibilité au RSA"
+      message: "{reason}"
 
 logging:
   level:

@@ -17,16 +17,16 @@ public class DocumentEventService {
 
   public void publishUploaded(DocumentJpaEntity document) {
 
-    DocumentUploadedEvent event =
-        DocumentUploadedEvent.newBuilder()
-            .setDocumentId(document.getId())
-            .setSubject(document.getSubject())
-            .setBucket(storageProperties.bucket())
-            .setObjectKey(document.getObjectKey())
-            .setDocumentType(document.getDocumentType().name())
-            .setContentType(document.getContentType())
-            .setUploadedAt(document.getUploadedAt().toString())
-            .build();
+    DocumentUploadedEvent event = DocumentUploadedEvent.newBuilder()
+        .setDocumentId(document.getId())
+        .setApplicationId(null != document.getApplicationId() ? document.getApplicationId().toString() : null)
+        .setSubject(document.getSubject())
+        .setBucket(storageProperties.bucket())
+        .setObjectKey(document.getObjectKey())
+        .setDocumentType(document.getDocumentType().name())
+        .setContentType(document.getContentType())
+        .setUploadedAt(document.getUploadedAt().toString())
+        .build();
 
     publisher.publish(Topics.DOCUMENT_UPLOADED, document.getId().toString(), event);
   }

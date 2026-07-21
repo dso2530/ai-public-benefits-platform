@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Passeport Français</title>
+    <style>
+        body {
+            background: #e6e6e6;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .passport {
+            width: 900px;
+            margin: 30px auto;
+            background: #b11f35;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #8b1529;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: 3px;
+        }
+
+        .header h2 {
+            margin: 8px 0 0;
+            font-weight: normal;
+            font-size: 18px;
+        }
+
+        .content {
+            display: flex;
+        }
+
+        .left {
+            width: 35%;
+            background: #f7f2e9;
+            color: #222;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .photo {
+            width: 180px;
+            height: 220px;
+            margin: auto;
+            border: 2px solid #999;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .signature {
+            margin-top: 25px;
+            font-family: cursive;
+            font-size: 28px;
+        }
+
+        .right {
+            width: 65%;
+            background: white;
+            color: #111;
+            padding: 25px 35px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px 4px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        .label {
+            width: 220px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .mrz {
+            background: #f3f3f3;
+            font-family: "Courier New", monospace;
+            font-size: 22px;
+            padding: 20px;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            border: 2px solid #999;
+        }
+
+        .footer {
+            text-align: center;
+            background: #8b1529;
+            padding: 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="passport">
+
+        <div class="header">
+            <h1>UNION EUROPÉENNE</h1>
+            <h2>RÉPUBLIQUE FRANÇAISE - PASSEPORT</h2>
+        </div>
+
+        <div class="content">
+
+            <div class="left">
+
+                <div class="photo">
+                    PHOTO
+                </div>
+
+                <div style="margin-top:20px;">
+                    Passeport biométrique
+                </div>
+
+                <div class="signature">
+                    Martin
+                </div>
+
+            </div>
+
+            <div class="right">
+
+                <table>
+
+                    <tr>
+                        <td class="label">Type</td>
+                        <td>P</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Code État</td>
+                        <td>FRA</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Numéro de passeport</td>
+                        <td>23FR94852</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Nom</td>
+                        <td>MARTIN</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Prénoms</td>
+                        <td>Lucas Pierre</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Nationalité</td>
+                        <td>Française</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Date de naissance</td>
+                        <td>14/05/1992</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Lieu de naissance</td>
+                        <td>Lyon (69)</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Sexe</td>
+                        <td>M</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Date de délivrance</td>
+                        <td>03/03/2024</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Date d'expiration</td>
+                        <td>02/03/2034</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Autorité</td>
+                        <td>Préfecture du Rhône</td>
+                    </tr>
+
+                </table>
+
+                <div class="mrz">
+                    P&lt;FRAMARTIN&lt;&lt;LUCAS&lt;PIERRE&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>
+                    23FR94852FRA9205148M3403029&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;08
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            République Française • Document fictif destiné aux tests OCR
+        </div>
+
+    </div>
+
+</body>
+
+</html>

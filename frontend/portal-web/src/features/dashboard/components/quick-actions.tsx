@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Button } from '../../../shared/components/ui/button';
-import { ProfileCard } from '../../profile/components/profile-card';
 import { LogoutButton } from '../../auth/components/logout-button';
 
 export function QuickActions() {
@@ -18,6 +17,13 @@ export function QuickActions() {
         </Link>
       </Button>
 
+      <Button variant="outline">
+        <Link href="/applications">
+          📝 Applications
+        </Link>
+
+      </Button>
+
       <Button asChild variant="outline">
         <Link href="/profile">
           👤 Edit Profile
@@ -26,7 +32,7 @@ export function QuickActions() {
 
       <LogoutButton />
 
-      <ProfileCard />
-    </div>
+
+    </div >
   );
 }

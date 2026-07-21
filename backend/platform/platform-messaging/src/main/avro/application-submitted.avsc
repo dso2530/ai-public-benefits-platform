@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "ApplicationSubmittedEvent",
+  "namespace": "com.govtech.events.application",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.BaseEvent"
+    },
+    {
+      "name": "applicationId",
+      "type": "string"
+    },
+    {
+      "name": "aidCode",
+      "type": "string"
+    },    
+    {
+      "name": "status",
+      "type": "string"
+    }
+  ]
+}

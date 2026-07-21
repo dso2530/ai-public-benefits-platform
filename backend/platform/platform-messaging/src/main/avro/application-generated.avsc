@@ -1,0 +1,32 @@
+{
+  "type": "record",
+  "name": "ApplicationGeneratedEvent",
+  "namespace": "com.govtech.events.application",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.BaseEvent"
+    },
+    {
+      "name": "applicationId",
+      "type": "string"
+    },
+    {
+      "name": "aidCode",
+      "type": "string"
+    },
+    {
+      "name": "aidName",
+      "type": "string"
+    },
+    {
+      "name": "objectKey",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "status",
+      "type": "string"
+    }
+  ]
+}

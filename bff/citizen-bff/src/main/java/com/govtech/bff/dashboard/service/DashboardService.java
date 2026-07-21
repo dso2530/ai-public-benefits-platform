@@ -1,5 +1,6 @@
 package com.govtech.bff.dashboard.service;
 
+import com.govtech.bff.clients.ApplicationClient;
 import com.govtech.bff.clients.DocumentClient;
 import com.govtech.bff.clients.EligibilityClient;
 import com.govtech.bff.clients.NotificationClient;
@@ -16,6 +17,7 @@ public class DashboardService {
   private final EligibilityClient eligibilityClient;
   private final NotificationClient notificationClient;
   private final DocumentClient documentClient;
+  private final ApplicationClient applicationClient;
 
   public DashboardResponse getDashboard() {
 
@@ -24,6 +26,7 @@ public class DashboardService {
         .benefits(eligibilityClient.getSummary())
         .notifications(notificationClient.getSummary())
         .documents(documentClient.getSummary())
+        .applications(applicationClient.getSummary())
         .build();
   }
 }

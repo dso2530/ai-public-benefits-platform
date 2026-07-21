@@ -13,5 +13,55 @@
     "name": "kafka.enabled",
     "type": "java.lang.String",
     "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "spring.flyway.locations",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.flyway.locations'"
+  },
+  {
+    "name": "spring.flyway.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.flyway.enabled'"
+  },
+  {
+    "name": "notifications.templates.APL.title",
+    "type": "java.lang.String",
+    "description": "A description for 'notifications.templates.APL.title'"
+  },
+  {
+    "name": "notifications.templates.APL.message",
+    "type": "java.lang.String",
+    "description": "A description for 'notifications.templates.APL.message'"
+  },
+  {
+    "name": "notifications.templates.CSS.title",
+    "type": "java.lang.String",
+    "description": "A description for 'notifications.templates.CSS.title'"
+  },
+  {
+    "name": "notifications.templates.CSS.message",
+    "type": "java.lang.String",
+    "description": "A description for 'notifications.templates.CSS.message'"
+  },
+  {
+    "name": "notifications.templates.CHEQUE_ENERGIE.title",
+    "type": "java.lang.String",
+    "description": "A description for 'notifications.templates.CHEQUE_ENERGIE.title'"
+  },
+  {
+    "name": "notifications.templates.CHEQUE_ENERGIE.message",
+    "type": "java.lang.String",
+    "description": "A description for 'notifications.templates.CHEQUE_ENERGIE.message'"
+  },
+  {
+    "name": "messaging.kafka.auto-offset-reset",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.auto-offset-reset'"
+  },
+  {
+    "name": "notifications.templates.RSA.title",
+    "type": "java.lang.String",
+    "description": "A description for 'notifications.templates.RSA.title'"
   }
 ]}

@@ -1,6 +1,5 @@
 package com.govtech.document.infrastructure.persistence;
 
-import com.govtech.document.application.dto.DocumentType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,6 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import java.util.UUID;
+
+import com.govtech.document.domain.model.DocumentType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,4 +55,7 @@ public class DocumentJpaEntity {
 
   @Column(nullable = false)
   private Instant uploadedAt;
+
+  @Column(name = "application_id")
+  private UUID applicationId;
 }

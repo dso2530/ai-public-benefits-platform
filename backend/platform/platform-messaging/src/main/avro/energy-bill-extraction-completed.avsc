@@ -1,0 +1,29 @@
+{
+  "type": "record",
+  "name": "EnergyBillExtractionCompletedEvent",
+  "namespace": "com.govtech.events.energy",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "EnergyBillExtractedData",
+        "fields": [
+          { "name": "holderFirstName", "type": ["null","string"], "default": null },
+          { "name": "holderLastName", "type": ["null","string"], "default": null },
+          { "name": "provider", "type": ["null","string"], "default": null },
+          { "name": "street", "type": ["null","string"], "default": null },
+          { "name": "postalCode", "type": ["null","string"], "default": null },
+          { "name": "city", "type": ["null","string"], "default": null },
+          { "name": "country", "type": ["null","string"], "default": "France" },
+          { "name": "contractReference", "type": ["null","string"], "default": null },
+          { "name": "documentDate", "type": ["null","string"], "default": null }
+        ]
+      }
+    }
+  ]
+}

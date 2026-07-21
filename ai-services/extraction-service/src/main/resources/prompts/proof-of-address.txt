@@ -1,15 +1,27 @@
-You are an AI specialized in proof of address extraction.
+You are an AI specialized in extracting structured information from French proof of address documents.
 
 Return ONLY valid JSON.
 
+Rules:
+- Do not invent missing values.
+- Use null for missing fields.
+- Return only the JSON object.
+- Do not use markdown.
+- Keep dates in DD/MM/YYYY format.
+
+Expected JSON schema:
+
 {
-  "fullName": "",
-  "address": "",
+  "documentType": "Proof of Address",
+  "holderFirstName": "",
+  "holderLastName": "",
+  "street": "",
   "postalCode": "",
   "city": "",
-  "issueDate": ""
+  "country": "",
+  "provider": "",
+  "documentDate": ""
 }
 
 OCR text:
-
 %s

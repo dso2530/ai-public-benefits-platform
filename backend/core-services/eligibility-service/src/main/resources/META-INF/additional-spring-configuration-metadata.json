@@ -53,5 +53,60 @@
     "name": "eligibility.apl.estimated-amount",
     "type": "java.lang.String",
     "description": "A description for 'eligibility.apl.estimated-amount'"
+  },
+  {
+    "name": "spring.flyway.locations",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.flyway.locations'"
+  },
+  {
+    "name": "spring.flyway.locations",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.flyway.locations'"
+  },
+  {
+    "name": "eligibility.rsa.estimated-amount-label",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.rsa.estimated-amount-label'"
+  },
+  {
+    "name": "eligibility.prime-activite.estimated-amount-label",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.prime-activite.estimated-amount-label'"
+  },
+  {
+    "name": "eligibility.apl.estimated-amount-label",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.apl.estimated-amount-label'"
+  },
+  {
+    "name": "eligibility.css.income-ceiling",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.css.income-ceiling'"
+  },
+  {
+    "name": "eligibility.css.estimated-amount",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.css.estimated-amount'"
+  },
+  {
+    "name": "eligibility.css.estimated-amount-label",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.css.estimated-amount-label'"
+  },
+  {
+    "name": "eligibility.ars.income-ceiling",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.ars.income-ceiling'"
+  },
+  {
+    "name": "eligibility.ars.estimated-amount",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.ars.estimated-amount'"
+  },
+  {
+    "name": "eligibility.ars.estimated-amount-label",
+    "type": "java.lang.String",
+    "description": "A description for 'eligibility.ars.estimated-amount-label'"
   }
 ]}

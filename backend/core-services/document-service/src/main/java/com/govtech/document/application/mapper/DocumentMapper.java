@@ -1,6 +1,6 @@
 package com.govtech.document.application.mapper;
 
-import com.govtech.document.application.dto.DocumentDto;
+import com.govtech.document.api.dto.DocumentDto;
 import com.govtech.document.infrastructure.persistence.DocumentJpaEntity;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;

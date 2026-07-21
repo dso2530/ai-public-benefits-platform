@@ -1,0 +1,10 @@
+
+export enum DocumentType { 
+    TAX_NOTICE = "TAX_NOTICE",
+    PROOF_OF_ADDRESS = "PROOF_OF_ADDRESS",
+    RIB = "RIB",
+    IDENTITY_CARD = "IDENTITY_CARD",
+    PAYSLIP = "PAYSLIP",
+    CAF_CERTIFICATE = "CAF_CERTIFICATE",
+    LEASE = "LEASE",
+}

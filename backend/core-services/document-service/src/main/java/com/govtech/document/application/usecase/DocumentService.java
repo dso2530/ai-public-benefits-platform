@@ -1,10 +1,11 @@
 package com.govtech.document.application.usecase;
 
-import com.govtech.document.application.dto.DocumentDto;
-import com.govtech.document.application.dto.DocumentSummaryDto;
-import com.govtech.document.application.dto.DocumentType;
+import com.govtech.document.api.dto.DocumentContractDto;
+import com.govtech.document.api.dto.DocumentDto;
+import com.govtech.document.api.dto.DocumentSummaryDto;
 import com.govtech.document.application.dto.DownloadedDocument;
 import com.govtech.document.application.mapper.DocumentMapper;
+import com.govtech.document.domain.model.DocumentType;
 import com.govtech.document.infrastructure.persistence.DocumentJpaEntity;
 import com.govtech.document.infrastructure.persistence.DocumentJpaRepository;
 import com.govtech.platform.storage.service.StorageService;
@@ -25,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DocumentService implements DocumentServiceUsecase {
+public class DocumentService implements DocumentServiceUsecase, InternalDocumentServiceUseCase {
 
   private final StorageService storageService;
   private final DocumentJpaRepository repository;
@@ -38,15 +39,35 @@ public class DocumentService implements DocumentServiceUsecase {
 
     return repository.findBySubjectOrderByUploadedAtDesc(subject).stream()
         .map(
-            doc ->
-                new DocumentDto(
-                    doc.getId(),
-                    doc.getName(),
-                    doc.getDocumentType().name(),
-                    doc.getStatus(),
-                    doc.getFileName(),
-                    doc.getFileSize(),
-                    doc.getUploadedAt()))
+            doc -> new DocumentDto(
+                doc.getId(),
+                doc.getName(),
+                doc.getDocumentType().name(),
+                doc.getStatus(),
+                doc.getFileName(),
+                doc.getFileSize(),
+                doc.getUploadedAt()))
+        .toList();
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public List<DocumentContractDto> findBySubject(final @NonNull String subject) {
+
+    return repository.findBySubjectOrderByUploadedAtDesc(subject)
+        .stream()
+        .map(doc -> DocumentContractDto.builder()
+            .documentId(doc.getId())
+            .subject(doc.getSubject())
+            .name(doc.getName())
+            .documentType(doc.getDocumentType())
+            .status(doc.getStatus())
+            .fileName(doc.getFileName())
+            .contentType(doc.getContentType())
+            .objectKey(doc.getObjectKey())
+            .fileSize(doc.getFileSize())
+            .uploadedAt(doc.getUploadedAt())
+            .build())
         .toList();
   }
 
@@ -63,26 +84,36 @@ public class DocumentService implements DocumentServiceUsecase {
 
   @Override
   public DocumentDto upload(
-      @NonNull String subject, @NonNull MultipartFile file, @NonNull String type)
+      @NonNull String subject,
+      @NonNull MultipartFile file,
+      @NonNull String type,
+      UUID applicationId)
       throws IOException {
 
-    String objectKey =
-        "citizens/%s/%s-%s".formatted(subject, UUID.randomUUID(), file.getOriginalFilename());
+    String objectKey = "citizens/%s/%s-%s".formatted(
+        subject,
+        UUID.randomUUID(),
+        file.getOriginalFilename());
 
-    storageService.upload(file.getInputStream(), file.getSize(), file.getContentType(), objectKey);
+    storageService.upload(
+        file.getInputStream(),
+        file.getSize(),
+        file.getContentType(),
+        "documents",
+        objectKey);
 
-    DocumentJpaEntity document =
-        DocumentJpaEntity.builder()
-            .subject(subject)
-            .name(DocumentType.valueOf(type).getName())
-            .documentType(DocumentType.valueOf(type))
-            .status("UPLOADED")
-            .fileName(file.getOriginalFilename())
-            .objectKey(objectKey) // clé MinIO
-            .fileSize(file.getSize())
-            .contentType(file.getContentType())
-            .uploadedAt(Instant.now())
-            .build();
+    DocumentJpaEntity document = DocumentJpaEntity.builder()
+        .subject(subject)
+        .applicationId(applicationId) // nouveau champ
+        .name(DocumentType.valueOf(type).getName())
+        .documentType(DocumentType.valueOf(type))
+        .status("UPLOADED")
+        .fileName(file.getOriginalFilename())
+        .objectKey(objectKey)
+        .fileSize(file.getSize())
+        .contentType(file.getContentType())
+        .uploadedAt(Instant.now())
+        .build();
 
     DocumentJpaEntity saved = repository.save(document);
 
@@ -94,16 +125,15 @@ public class DocumentService implements DocumentServiceUsecase {
   @Override
   public void delete(@NonNull Long id, @NonNull String subject) throws AccessDeniedException {
 
-    DocumentJpaEntity document =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+    DocumentJpaEntity document = repository
+        .findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
 
     if (!document.getSubject().equals(subject)) {
       throw new AccessDeniedException("Document does not belong to user");
     }
 
-    storageService.delete(document.getObjectKey());
+    storageService.delete("documents", document.getObjectKey());
 
     repository.delete(document);
   }
@@ -113,16 +143,15 @@ public class DocumentService implements DocumentServiceUsecase {
   public DownloadedDocument download(@NonNull Long id, @NonNull String subject)
       throws AccessDeniedException {
 
-    DocumentJpaEntity document =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+    DocumentJpaEntity document = repository
+        .findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
 
     if (!document.getSubject().equals(subject)) {
       throw new AccessDeniedException("Document does not belong to user");
     }
 
-    try (InputStream inputStream = storageService.download(document.getObjectKey())) {
+    try (InputStream inputStream = storageService.download("documents", document.getObjectKey())) {
 
       byte[] content = inputStream.readAllBytes();
 

@@ -1,3 +1,6 @@
 package com.govtech.notification.domain.model;
 
-public record NotificationId(Long value) {}
+import java.util.UUID;
+
+public record NotificationId(UUID value) {
+}

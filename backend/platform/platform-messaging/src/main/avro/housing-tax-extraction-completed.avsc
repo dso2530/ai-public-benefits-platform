@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "HousingTaxExtractionCompletedEvent",
+  "namespace": "com.govtech.events.housingtax",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+    {
+      "name": "extractedData",
+      "type": {
+        "type": "record",
+        "name": "HousingTaxExtractedData",
+        "fields": [
+          { "name": "taxpayerFirstName", "type": ["null","string"], "default": null },
+          { "name": "taxpayerLastName", "type": ["null","string"], "default": null },
+          { "name": "taxYear", "type": ["null","int"], "default": null },
+          { "name": "street", "type": ["null","string"], "default": null },
+          { "name": "postalCode", "type": ["null","string"], "default": null },
+          { "name": "city", "type": ["null","string"], "default": null },
+          { "name": "taxAmount", "type": ["null","double"], "default": null }
+        ]
+      }
+    }
+  ]
+}

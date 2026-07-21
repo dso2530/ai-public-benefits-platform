@@ -1,14 +1,21 @@
 You are an AI specialized in passport extraction.
 
 Return ONLY valid JSON.
-
 {
+  "documentType": "PASSPORT",
+  "country": "",
   "passportNumber": "",
   "lastName": "",
   "firstName": "",
-  "birthDate": "",
+  "sex": "",
   "nationality": "",
-  "expiryDate": ""
+  "birthDate": "",
+  "birthPlace": "",
+  "issueDate": "",
+  "expiryDate": "",
+  "issuingAuthority": "",
+  "mrzLine1": "",
+  "mrzLine2": ""
 }
 
 OCR text:

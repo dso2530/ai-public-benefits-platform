@@ -1,7 +1,5 @@
 package com.govtech.extraction.application;
 
-import com.govtech.events.DocumentExtractionCompletedEvent;
-import com.govtech.events.DocumentOCRCompletedEvent;
 import com.govtech.extraction.application.event.DocumentEventFactory;
 import com.govtech.extraction.application.prompt.PromptProvider;
 import com.govtech.extraction.domain.model.Document;
