@@ -29,7 +29,7 @@ jobs:
           java-version: 21
 
       - name: Cache Maven
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.m2
           key: maven-${{ hashFiles('**/pom.xml') }}
