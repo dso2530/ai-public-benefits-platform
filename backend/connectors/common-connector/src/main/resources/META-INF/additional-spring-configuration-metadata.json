@@ -60,21 +60,6 @@
     "description": "A description for 'dgfip.oauth2.client-secret'"
   },
   {
-    "name": "dgfip.oauth2.scope",
-    "type": "java.lang.String",
-    "description": "A description for 'dgfip.oauth2.scope'"
-  },
-  {
-    "name": "dgfip.api.income",
-    "type": "java.lang.String",
-    "description": "A description for 'dgfip.api.income'"
-  },
-  {
-    "name": "dgfip.api.latest-tax-notice",
-    "type": "java.lang.String",
-    "description": "A description for 'dgfip.api.latest-tax-notice'"
-  },
-  {
     "name": "connector.default.connect-timeout",
     "type": "java.lang.String",
     "description": "A description for 'connector.default.connect-timeout'"
@@ -123,5 +108,225 @@
     "name": "connector.connect-timeout",
     "type": "java.lang.String",
     "description": "A description for 'connector.connect-timeout'"
+  },
+  {
+    "name": "connector.scheduler.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.scheduler.enabled'"
+  },
+  {
+    "name": "connector.scheduler.interval",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.scheduler.interval'"
+  },
+  {
+    "name": "connector.scheduler.delay",
+    "type": "java.lang.String",
+    "description": "A description for 'connector.scheduler.delay'"
+  },
+  {
+    "name": "connectors.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.connect-timeout'"
+  },
+  {
+    "name": "connectors.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.read-timeout'"
+  },
+  {
+    "name": "connectors.retry.max-attempts",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.retry.max-attempts'"
+  },
+  {
+    "name": "connectors.retry.delay",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.retry.delay'"
+  },
+  {
+    "name": "connectors.scheduler.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.scheduler.enabled'"
+  },
+  {
+    "name": "connectors.scheduler.interval",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.scheduler.interval'"
+  },
+  {
+    "name": "connectors.scheduler.delay",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.scheduler.delay'"
+  },
+  {
+    "name": "connectors.scheduler.initial-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.scheduler.initial-delay'"
+  },
+  {
+    "name": "connectors.retry.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.retry.enabled'"
+  },
+  {
+    "name": "connectors.name",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.name'"
+  },
+  {
+    "name": "connectors.authentication",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.authentication'"
+  },
+  {
+    "name": "connectors.base-url",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.base-url'"
+  },
+  {
+    "name": "connectors.http.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.http.connect-timeout'"
+  },
+  {
+    "name": "connectors.http.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.http.read-timeout'"
+  },
+  {
+    "name": "connectors.retry.multiplier",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.retry.multiplier'"
+  },
+  {
+    "name": "connectors.oauth2.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.oauth2.enabled'"
+  },
+  {
+    "name": "connectors.oauth2.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.oauth2.enabled'"
+  },
+  {
+    "name": "connectors.oauth2.token-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.oauth2.token-uri'"
+  },
+  {
+    "name": "connectors.oauth2.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.oauth2.client-id'"
+  },
+  {
+    "name": "connectors.oauth2.client-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.oauth2.client-secret'"
+  },
+  {
+    "name": "connectors.oauth2.scopes",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.oauth2.scopes'"
+  },
+  {
+    "name": "connectors.api-key.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.api-key.enabled'"
+  },
+  {
+    "name": "connectors.api-key.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.api-key.enabled'"
+  },
+  {
+    "name": "connectors.api-key.header",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.api-key.header'"
+  },
+  {
+    "name": "connectors.api-key.value",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.api-key.value'"
+  },
+  {
+    "name": "connectors.correlation.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.correlation.enabled'"
+  },
+  {
+    "name": "connectors.correlation.header-name",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.correlation.header-name'"
+  },
+  {
+    "name": "connectors.observation.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.observation.enabled'"
+  },
+  {
+    "name": "connectors.cache.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.cache.enabled'"
+  },
+  {
+    "name": "connectors.cache.ttl",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.cache.ttl'"
+  },
+  {
+    "name": "connectors.downloader.user-agent",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.downloader.user-agent'"
+  },
+  {
+    "name": "connectors.downloader.max-links",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.downloader.max-links'"
+  },
+  {
+    "name": "connectors.security.api-key.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.api-key.enabled'"
+  },
+  {
+    "name": "connectors.security.api-key.header-name",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.api-key.header-name'"
+  },
+  {
+    "name": "connectors.security.api-key.value",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.api-key.value'"
+  },
+  {
+    "name": "connectors.security.oauth2.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.oauth2.enabled'"
+  },
+  {
+    "name": "connectors.security.oauth2.token-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.oauth2.token-uri'"
+  },
+  {
+    "name": "connectors.security.oauth2.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.oauth2.client-id'"
+  },
+  {
+    "name": "connectors.security.oauth2.client-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.oauth2.client-secret'"
+  },
+  {
+    "name": "connectors.security.oauth2.scope",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.oauth2.scope'"
+  },
+  {
+    "name": "connectors.security.oauth2.scopes",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.security.oauth2.scopes'"
   }
 ]}

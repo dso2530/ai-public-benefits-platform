@@ -1,0 +1,43 @@
+{
+  "namespace": "com.govtech.events.security",
+  "type": "record",
+  "name": "DocumentUploadedScanCompletedEvent",
+  "fields": [
+    {
+      "name": "documentId",
+      "type": "long"
+    },
+    {
+      "name": "securityStatus",
+      "type": "string"
+    },
+    {
+      "name": "scanEngine",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "scannedAt",
+      "type": "string"
+    },
+      {
+      "name": "detectedContentType",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "sha256",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}

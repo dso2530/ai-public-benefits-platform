@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.govtech.events.DocumentOCRCompletedEvent;
+import com.govtech.events.ocr.DocumentOCRCompletedEvent;
 import com.govtech.extraction.domain.model.Document;
 import com.govtech.extraction.domain.model.DocumentType;
 

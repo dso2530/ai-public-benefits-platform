@@ -5,8 +5,8 @@ import java.time.Instant;
 
 import org.springframework.stereotype.Service;
 
-import com.govtech.events.DocumentOCRCompletedEvent;
-import com.govtech.events.DocumentUploadedEvent;
+import com.govtech.events.ocr.DocumentOCRCompletedEvent;
+import com.govtech.events.document.DocumentUploadedEvent;
 import com.govtech.ocr.infrastructure.ocr.exception.OCRException;
 import com.govtech.platform.messaging.exception.MessagingException;
 import com.govtech.platform.messaging.publisher.KafkaEventPublisher;

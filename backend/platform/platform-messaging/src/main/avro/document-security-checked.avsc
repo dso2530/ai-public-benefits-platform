@@ -1,0 +1,27 @@
+{
+  "namespace": "com.govtech.events.security",
+  "type": "record",
+  "name": "DocumentSecurityCheckedEvent",
+  "fields": [
+    {
+      "name": "documentId",
+      "type": "long"
+    },
+    {
+      "name": "securityStatus",
+      "type": "string"
+    },
+    {
+      "name": "scanEngine",
+      "type": "string"
+    },
+    {
+      "name": "scannedAt",
+      "type": "string"
+    },
+    {
+      "name": "sha256",
+      "type": "string"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package com.govtech.extraction.infrastructure.kafka;
 
-import com.govtech.events.DocumentOCRCompletedEvent;
+import com.govtech.events.ocr.DocumentOCRCompletedEvent;
 import com.govtech.extraction.application.ExtractionService;
 import com.govtech.extraction.application.event.DocumentMapper;
 import com.govtech.extraction.domain.model.Document;

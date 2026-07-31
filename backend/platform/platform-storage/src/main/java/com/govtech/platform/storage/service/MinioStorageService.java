@@ -19,16 +19,6 @@ import org.springframework.stereotype.Service;
 public class MinioStorageService implements StorageService {
 
   private final MinioClient minioClient;
-  private final StorageProperties properties;
-
-  @PostConstruct
-  public void init() throws Exception {
-
-    if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(properties.bucket()).build())) {
-
-      minioClient.makeBucket(MakeBucketArgs.builder().bucket(properties.bucket()).build());
-    }
-  }
 
   @Override
   public String upload(InputStream inputStream, long size, String contentType, String bucket, String objectKey) {
@@ -98,4 +88,50 @@ public class MinioStorageService implements StorageService {
             .recursive(true)
             .build());
   }
+
+  @Override
+  public void move(
+      String sourceBucket,
+      String sourceObjectKey,
+      String targetBucket,
+      String targetObjectKey) {
+
+    try {
+
+      /*
+       * 1 - Copy
+       */
+      minioClient.copyObject(
+          CopyObjectArgs.builder()
+              .bucket(targetBucket)
+              .object(targetObjectKey)
+              .source(
+                  CopySource.builder()
+                      .bucket(sourceBucket)
+                      .object(sourceObjectKey)
+                      .build())
+              .build());
+
+      /*
+       * 2 - Delete source
+       */
+      minioClient.removeObject(
+          RemoveObjectArgs.builder()
+              .bucket(sourceBucket)
+              .object(sourceObjectKey)
+              .build());
+
+    } catch (Exception e) {
+
+      throw new StorageException(
+          "Cannot move object "
+              + sourceBucket
+              + "/"
+              + sourceObjectKey,
+          e);
+
+    }
+
+  }
+
 }

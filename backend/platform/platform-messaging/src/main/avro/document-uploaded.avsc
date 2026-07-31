@@ -1,15 +1,63 @@
 {
-  "namespace": "com.govtech.events",
+  "namespace": "com.govtech.events.document",
   "type": "record",
   "name": "DocumentUploadedEvent",
   "fields": [
-    { "name": "documentId", "type": "long" },
-    { "name": "subject", "type": "string" },
-    { "name": "bucket", "type": "string" },
-    { "name": "objectKey", "type": "string" },
-    { "name": "documentType", "type": "string" },
-    { "name": "contentType", "type": "string" },
-    { "name": "uploadedAt", "type": "string" },
+
+    {
+      "name": "documentId",
+      "type": "long"
+    },
+
+    {
+      "name": "subject",
+      "type": "string"
+    },
+
+    {
+      "name": "bucket",
+      "type": "string"
+    },
+
+    {
+      "name": "objectKey",
+      "type": "string"
+    },
+
+    {
+      "name": "documentType",
+      "type": "string"
+    },
+
+    {
+      "name": "contentType",
+      "type": "string"
+    },
+
+    {
+      "name": "fileSize",
+      "type": "long",
+      "default": 0
+    },
+
+    {
+      "name": "sha256",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "SHA-256 checksum of the uploaded document"
+    },
+
+    {
+      "name": "uploadedAt",
+      "type": "string"
+    },
+
     {
       "name": "applicationId",
       "type": [
@@ -22,5 +70,6 @@
       "default": null,
       "doc": "Identifier of the application this document is associated with, if any."
     }
+
   ]
 }

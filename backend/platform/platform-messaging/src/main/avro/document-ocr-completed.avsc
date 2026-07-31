@@ -1,5 +1,5 @@
 {
-  "namespace": "com.govtech.events",
+  "namespace": "com.govtech.events.ocr",
   "type": "record",
   "name": "DocumentOCRCompletedEvent",
   "fields": [
