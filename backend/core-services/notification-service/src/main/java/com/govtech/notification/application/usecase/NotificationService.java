@@ -9,9 +9,7 @@ import com.govtech.notification.infrastructure.persistence.NotificationMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 
-import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import lombok.RequiredArgsConstructor;

@@ -1,0 +1,47 @@
+{
+  "namespace": "com.govtech.events.security",
+  "type": "record",
+  "name": "DocumentUploadScanRequestedEvent",
+  "fields": [
+    {
+      "name": "documentId",
+      "type": "long"
+    },
+    {
+      "name": "subject",
+      "type": "string"
+    },
+    {
+      "name": "applicationId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "bucket",
+      "type": "string"
+    },
+    {
+      "name": "objectKey",
+      "type": "string"
+    },
+    {
+      "name": "sha256",
+      "type": "string"
+    },
+    {
+      "name": "contentType",
+      "type": "string"
+    },
+    {
+      "name": "documentType",
+      "type": "string"
+    },
+    {
+      "name": "uploadedAt",
+      "type": "string"
+    }
+  ]
+}

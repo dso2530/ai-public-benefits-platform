@@ -3,7 +3,7 @@ package com.govtech.ocr.infrastructure.kafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import com.govtech.events.DocumentUploadedEvent;
+import com.govtech.events.document.DocumentUploadedEvent;
 import com.govtech.ocr.application.OCRService;
 
 import lombok.RequiredArgsConstructor;

@@ -7,6 +7,10 @@ public final class Topics {
 
   public static final String DOCUMENT_UPLOADED = "document.uploaded";
 
+  public static final String DOCUMENT_UPLOADED_SCAN_REQUESTED = "document.uploaded.scan.requested";
+  
+  public static final String DOCUMENT_UPLOADED_SCAN_COMPLETED = "document.uploaded.scan.completed";
+
   public static final String DOCUMENT_OCR_COMPLETED = "document.ocr.completed";
 
   public static final String DOCUMENT_EXTRACTED = "document.extracted";

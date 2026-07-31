@@ -15,4 +15,11 @@ public interface StorageService {
   boolean exists(String bucket, String objectKey);
 
   Iterable<Result<Item>> list(String bucket, String prefix);
+
+  void move(
+      String sourceBucket,
+      String sourceObjectKey,
+      String targetBucket,
+      String targetObjectKey);
+
 }

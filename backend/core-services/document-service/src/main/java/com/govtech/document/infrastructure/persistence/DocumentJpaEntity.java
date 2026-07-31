@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 import com.govtech.document.domain.model.DocumentType;
+import com.govtech.document.domain.model.SecurityStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,7 +47,16 @@ public class DocumentJpaEntity {
 
   private String fileName;
 
+  /**
+   * Empreinte SHA-256 du fichier stocké dans MinIO
+   */
+  @Column(length = 64)
+  private String sha256;
+
   private String contentType;
+
+  @Column(nullable = false)
+  private String bucket;
 
   @Column(nullable = false)
   private String objectKey;
@@ -58,4 +68,16 @@ public class DocumentJpaEntity {
 
   @Column(name = "application_id")
   private UUID applicationId;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "security_status", nullable = false)
+  private SecurityStatus securityStatus;
+
+  private Instant scannedAt;
+
+  @Column(length = 50)
+  private String scanEngine;
+
+  @Column(name = "detected_content_type")
+  private String detectedContentType;
 }

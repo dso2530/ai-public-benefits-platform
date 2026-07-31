@@ -5,7 +5,9 @@ import com.govtech.document.api.dto.DocumentDto;
 import com.govtech.document.api.dto.DocumentSummaryDto;
 import com.govtech.document.application.dto.DownloadedDocument;
 import com.govtech.document.application.mapper.DocumentMapper;
+import com.govtech.document.domain.model.DocumentStatus;
 import com.govtech.document.domain.model.DocumentType;
+import com.govtech.document.domain.model.SecurityStatus;
 import com.govtech.document.infrastructure.persistence.DocumentJpaEntity;
 import com.govtech.document.infrastructure.persistence.DocumentJpaRepository;
 import com.govtech.platform.storage.service.StorageService;
@@ -19,6 +21,8 @@ import java.util.List;
 import java.util.UUID;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -99,16 +103,21 @@ public class DocumentService implements DocumentServiceUsecase, InternalDocument
         file.getInputStream(),
         file.getSize(),
         file.getContentType(),
-        "documents",
+        "documents-quarantine",
         objectKey);
+
+    String sha256 = DigestUtils.sha256Hex(file.getBytes());
 
     DocumentJpaEntity document = DocumentJpaEntity.builder()
         .subject(subject)
         .applicationId(applicationId) // nouveau champ
         .name(DocumentType.valueOf(type).getName())
         .documentType(DocumentType.valueOf(type))
-        .status("UPLOADED")
+        .status(DocumentStatus.UPLOADED.name())
+        .securityStatus(SecurityStatus.PENDING)
         .fileName(file.getOriginalFilename())
+        .sha256(sha256)
+        .bucket("documents-quarantine")
         .objectKey(objectKey)
         .fileSize(file.getSize())
         .contentType(file.getContentType())
@@ -117,7 +126,7 @@ public class DocumentService implements DocumentServiceUsecase, InternalDocument
 
     DocumentJpaEntity saved = repository.save(document);
 
-    documentEventService.publishUploaded(saved);
+    documentEventService.publishScanRequested(saved);
 
     return mapper.toDto(saved);
   }

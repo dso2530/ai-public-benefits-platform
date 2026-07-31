@@ -6,24 +6,95 @@ spring:
     virtual:
       enabled: true
 
-connector:
-  connect-timeout: 2s
-  read-timeout: 2s
+  jackson:
+    default-property-inclusion: non_null
+
+connectors:
+  # Nom du connecteur consommateur
+  name: default
+
+  # NONE | OAUTH2 | API_KEY
+  authentication: NONE
+
+  # URL distante du connecteur
+  # Sera généralement surchargé par chaque connector
+  base-url:
+
+  downloader:
+    user-agent: GovTech-Territorial-Intelligence/1.0
+
+    max-links: 100
+
+  http:
+    connect-timeout: 2s
+
+    read-timeout: 5s
 
   retry:
+    enabled: true
+
     max-attempts: 3
-    delay: 1000
+
+    delay: 1s
+
+    multiplier: 2.0
+
+  scheduler:
+    enabled: false
+
+    interval: PT1H
+
+    initial-delay: PT5S
+
+  security:
+    api-key:
+      enabled: false
+      header-name: X-API-Key
+      value: ${API_KEY:}
+
+    oauth2:
+      enabled: false
+      token-uri: https://provider/token
+      client-id: ${CLIENT_ID:}
+      client-secret: ${CLIENT_SECRET:}
+      scopes: openid
+
+  correlation:
+    enabled: true
+
+    header-name: X-Correlation-Id
+
+  observation:
+    enabled: true
+
+  cache:
+    enabled: false
+
+    ttl: PT10M
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        include:
+          - health
+
+          - info
+
+          - prometheus
 
   endpoint:
     health:
       show-details: always
 
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 logging:
   level:
+    root: INFO
+
     com.govtech.connectors: INFO
+
+    org.springframework.web.client.RestClient: DEBUG

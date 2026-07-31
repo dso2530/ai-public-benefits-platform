@@ -1,5 +1,5 @@
 {
-  "namespace": "com.govtech.events",
+  "namespace": "com.govtech.events.extraction",
   "type": "record",
   "name": "DocumentExtractionCompletedEvent",
   "fields": [

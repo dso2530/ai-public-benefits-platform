@@ -1,33 +1,56 @@
 package com.govtech.platform.messaging.publisher;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import java.util.concurrent.CompletableFuture;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.govtech.platform.messaging.exception.MessagingException;
 
-@Slf4j
-@Service
-@ConditionalOnBean(KafkaTemplate.class)
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Component
 @RequiredArgsConstructor
-public class KafkaEventPublisher implements EventPublisher {
+@Slf4j
+@ConditionalOnProperty(prefix = "kafka", name = "enabled", havingValue = "true")
+public class KafkaEventPublisher
+    implements EventPublisher {
 
   private final KafkaTemplate<String, Object> kafkaTemplate;
 
   @Override
-  public void publish(String topic, String key, Object event) {
+  public CompletableFuture<Void> publish(
+      String topic,
+      String key,
+      Object event) {
 
-    kafkaTemplate
+    return kafkaTemplate
         .send(topic, key, event)
-        .whenComplete(
-            (result, ex) -> {
-              if (ex != null) {
-                throw new MessagingException("Failed to publish event on topic {}" + topic, ex);
-              } else {
-                log.info("Published event {} on topic {}", event.getClass().getSimpleName(), topic);
-              }
-            });
+
+        .thenAccept(result -> {
+
+          log.info(
+              "Published event {} on topic {}",
+              event.getClass().getSimpleName(),
+              topic);
+
+        })
+
+        .exceptionally(ex -> {
+
+          log.error(
+              "Kafka publish failed topic={}",
+              topic,
+              ex);
+
+          throw new MessagingException(
+              "Kafka publish failed topic=" + topic,
+              ex);
+
+        });
+
   }
+
 }

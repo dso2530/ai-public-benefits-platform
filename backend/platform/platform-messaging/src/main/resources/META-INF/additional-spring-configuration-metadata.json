@@ -43,5 +43,90 @@
     "name": "messaging.kafka.schema-registry-url",
     "type": "java.lang.String",
     "description": "A description for 'messaging.kafka.schema-registry-url'"
+  },
+  {
+    "name": "connectors.department.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.department.enabled'"
+  },
+  {
+    "name": "connectors.prefecture.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.prefecture.enabled'"
+  },
+  {
+    "name": "connectors.department.territories",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.department.territories'"
+  },
+  {
+    "name": "messaging.kafka.group-id",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.group-id'"
+  },
+  {
+    "name": "messaging.kafka.auto-offset-reset",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.auto-offset-reset'"
+  },
+  {
+    "name": "connectors.region.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.region.enabled'"
+  },
+  {
+    "name": "connectors.region.territories",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.region.territories'"
+  },
+  {
+    "name": "connectors.datagouv.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.datagouv.enabled'"
+  },
+  {
+    "name": "connectors.datagouv.base-url",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.datagouv.base-url'"
+  },
+  {
+    "name": "connectors.datagouv.query",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.datagouv.query'"
+  },
+  {
+    "name": "connectors.datagouv.territory-code",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.datagouv.territory-code'"
+  },
+  {
+    "name": "connectors.datagouv.limit",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.datagouv.limit'"
+  },
+  {
+    "name": "connectors.scheduler.fixed-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.scheduler.fixed-delay'"
+  },
+  {
+    "name": "minio.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.enabled'"
+  },
+  {
+    "name": "spring.spring.data.redis",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.spring.data.redis'"
+  },
+  {
+    "name": "spring.spring.data.host",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.spring.data.host'"
+  },
+  {
+    "name": "spring.spring.data.port",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.spring.data.port'"
   }
 ]}

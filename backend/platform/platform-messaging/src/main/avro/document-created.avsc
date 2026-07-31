@@ -1,0 +1,44 @@
+{
+  "type": "record",
+  "name": "DocumentCreatedEvent",
+  "namespace": "com.govtech.events.document",
+  "doc": "Document successfully stored by document-service.",
+
+  "fields": [
+
+    {
+      "name": "base",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+
+    {
+      "name": "filename",
+      "type": "string"
+    },
+
+    {
+      "name": "size",
+      "type": "long"
+    },
+
+    {
+      "name": "checksum",
+      "type": "string"
+    },
+
+    {
+      "name": "storageProvider",
+      "type": "string"
+    },
+
+    {
+      "name": "version",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    }
+
+  ]
+}

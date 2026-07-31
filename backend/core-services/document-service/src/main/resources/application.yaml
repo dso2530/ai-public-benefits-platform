@@ -33,7 +33,7 @@ spring:
     password: ${DB_PASSWORD:postgres}
 
   flyway:
-    enabled: false
+    baseline-on-migrate: true
     locations: classpath:db/migration
 
   jpa:
@@ -59,7 +59,6 @@ storage:
   endpoint: ${STORAGE_ENDPOINT:http://localhost:9000}
   access-key: ${STORAGE_ACCESS_KEY:admin}
   secret-key: ${STORAGE_SECRET_KEY:admin123456}
-  bucket: ${STORAGE_BUCKET:documents}
 
 messaging:
   kafka:

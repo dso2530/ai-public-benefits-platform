@@ -1,0 +1,57 @@
+{
+  "type": "record",
+  "name": "DocumentDiscoveredEvent",
+  "namespace": "com.govtech.events.connector",
+  "doc": "Document discovered by an external connector.",
+
+  "fields": [
+
+    {
+      "name": "base",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+
+    {
+      "name": "connectorName",
+      "type": "string"
+    },
+
+    {
+      "name": "connectorType",
+      "type": "string"
+    },
+
+    {
+      "name": "sourceUri",
+      "type": "string"
+    },
+
+    {
+      "name": "checksum",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "territoryCode",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "default": {}
+    }
+
+  ]
+}

@@ -1,0 +1,143 @@
+spring:
+    application:
+        name: connector-service
+
+    threads:
+        virtual:
+            enabled: true
+
+    spring:
+        data:
+            redis:
+            host: localhost
+            port: 6379
+
+minio:
+    enabled: false
+
+kafka:
+    enabled: true
+
+connectors:
+    # Configuration commune HTTP
+    connect-timeout: 2s
+
+    read-timeout: 10s
+
+    retry:
+        max-attempts: 3
+
+        delay: 1000
+
+    scheduler:
+        enabled: true
+
+        fixed-delay: PT1H
+
+    #
+    # Authentification par défaut du service
+    #
+    # NONE pour les sources publiques
+    #
+    authentication: NONE
+
+    security:
+        api-key:
+            enabled: false
+
+            header-name: X-API-Key
+
+            value: ${CONNECTOR_API_KEY:}
+
+        oauth2:
+            enabled: false
+
+            token-uri: ${OAUTH2_TOKEN_URI:}
+
+            client-id: ${OAUTH2_CLIENT_ID:}
+
+            client-secret: ${OAUTH2_CLIENT_SECRET:}
+
+            scope: openid
+
+    #
+    # DataGouv Connector
+    #
+    datagouv:
+        enabled: true
+
+        base-url: https://www.data.gouv.fr
+
+        query: aides publiques
+
+        territory-code: FR
+
+        limit: 20
+
+    #
+    # Régions
+    #
+    region:
+        enabled: true
+
+        territories:
+            - HDF
+
+            - IDF
+
+            - PACA
+
+    #
+    # Départements
+    #
+    department:
+        enabled: true
+
+        territories:
+            - 59
+
+            - 62
+
+            - 75
+
+    #
+    # Préfectures
+    #
+    prefecture:
+        enabled: true
+
+messaging:
+    kafka:
+        bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+        schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+        group-id: connector-service-v1
+        auto-offset-reset: earliest
+
+#
+# Actuator / Observabilité
+#
+management:
+    endpoints:
+        web:
+            exposure:
+                include:
+                    - health
+
+                    - info
+
+                    - prometheus
+
+    endpoint:
+        health:
+            show-details: always
+
+#
+# Logging
+#
+logging:
+    level:
+        root: INFO
+
+        com.govtech.connectors: DEBUG
+
+        org.springframework.kafka: INFO

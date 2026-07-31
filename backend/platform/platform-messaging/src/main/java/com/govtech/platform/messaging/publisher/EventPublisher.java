@@ -1,6 +1,12 @@
 package com.govtech.platform.messaging.publisher;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface EventPublisher {
 
-  void publish(String topic, String key, Object event);
+  CompletableFuture<Void> publish(
+      String topic,
+      String key,
+      Object event);
+
 }

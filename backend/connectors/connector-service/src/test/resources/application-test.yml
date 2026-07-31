@@ -1,0 +1,14 @@
+connectors:
+    datagouv:
+        base-url: https://www.data.gouv.fr
+
+        query: aides publiques
+
+        territory-code: FR
+
+        limit: 5
+    scheduler:
+        enabled: false
+
+kafka:
+    enabled: false

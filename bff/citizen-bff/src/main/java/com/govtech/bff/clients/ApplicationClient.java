@@ -26,7 +26,7 @@ public class ApplicationClient {
 
     return ApplicationsSummaryDto.builder()
         .total(applications.size())
-        .generated(count(applications, ApplicationStatus.GENERATED))
+        .generated(count(applications, ApplicationStatus.READY_TO_COMPLETE))
         .readyToSubmit(count(applications, ApplicationStatus.READY_TO_SUBMIT))
         .submitted(count(applications, ApplicationStatus.SUBMITTED))
         .accepted(count(applications, ApplicationStatus.ACCEPTED))
