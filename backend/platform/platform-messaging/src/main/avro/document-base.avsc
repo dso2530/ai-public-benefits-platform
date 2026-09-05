@@ -2,39 +2,31 @@
   "type": "record",
   "name": "DocumentBaseEvent",
   "namespace": "com.govtech.events.common",
-  "doc": "Common metadata shared by all document events.",
+
   "fields": [
     {
-      "name": "eventId",
-      "type": {
-        "type": "string",
-        "avro.java.string": "String"
-      },
-      "doc": "Unique identifier of the event."
+      "name": "base",
+      "type": "com.govtech.events.common.BaseEvent"
     },
-    {
-      "name": "occurredAt",
-      "type": {
-        "type": "string",
-        "logicalType": "timestamp-iso8601",
-        "avro.java.string": "String"
-      },
-      "doc": "Event creation timestamp."
-    },
+
     {
       "name": "documentId",
-      "type": {
-        "type": "long",
-        "avro.java.long": "Long"
-      }
+      "type": ["null", "long"],
+      "default": null
     },
+
     {
-      "name": "subject",
-      "type": {
-        "type": "string",
-        "avro.java.string": "String"
-      }
+      "name": "applicationId",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
     },
+
     {
       "name": "bucket",
       "type": {
@@ -42,6 +34,7 @@
         "avro.java.string": "String"
       }
     },
+
     {
       "name": "objectKey",
       "type": {
@@ -49,6 +42,7 @@
         "avro.java.string": "String"
       }
     },
+
     {
       "name": "contentType",
       "type": {
@@ -56,10 +50,59 @@
         "avro.java.string": "String"
       }
     },
+
     {
       "name": "documentType",
       "type": "DocumentType"
     },
+
+    {
+      "name": "origin",
+      "type": "com.govtech.events.common.DocumentOrigin"
+    },
+
+    {
+      "name": "source",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "sha256",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "fileName",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "fileSize",
+      "type": ["null", "long"],
+      "default": null
+    },
+
     {
       "name": "model",
       "type": [
@@ -71,8 +114,9 @@
       ],
       "default": null
     },
+
     {
-      "name": "applicationId",
+      "name": "territoryCode",
       "type": [
         "null",
         {
@@ -81,7 +125,7 @@
         }
       ],
       "default": null,
-      "doc": "Identifier of the application this document is associated with, if any."
+      "doc": "Territorial scope of the document."
     }
   ]
 }

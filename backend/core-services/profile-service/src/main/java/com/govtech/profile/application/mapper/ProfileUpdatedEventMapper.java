@@ -16,10 +16,16 @@ public final class ProfileUpdatedEventMapper {
         return ProfileUpdatedEvent.newBuilder()
                 .setMetadata(
                         BaseEvent.newBuilder()
-
-                                .setEventId(UUID.randomUUID().toString())
-                                .setOccurredAt(Instant.now().toString())
-                                .setSubject(citizen.getSubject())
+                                .setEventId(
+                                        UUID.randomUUID().toString())
+                                .setOccurredAt(
+                                        Instant.now().toString())
+                                .setCorrelationId(
+                                        citizen.getSubject())
+                                .setProducer(
+                                        "profile-service")
+                                .setSubject(
+                                        citizen.getSubject())
                                 .build())
                 .build();
     }

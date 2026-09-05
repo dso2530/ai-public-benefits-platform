@@ -1,50 +1,21 @@
 {
-  "namespace": "com.govtech.events.extraction",
+  "namespace": "com.govtech.events.document",
   "type": "record",
   "name": "DocumentExtractionCompletedEvent",
+
+  "doc": "Document extraction completed for a platform document (user upload or external connector document).",
+
   "fields": [
+
     {
-      "name": "documentId",
-      "type": "long"
+      "name": "baseEvent",
+      "type": "com.govtech.events.common.DocumentBaseEvent",
+      "doc": "Common document metadata."
     },
+
+
     {
-      "name": "subject",
-      "type": "string"
-    },
-    {
-      "name": "bucket",
-      "type": "string"
-    },
-    {
-      "name": "objectKey",
-      "type": "string"
-    },
-    {
-      "name": "documentType",
-      "type": "string"
-    },
-    {
-      "name": "contentType",
-      "type": "string"
-    },
-    {
-      "name": "extractedData",
-      "type": "string"
-    },
-     {
-      "name": "model",
-      "type": "string"
-    },
-    {
-      "name": "confidence",
-      "type": "double"
-    },
-    {
-      "name": "processedAt",
-      "type": "string"
-    },
-    {
-      "name": "applicationId",
+      "name": "connectorName",
       "type": [
         "null",
         {
@@ -53,7 +24,102 @@
         }
       ],
       "default": null,
-      "doc": "Identifier of the application this document is associated with, if any."
+      "doc": "Connector identifier when document comes from an external connector."
+    },
+
+
+    {
+      "name": "connectorType",
+      "type": [
+        "null",
+        "com.govtech.events.connector.ConnectorType"
+      ],
+      "default": null,
+      "doc": "Connector category when document comes from external source."
+    },
+
+
+    {
+      "name": "sourceUri",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Original document URI."
+    },
+
+
+    {
+      "name": "territoryCode",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Territorial scope."
+    },
+
+
+
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "OCR extracted text."
+    },
+
+
+   
+
+
+    {
+      "name": "processedAt",
+      "type": "string",
+      "doc": "OCR completion timestamp."
+    },
+
+
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      },
+      "default": {},
+      "doc": "Additional metadata."
+    },
+    {
+      "name": "extractionType",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Extraction strategy used (OCR, CSV, ZIP, JSON, XML, TEXT, OFFICE...)."
+    },
+    {
+      "name": "extractedContentType",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Content type produced by the extraction process."
     }
   ]
 }

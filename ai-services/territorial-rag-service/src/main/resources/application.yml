@@ -1,0 +1,78 @@
+server:
+    port: 9087
+
+spring:
+    ai:
+        ollama:
+            base-url: http://localhost:11434
+
+            chat:
+                model: qwen3:8b
+                num-ctx: 4096
+                num-predict: 250
+                num-g-p-u: -1
+                temperature: 0.1
+                keep-alive: 30m
+                think: false
+                format: "json"
+
+            embedding:
+                model: nomic-embed-text
+                
+        jackson:
+            serialization:
+                write-dates-as-timestamps: false
+
+knowledge:
+    service:
+        url: ${KNOWLEDGE_SERVICE_URL:http://localhost:9086}
+
+rag:
+    retrieval:
+        top-k: 5
+
+        min-score: 0.75
+
+    context:
+        max-tokens: 4000
+
+    prompt:
+        system: |
+            Tu es un assistant spécialisé dans les aides publiques territoriales.
+            Réponds uniquement à partir du contexte fourni.
+            Si l'information n'est pas présente dans le contexte,
+            indique que tu ne disposes pas de cette information.
+
+kafka:
+    enabled: false
+
+minio:
+    enabled: false
+
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
+
+logging:
+    level:
+        root: INFO
+
+        com.govtech.rag: DEBUG
+
+        org.springframework.ai: DEBUG
+
+        org.springframework.web.client: DEBUG
+
+        # Spring Security
+        org.springframework.security: DEBUG
+        org.springframework.security.web: DEBUG
+        org.springframework.security.authentication: DEBUG
+        org.springframework.security.authorization: DEBUG
+
+        # JWT / OAuth2 Resource Server
+        org.springframework.security.oauth2: DEBUG
+        org.springframework.security.oauth2.server.resource: TRACE
+
+        # HTTP
+        org.springframework.http: DEBUG

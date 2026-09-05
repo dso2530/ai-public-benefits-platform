@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.govtech.connectors.application.DownloadDocumentUseCase;
+import com.govtech.connectors.application.usecase.DownloadDocumentUseCase;
 import com.govtech.connectors.common.model.ConnectorDocument;
 import com.govtech.connectors.common.model.DocumentContent;
 

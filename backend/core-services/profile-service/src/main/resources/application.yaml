@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8061
 
 spring:
   application:
@@ -41,17 +41,30 @@ messaging:
   kafka:
     bootstrap-servers: ${KAFKA_BRK:localhost:9092}
     schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
-    group-id: profile-service-v6
+    group-id: profile-service-v13
     auto-offset-reset: earliest
+
+  outbox:
+    enabled: true
+    fixed-delay: 5s
+    batch-size: 100
+    publishing-timeout: 30s
+    stale-after: 5m
 
 logging:
   level:
-    org.springframework.security: DEBUG
-    org.springframework.security.oauth2: DEBUG
-    org.springframework.security.oauth2.server.resource: DEBUG
-    org.springframework.security.web: DEBUG
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+    org.springframework.security.oauth2.server.resource: INFO
+    org.springframework.security.web: INFO
 
     org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: TRACE
+    org.hibernate.orm.jdbc.bind: OFF
 
-    org.springframework.boot.context.config: DEBUG
+    org.springframework.kafka: DEBUG
+    org.apache.kafka.clients.consumer: INFO
+    org.springframework.kafka.listener: DEBUG
+    org.springframework.kafka.listener.DefaultErrorHandler: DEBUG
+    org.springframework.kafka.support: DEBUG
+
+    org.springframework.boot.context.config: INFO

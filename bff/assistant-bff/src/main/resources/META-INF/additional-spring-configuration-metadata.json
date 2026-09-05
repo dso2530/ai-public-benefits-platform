@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "services.territorial-rag.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.territorial-rag.url'"
+  },
+  {
+    "name": "services.profile.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.profile.url'"
+  },
+  {
+    "name": "security.jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'security.jwt.secret'"
+  }
+]}

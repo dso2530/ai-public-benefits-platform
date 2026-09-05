@@ -1,14 +1,24 @@
 connectors:
-    datagouv:
-        base-url: https://www.data.gouv.fr
 
-        query: aides publiques
-
-        territory-code: FR
-
-        limit: 5
     scheduler:
         enabled: false
 
+    datagouv:
+        base-url: https://www.data.gouv.fr
+        query: aides publiques
+        territory-code: FR
+        limit: 5
+
+    caf:
+        enabled: true
+        base-url: https://www.caf.fr
+        territory-code: FR
+        limit: 5
+
+        documents:
+            - https://www.caf.fr/sites/default/files/medias/141/Actualites/2026/Guide%20des%20prestation%202026_page%20simple.pdf
+
+            - https://www.caf.fr/professionnels/offres-et-services/accompagnement-des-allocataires/bareme-prime-d-activite
+
 kafka:
-    enabled: false
+    enabled: true

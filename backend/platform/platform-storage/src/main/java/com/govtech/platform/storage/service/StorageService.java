@@ -1,8 +1,7 @@
 package com.govtech.platform.storage.service;
 
-import io.minio.Result;
-import io.minio.messages.Item;
 import java.io.InputStream;
+import java.util.List;
 
 public interface StorageService {
 
@@ -14,7 +13,9 @@ public interface StorageService {
 
   boolean exists(String bucket, String objectKey);
 
-  Iterable<Result<Item>> list(String bucket, String prefix);
+  List<String> list(
+      String bucket,
+      String prefix);
 
   void move(
       String sourceBucket,

@@ -37,6 +37,13 @@ messaging:
     group-id: notification-service-v4
     auto-offset-reset: earliest
 
+  outbox:
+    enabled: false
+    fixed-delay: 5s
+    batch-size: 100
+    publishing-timeout: 30s
+    stale-after: 5m
+
 notifications:
   templates:
     APL:

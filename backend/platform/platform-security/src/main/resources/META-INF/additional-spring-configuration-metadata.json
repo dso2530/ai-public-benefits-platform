@@ -113,5 +113,125 @@
     "name": "clamav.timeout",
     "type": "java.lang.String",
     "description": "A description for 'clamav.timeout'"
+  },
+  {
+    "name": "extraction.csv.charset",
+    "type": "java.lang.String",
+    "description": "A description for 'extraction.csv.charset'"
+  },
+  {
+    "name": "extraction.csv.delimiter",
+    "type": "java.lang.String",
+    "description": "A description for 'extraction.csv.delimiter'"
+  },
+  {
+    "name": "messaging.kafka.outbox.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.outbox.enabled'"
+  },
+  {
+    "name": "messaging.kafka.outbox.fixed-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.outbox.fixed-delay'"
+  },
+  {
+    "name": "messaging.kafka.outbox.batch-size",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.outbox.batch-size'"
+  },
+  {
+    "name": "messaging.kafka.outbox.publishing-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.outbox.publishing-timeout'"
+  },
+  {
+    "name": "messaging.kafka.outbox.stale-after",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.outbox.stale-after'"
+  },
+  {
+    "name": "messaging.outbox.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.enabled'"
+  },
+  {
+    "name": "messaging.outbox.fixed-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.fixed-delay'"
+  },
+  {
+    "name": "messaging.outbox.batch-size",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.batch-size'"
+  },
+  {
+    "name": "messaging.outbox.publishing-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.publishing-timeout'"
+  },
+  {
+    "name": "messaging.outbox.stale-after",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.stale-after'"
+  },
+  {
+    "name": "messaging.dlt.replay.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.dlt.replay.enabled'"
+  },
+  {
+    "name": "messaging.dlt.replay.fixed-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.dlt.replay.fixed-delay'"
+  },
+  {
+    "name": "messaging.dlt.replay.fixed-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.dlt.replay.fixed-delay'"
+  },
+  {
+    "name": "messaging.dlt.replay.batch-size",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.dlt.replay.batch-size'"
+  },
+  {
+    "name": "messaging.dlt.replay.consumer-group",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.dlt.replay.consumer-group'"
+  },
+  {
+    "name": "messaging.dlt.replay.topic-pattern",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.dlt.replay.topic-pattern'"
+  },
+  {
+    "name": "messaging.dlt.replay.max-replays",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.dlt.replay.max-replays'"
+  },
+  {
+    "name": "messaging.kafka.dlt.replay.fixed-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.dlt.replay.fixed-delay'"
+  },
+  {
+    "name": "messaging.kafka.dlt.replay.batch-size",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.dlt.replay.batch-size'"
+  },
+  {
+    "name": "messaging.kafka.dlt.replay.consumer-group",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.dlt.replay.consumer-group'"
+  },
+  {
+    "name": "messaging.kafka.dlt.replay.topic-pattern",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.dlt.replay.topic-pattern'"
+  },
+  {
+    "name": "messaging.kafka.dlt.replay.max-replays",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.dlt.replay.max-replays'"
   }
 ]}

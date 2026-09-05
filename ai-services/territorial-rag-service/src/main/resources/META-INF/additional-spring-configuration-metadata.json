@@ -1,0 +1,57 @@
+{"properties": [
+  {
+    "name": "spring.ai.jackson.serialization.write-dates-as-timestamps",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.ai.jackson.serialization.write-dates-as-timestamps'"
+  },
+  {
+    "name": "knowledge.service.url",
+    "type": "java.lang.String",
+    "description": "A description for 'knowledge.service.url'"
+  },
+  {
+    "name": "rag.retrieval.top-k",
+    "type": "java.lang.String",
+    "description": "A description for 'rag.retrieval.top-k'"
+  },
+  {
+    "name": "rag.retrieval.min-score",
+    "type": "java.lang.String",
+    "description": "A description for 'rag.retrieval.min-score'"
+  },
+  {
+    "name": "rag.context.max-tokens",
+    "type": "java.lang.String",
+    "description": "A description for 'rag.context.max-tokens'"
+  },
+  {
+    "name": "rag.prompt.system",
+    "type": "java.lang.String",
+    "description": "A description for 'rag.prompt.system'"
+  },
+  {
+    "name": "kafka.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "minio.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'minio.enabled'"
+  },
+  {
+    "name": "rag.retrieval.top-k",
+    "type": "java.lang.String",
+    "description": "A description for 'rag.retrieval.top-k'"
+  },
+  {
+    "name": "knowledge.service.url",
+    "type": "java.lang.String",
+    "description": "A description for 'knowledge.service.url'"
+  },
+  {
+    "name": "spring.ai.ollama.chat.format",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.ai.ollama.chat.format'"
+  }
+]}

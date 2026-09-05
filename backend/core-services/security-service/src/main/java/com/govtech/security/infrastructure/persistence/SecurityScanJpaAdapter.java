@@ -10,45 +10,34 @@ import com.govtech.security.infrastructure.persistence.mapper.SecurityScanMapper
 
 import lombok.RequiredArgsConstructor;
 
-
 @Component
 @RequiredArgsConstructor
 public class SecurityScanJpaAdapter
-        implements SecurityScanRepositoryPort {
+                implements SecurityScanRepositoryPort {
 
+        private final SecurityScanJpaRepository repository;
 
-    private final SecurityScanJpaRepository repository;
+        private final SecurityScanMapper mapper;
 
-    private final SecurityScanMapper mapper;
+        @Override
+        public SecurityScan save(
+                        SecurityScan scan) {
 
+                SecurityScanJpaEntity entity = mapper.toEntity(scan);
 
+                return mapper.toDomain(
+                                repository.save(entity));
+        }
 
-    @Override
-    public SecurityScan save(
-            SecurityScan scan) {
+        @Override
+        public Optional<SecurityScan> findLatestByDocumentId(
+                        Long documentId) {
 
+                return repository
+                                .findFirstByDocumentIdOrderByScannedAtDesc(
+                                                documentId)
+                                .map(mapper::toDomain);
 
-        SecurityScanJpaEntity entity =
-                mapper.toEntity(scan);
-
-
-        return mapper.toDomain(
-                repository.save(entity)
-        );
-    }
-
-
-
-    public Optional<SecurityScan> findLatestByDocumentId(
-            Long documentId) {
-
-
-        return repository
-                .findFirstByDocumentIdOrderByScannedAtDesc(
-                        documentId
-                )
-                .map(mapper::toDomain);
-
-    }
+        }
 
 }

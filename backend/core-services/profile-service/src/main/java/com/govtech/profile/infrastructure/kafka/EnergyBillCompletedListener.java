@@ -1,10 +1,15 @@
 package com.govtech.profile.infrastructure.kafka;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import com.govtech.events.energy.EnergyBillExtractionCompletedEvent;
+import com.govtech.platform.messaging.event.EventContext;
+import com.govtech.platform.messaging.idempotency.IdempotencyService;
+import com.govtech.profile.application.dto.DocumentCommand;
 import com.govtech.profile.application.dto.UpdateProfileCommand;
+import com.govtech.profile.application.mapper.DocumentCommandMapper;
 import com.govtech.profile.application.mapper.EnergyBillMapper;
 import com.govtech.profile.application.usecase.UpdateSupportingDocumentProfileUseCase;
 
@@ -17,16 +22,124 @@ import lombok.extern.slf4j.Slf4j;
 public class EnergyBillCompletedListener {
 
     private final UpdateSupportingDocumentProfileUseCase updateSupportingDocumentProfileUseCase;
+    private final IdempotencyService idempotencyService;
+    private final DocumentCommandMapper documentCommandMapper;
+
+    @Value("${messaging.kafka.group-id}")
+    private String consumerGroup;
 
     @KafkaListener(topics = "document.energy-bill.extraction.completed", groupId = "${messaging.kafka.group-id}")
-    public void consume(EnergyBillExtractionCompletedEvent event) {
+    public void consume(
+            EnergyBillExtractionCompletedEvent event) {
 
-        log.info("Received energy bill extraction {}", event.getMetadata().getDocumentId());
+        var metadata = event.getMetadata();
+        var base = metadata.getBase();
 
-        UpdateProfileCommand command = EnergyBillMapper.toCommand(event);
+        String eventId = base.getEventId();
+        String correlationId = base.getCorrelationId();
+        String subject = base.getSubject();
 
-        updateSupportingDocumentProfileUseCase.updateSupportingDocumentProfile(
-                event.getMetadata().getSubject(),
-                command, event.getMetadata());
+        log.info(
+                "Received energy bill extraction " +
+                        "documentId={} subject={} eventId={} correlationId={}",
+                metadata.getDocumentId(),
+                subject,
+                eventId,
+                correlationId);
+
+        /*
+         * ---------------------------------------------------------
+         * 1. Idempotence
+         * ---------------------------------------------------------
+         */
+        boolean acquired = idempotencyService.tryAcquire(
+                consumerGroup,
+                eventId);
+
+        if (!acquired) {
+
+            log.info(
+                    "Energy bill extraction event already processed " +
+                            "or being processed documentId={} eventId={} " +
+                            "consumerGroup={}",
+                    metadata.getDocumentId(),
+                    eventId,
+                    consumerGroup);
+
+            return;
+        }
+
+        try {
+
+            /*
+             * ---------------------------------------------------------
+             * 2. EventContext
+             * ---------------------------------------------------------
+             */
+            EventContext eventContext = EventContext.builder()
+                    .correlationId(correlationId)
+                    .causationId(eventId)
+                    .build();
+
+            /*
+             * ---------------------------------------------------------
+             * 3. Event -> Application commands
+             * ---------------------------------------------------------
+             */
+            UpdateProfileCommand profileCommand = EnergyBillMapper.toCommand(event);
+
+            DocumentCommand documentCommand = documentCommandMapper.toCommand(metadata);
+
+            /*
+             * ---------------------------------------------------------
+             * 4. Traitement métier
+             * ---------------------------------------------------------
+             */
+            updateSupportingDocumentProfileUseCase
+                    .updateSupportingDocumentProfile(
+                            subject,
+                            profileCommand,
+                            documentCommand,
+                            eventContext);
+
+            /*
+             * ---------------------------------------------------------
+             * 5. Succès
+             * ---------------------------------------------------------
+             */
+            idempotencyService.markProcessed(
+                    consumerGroup,
+                    eventId);
+
+            log.info(
+                    "Energy bill extraction event processed successfully " +
+                            "documentId={} subject={} eventId={} consumerGroup={}",
+                    metadata.getDocumentId(),
+                    subject,
+                    eventId,
+                    consumerGroup);
+
+        } catch (Exception e) {
+
+            /*
+             * ---------------------------------------------------------
+             * 6. Échec
+             * ---------------------------------------------------------
+             */
+            idempotencyService.release(
+                    consumerGroup,
+                    eventId);
+
+            log.error(
+                    "Energy bill extraction event processing failed " +
+                            "documentId={} subject={} eventId={} consumerGroup={}",
+                    metadata.getDocumentId(),
+                    subject,
+                    eventId,
+                    consumerGroup,
+                    e);
+
+            throw e;
+        }
     }
 }

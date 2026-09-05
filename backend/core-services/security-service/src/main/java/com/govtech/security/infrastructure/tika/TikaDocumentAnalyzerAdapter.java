@@ -10,23 +10,19 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.sax.BodyContentHandler;
 import org.springframework.stereotype.Component;
 
-import com.govtech.security.domain.port.DocumentAnalysis;
+import com.govtech.security.domain.model.DocumentAnalysis;
 import com.govtech.security.domain.port.DocumentAnalyzerPort;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class TikaDocumentAnalyzerAdapter
         implements DocumentAnalyzerPort {
 
     private final Tika tika;
-
-    public TikaDocumentAnalyzerAdapter() {
-
-        this.tika = new Tika();
-
-    }
 
     @Override
     public DocumentAnalysis analyze(

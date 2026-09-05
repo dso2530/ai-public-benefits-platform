@@ -9,10 +9,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import java.util.Map;
 import java.util.UUID;
 
-import com.govtech.document.domain.model.DocumentType;
-import com.govtech.document.domain.model.SecurityStatus;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import com.govtech.shared.model.DocumentOrigin;
+import com.govtech.shared.model.DocumentType;
+import com.govtech.shared.model.SecurityStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,6 +49,13 @@ public class DocumentJpaEntity {
 
   @Enumerated(EnumType.STRING)
   private DocumentType documentType;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "origin", nullable = false)
+  private DocumentOrigin origin;
+
+  @Column(nullable = false, length = 100)
+  private String source;
 
   private String fileName;
 
@@ -80,4 +92,17 @@ public class DocumentJpaEntity {
 
   @Column(name = "detected_content_type")
   private String detectedContentType;
+
+  @Column(length = 100)
+  private String connectorName;
+
+  @Column(length = 50)
+  private String connectorType;
+
+  @Column(length = 50)
+  private String territoryCode;
+
+  @JdbcTypeCode(SqlTypes.JSON)
+  @Column(columnDefinition = "jsonb")
+  private Map<String, String> metadata;
 }

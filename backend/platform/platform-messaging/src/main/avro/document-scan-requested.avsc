@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "DocumentScanRequestedEvent",
+  "namespace": "com.govtech.events.security",
+  "doc": "Request sent to security-service to scan a document.",
+
+  "fields": [
+
+    {
+      "name": "baseEvent",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+
+    {
+      "name": "uploadedAt",
+      "type": "string",
+      "doc": "Original document upload timestamp."
+    },
+
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "default": {},
+      "doc": "Optional document metadata propagated through the document processing pipeline."
+    }
+
+  ]
+}

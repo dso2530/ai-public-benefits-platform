@@ -128,5 +128,130 @@
     "name": "spring.spring.data.port",
     "type": "java.lang.String",
     "description": "A description for 'spring.spring.data.port'"
+  },
+  {
+    "name": "flyway.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'flyway.enabled'"
+  },
+  {
+    "name": "knowledge.chunking.size",
+    "type": "java.lang.String",
+    "description": "A description for 'knowledge.chunking.size'"
+  },
+  {
+    "name": "knowledge.chunking.overlap",
+    "type": "java.lang.String",
+    "description": "A description for 'knowledge.chunking.overlap'"
+  },
+  {
+    "name": "storage.endpoint",
+    "type": "java.lang.String",
+    "description": "A description for 'storage.endpoint'"
+  },
+  {
+    "name": "storage.access-key",
+    "type": "java.lang.String",
+    "description": "A description for 'storage.access-key'"
+  },
+  {
+    "name": "storage.secret-key",
+    "type": "java.lang.String",
+    "description": "A description for 'storage.secret-key'"
+  },
+  {
+    "name": "spring.kafka.consumer.enable-auto-commit",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.kafka.consumer.enable-auto-commit'"
+  },
+  {
+    "name": "spring.kafka.listener.ack-mode",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.kafka.listener.ack-mode'"
+  },
+  {
+    "name": "spring.ai.vectorstore.pgvector.initialize-schema",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.ai.vectorstore.pgvector.initialize-schema'"
+  },
+  {
+    "name": "knowledge.search.limit",
+    "type": "java.lang.String",
+    "description": "A description for 'knowledge.search.limit'"
+  },
+  {
+    "name": "knowledge.search.limit",
+    "type": "java.lang.String",
+    "description": "A description for 'knowledge.search.limit'"
+  },
+  {
+    "name": "knowledge.search.min-score",
+    "type": "java.lang.String",
+    "description": "A description for 'knowledge.search.min-score'"
+  },
+  {
+    "name": "connectors.caf.base-url",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.base-url'"
+  },
+  {
+    "name": "connectors.caf.datasets-path",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.datasets-path'"
+  },
+  {
+    "name": "connectors.caf.query",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.query'"
+  },
+  {
+    "name": "connectors.caf.query",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.query'"
+  },
+  {
+    "name": "connectors.caf.territory-code",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.territory-code'"
+  },
+  {
+    "name": "connectors.caf.limit",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.limit'"
+  },
+  {
+    "name": "connectors.caf.documents",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.documents'"
+  },
+  {
+    "name": "connectors.caf.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'connectors.caf.enabled'"
+  },
+  {
+    "name": "messaging.outbox.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.enabled'"
+  },
+  {
+    "name": "messaging.kafka.dlt.replay.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.kafka.dlt.replay.enabled'"
+  },
+  {
+    "name": "spring.kafka.consumer.auto-offset-reset",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.kafka.consumer.auto-offset-reset'"
+  },
+  {
+    "name": "management.endpoints.web.exposure.include",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoints.web.exposure.include'"
+  },
+  {
+    "name": "management.endpoint.health.show-details",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoint.health.show-details'"
   }
 ]}

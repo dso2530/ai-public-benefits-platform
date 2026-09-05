@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+@Component("dataGouvResourceExtractor")
 @Slf4j
 public class ResourceExtractor {
 

@@ -9,59 +9,59 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestClient;
 
-import com.govtech.connectors.common.interceptor.CorrelationIdInterceptor;
 import com.govtech.connectors.common.interceptor.ObservationInterceptor;
 import com.govtech.connectors.common.security.interceptor.ApiKeyInterceptor;
 import com.govtech.connectors.common.security.interceptor.BearerTokenInterceptor;
+import com.govtech.platform.web.correlation.CorrelationIdInterceptor;
 
 @Configuration
 @RequiredArgsConstructor
 public class RestClientConfiguration {
 
-  private final ConnectorProperties properties;
+    private final ConnectorProperties properties;
 
-  @Bean
-  RestClient connectorRestClient(
-      RestClient.Builder builder,
+    @Bean
+    RestClient connectorRestClient(
+            RestClient.Builder builder,
 
-      ObjectProvider<ApiKeyInterceptor> apiKeyInterceptor,
+            ObjectProvider<ApiKeyInterceptor> apiKeyInterceptor,
 
-      ObjectProvider<BearerTokenInterceptor> bearerInterceptor,
+            ObjectProvider<BearerTokenInterceptor> bearerInterceptor,
 
-      CorrelationIdInterceptor correlationInterceptor,
+            CorrelationIdInterceptor correlationInterceptor,
 
-      ObservationInterceptor observationInterceptor) {
+            ObservationInterceptor observationInterceptor) {
 
-    RestClient.Builder client = builder
-        .requestFactory(
-            clientHttpRequestFactory());
+        RestClient.Builder client = builder
+                .requestFactory(
+                        clientHttpRequestFactory());
 
-    apiKeyInterceptor.ifAvailable(
-        client::requestInterceptor);
+        apiKeyInterceptor.ifAvailable(
+                client::requestInterceptor);
 
-    bearerInterceptor.ifAvailable(
-        client::requestInterceptor);
+        bearerInterceptor.ifAvailable(
+                client::requestInterceptor);
 
-    client
-        .requestInterceptor(
-            correlationInterceptor)
-        .requestInterceptor(
-            observationInterceptor);
+        client
+                .requestInterceptor(
+                        correlationInterceptor)
+                .requestInterceptor(
+                        observationInterceptor);
 
-    return client.build();
-  }
+        return client.build();
+    }
 
-  private ClientHttpRequestFactory clientHttpRequestFactory() {
+    private ClientHttpRequestFactory clientHttpRequestFactory() {
 
-    var factory = new SimpleClientHttpRequestFactory();
+        var factory = new SimpleClientHttpRequestFactory();
 
-    factory.setConnectTimeout(
-        properties.connectTimeout());
+        factory.setConnectTimeout(
+                properties.connectTimeout());
 
-    factory.setReadTimeout(
-        properties.readTimeout());
+        factory.setReadTimeout(
+                properties.readTimeout());
 
-    return factory;
-  }
+        return factory;
+    }
 
 }

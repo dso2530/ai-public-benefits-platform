@@ -1,0 +1,13 @@
+{
+  "type": "enum",
+  "name": "ConnectorType",
+  "namespace": "com.govtech.events.connector",
+  "symbols": [
+    "DATAGOUV",
+    "LEGIFRANCE",
+    "SERVICE_PUBLIC",
+    "CAF",
+    "LOCAL_OPEN_DATA",
+    "OTHER"
+  ]
+}

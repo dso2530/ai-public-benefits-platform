@@ -1,13 +1,14 @@
 package com.govtech.platform.storage.service;
 
-import com.govtech.platform.storage.config.StorageProperties;
 import com.govtech.platform.storage.exception.StorageException;
 import io.minio.*;
 import io.minio.errors.ErrorResponseException;
 import io.minio.messages.Item;
-import jakarta.annotation.PostConstruct;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -79,14 +80,36 @@ public class MinioStorageService implements StorageService {
   }
 
   @Override
-  public Iterable<Result<Item>> list(String bucket, String prefix) {
+  public List<String> list(
+      String bucket,
+      String prefix) {
 
-    return minioClient.listObjects(
+    Iterable<Result<Item>> results = minioClient.listObjects(
         ListObjectsArgs.builder()
             .bucket(bucket)
             .prefix(prefix)
             .recursive(true)
             .build());
+
+    List<String> keys = new ArrayList<>();
+
+    for (Result<Item> result : results) {
+
+      try {
+
+        keys.add(
+            result.get()
+                .objectName());
+
+      } catch (Exception e) {
+
+        throw new StorageException(
+            "Unable to list objects",
+            e);
+      }
+    }
+
+    return keys;
   }
 
   @Override

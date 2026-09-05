@@ -49,6 +49,7 @@
         <module>core-services/application-service</module>
         <module>core-services/consent-service</module>
         <module>core-services/security-service</module>
+        <module>core-services/document-extraction-service</module>
 
 
         <module>platform/platform-security</module>
@@ -58,6 +59,7 @@
         <module>platform/platform-storage</module>
         <module>platform/platform-database</module>
         <module>platform/platform-starter</module>
+        <module>platform/platform-document</module>
 
         <module>mocks/mock-dgfip</module>
 

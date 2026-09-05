@@ -2,26 +2,57 @@
   "namespace": "com.govtech.events.security",
   "type": "record",
   "name": "DocumentSecurityCheckedEvent",
+  "doc": "Event emitted when a document security check has completed.",
+
   "fields": [
+
     {
-      "name": "documentId",
-      "type": "long"
+      "name": "baseEvent",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
     },
+
     {
       "name": "securityStatus",
-      "type": "string"
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Security result: CLEAN, INFECTED, REJECTED"
     },
+
     {
       "name": "scanEngine",
-      "type": "string"
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Security scanner used (ClamAV, etc.)"
     },
+
     {
       "name": "scannedAt",
-      "type": "string"
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Security check timestamp"
     },
+
     {
-      "name": "sha256",
-      "type": "string"
+      "name": "detectedContentType",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
     }
+
   ]
 }

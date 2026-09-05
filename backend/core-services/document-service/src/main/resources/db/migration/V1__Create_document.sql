@@ -1,3 +1,5 @@
+-- V1__create_documents.sql
+
 CREATE TABLE documents
 (
     id BIGSERIAL PRIMARY KEY,
@@ -8,9 +10,15 @@ CREATE TABLE documents
 
     status VARCHAR(50) NOT NULL,
 
-    document_type VARCHAR(50),
+    document_type VARCHAR(50) NOT NULL,
+
+    origin VARCHAR(50) NOT NULL,
+
+    source VARCHAR(100) NOT NULL,
 
     file_name VARCHAR(255),
+
+    sha256 VARCHAR(64),
 
     content_type VARCHAR(100),
 
@@ -20,15 +28,23 @@ CREATE TABLE documents
 
     file_size BIGINT,
 
-    sha256 VARCHAR(64),
-
     uploaded_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
     application_id UUID,
 
     security_status VARCHAR(30) NOT NULL DEFAULT 'PENDING',
-    
+
     scanned_at TIMESTAMP WITH TIME ZONE,
 
-    scan_engine VARCHAR(50)
+    scan_engine VARCHAR(50),
+
+    detected_content_type VARCHAR(100),
+
+    connector_name VARCHAR(100),
+
+    connector_type VARCHAR(50),
+
+    territory_code VARCHAR(50),
+
+    metadata JSONB
 );

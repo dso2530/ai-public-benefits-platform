@@ -3,7 +3,6 @@ package com.govtech.connectors.infrastructure.datagouv;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import com.govtech.connectors.common.client.BaseConnectorClient;
 
 import lombok.RequiredArgsConstructor;
 
