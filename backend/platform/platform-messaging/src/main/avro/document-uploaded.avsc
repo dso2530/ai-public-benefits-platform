@@ -2,46 +2,19 @@
   "namespace": "com.govtech.events.document",
   "type": "record",
   "name": "DocumentUploadedEvent",
+
+  "doc": "Event emitted when a document has been uploaded, stored and is ready for processing.",
+
   "fields": [
 
     {
-      "name": "documentId",
-      "type": "long"
+      "name": "baseEvent",
+      "type": "com.govtech.events.common.DocumentBaseEvent",
+      "doc": "Common document metadata."
     },
 
     {
-      "name": "subject",
-      "type": "string"
-    },
-
-    {
-      "name": "bucket",
-      "type": "string"
-    },
-
-    {
-      "name": "objectKey",
-      "type": "string"
-    },
-
-    {
-      "name": "documentType",
-      "type": "string"
-    },
-
-    {
-      "name": "contentType",
-      "type": "string"
-    },
-
-    {
-      "name": "fileSize",
-      "type": "long",
-      "default": 0
-    },
-
-    {
-      "name": "sha256",
+      "name": "connectorName",
       "type": [
         "null",
         {
@@ -50,25 +23,70 @@
         }
       ],
       "default": null,
-      "doc": "SHA-256 checksum of the uploaded document"
+      "doc": "Connector identifier when document originates from an external connector."
     },
+
+
+    {
+      "name": "connectorType",
+      "type": [
+        "null",
+        "com.govtech.events.connector.ConnectorType"
+      ],
+      "default": null,
+      "doc": "Connector category."
+    },
+
+
+    {
+      "name": "sourceUri",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Original document URI."
+    },
+
+
+    {
+      "name": "territoryCode",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Territorial scope."
+    },
+
+
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      },
+      "default": {},
+      "doc": "Additional document metadata."
+    },
+
 
     {
       "name": "uploadedAt",
-      "type": "string"
-    },
-
-    {
-      "name": "applicationId",
-      "type": [
-        "null",
-        {
-          "type": "string",
-          "avro.java.string": "String"
-        }
-      ],
-      "default": null,
-      "doc": "Identifier of the application this document is associated with, if any."
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Timestamp when document was uploaded."
     }
 
   ]

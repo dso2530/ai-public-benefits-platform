@@ -1,9 +1,11 @@
 package com.govtech.security.infrastructure.scanner;
 
 import org.springframework.stereotype.Component;
+
+import com.govtech.security.domain.model.ScanResult;
 import com.govtech.security.domain.model.SecurityStatus;
 import com.govtech.security.domain.port.MalwareScannerPort;
-import com.govtech.security.domain.port.ScanResult;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

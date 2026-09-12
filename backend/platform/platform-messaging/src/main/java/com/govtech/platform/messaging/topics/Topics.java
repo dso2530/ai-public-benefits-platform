@@ -7,14 +7,18 @@ public final class Topics {
 
   public static final String DOCUMENT_UPLOADED = "document.uploaded";
 
-  public static final String DOCUMENT_UPLOADED_SCAN_REQUESTED = "document.uploaded.scan.requested";
-  
-  public static final String DOCUMENT_UPLOADED_SCAN_COMPLETED = "document.uploaded.scan.completed";
+  public static final String DOCUMENT_SCAN_REQUESTED = "document.scan.requested";
 
-  public static final String DOCUMENT_OCR_COMPLETED = "document.ocr.completed";
+  public static final String DOCUMENT_SCAN_COMPLETED = "document.scan.completed";
 
-  public static final String DOCUMENT_EXTRACTED = "document.extracted";
+  public static final String DOCUMENT_USER_EXTRACTION_COMPLETED = "document.user.extraction.completed";
+
+  public static final String DOCUMENT_EXTERNAL_EXTRACTION_COMPLETED = "document.external.extraction.completed";
+
+  public static final String DOCUMENT_LLM_EXTRACTED = "document.llm.extracted";
 
   public static final String DOCUMENT_CLASSIFIED = "document.classified";
+
+  public static final String DOCUMENT_EXTRACTION_COMPLETED = "document.extraction.completed";
 
 }

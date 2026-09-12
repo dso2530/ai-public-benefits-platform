@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.govtech.connectors.common.model.ConnectorDocument;
+import com.govtech.connectors.common.model.RegisteredDocument;
 import com.govtech.connectors.domain.port.DocumentRegistry;
 
 import lombok.RequiredArgsConstructor;
@@ -16,44 +16,87 @@ import lombok.RequiredArgsConstructor;
 public class RedisDocumentRegistry
         implements DocumentRegistry {
 
-    private static final String PREFIX = "connector:document:";
+    private static final String CHECKSUM_PREFIX = "connector:document:checksum:";
+
+    private static final String EXTERNAL_ID_PREFIX = "connector:document:id:";
 
     private final StringRedisTemplate redis;
 
     @Override
-    public boolean exists(
-            String checksum) {
+    public boolean existsByExternalId(
+            String externalId) {
+
+        if (externalId == null) {
+            return false;
+        }
 
         return Boolean.TRUE.equals(
                 redis.hasKey(
-                        PREFIX + checksum));
+                        EXTERNAL_ID_PREFIX + externalId));
+
+    }
+
+    @Override
+    public boolean existsByChecksum(
+            String checksum) {
+
+        if (checksum == null) {
+            return false;
+        }
+
+        return Boolean.TRUE.equals(
+                redis.hasKey(
+                        CHECKSUM_PREFIX + checksum));
 
     }
 
     @Override
     public void save(
-            ConnectorDocument document) {
+            String externalId,
+            String checksum,
+            String source) {
 
-        if (document.checksum() == null) {
+        if (externalId != null) {
 
-            return;
+            redis.opsForValue().set(
+                    EXTERNAL_ID_PREFIX + externalId,
+                    source,
+                    Duration.ofDays(365));
 
         }
 
-        redis.opsForValue()
-                .set(
-                        PREFIX + document.checksum(),
-                        document.id(),
-                        Duration.ofDays(365));
+        if (checksum != null) {
+
+            redis.opsForValue().set(
+                    CHECKSUM_PREFIX + checksum,
+                    externalId,
+                    Duration.ofDays(365));
+
+        }
 
     }
 
     @Override
-    public Optional<ConnectorDocument> findByChecksum(
+    public Optional<RegisteredDocument> findByChecksum(
             String checksum) {
 
-        return Optional.empty();
+        if (checksum == null) {
+            return Optional.empty();
+        }
+
+        String externalId = redis.opsForValue()
+                .get(
+                        CHECKSUM_PREFIX + checksum);
+
+        if (externalId == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of(
+                new RegisteredDocument(
+                        externalId,
+                        checksum,
+                        null));
 
     }
-
 }

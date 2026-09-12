@@ -1,0 +1,55 @@
+server:
+    port: 9086
+
+spring:
+    application:
+        name: knowledge-service
+
+    datasource:
+        url: jdbc:postgresql://localhost:5433/aidb
+        username: ${DB_USERNAME:postgres}
+        password: ${DB_PASSWORD:postgres}
+
+    jpa:
+        hibernate:
+            ddl-auto: validate
+
+    ai:
+        ollama:
+            base-url: http://localhost:11434
+
+            embedding:
+                model: nomic-embed-text
+
+        vectorstore:
+            pgvector:
+                initialize-schema: true
+
+kafka:
+    enabled: true
+
+minio:
+    enabled: false
+
+messaging:
+    kafka:
+        bootstrap-servers: ${KAFKA_BRK:localhost:9092}
+        schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
+        group-id: knowledge-service-v10
+    
+    outbox:
+      enabled: false
+      
+
+flyway:
+    enabled: true
+
+knowledge:
+    search:
+      limit: 5
+      min-score: 0.65
+      
+    chunking:
+        size: 1000
+
+        overlap: 200

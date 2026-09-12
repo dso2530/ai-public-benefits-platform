@@ -1,9 +1,10 @@
 package com.govtech.profile.application.usecase;
 
+import com.govtech.platform.messaging.event.EventContext;
 import com.govtech.profile.application.dto.UpdateProfileCommand;
 
 public interface UpdateProfileTaxUseCase {
 
-    void updateProfileTaxUseCase(String subject, UpdateProfileCommand command);
+    void updateProfileTax(String subject, UpdateProfileCommand command, EventContext eventContext);
 
 }

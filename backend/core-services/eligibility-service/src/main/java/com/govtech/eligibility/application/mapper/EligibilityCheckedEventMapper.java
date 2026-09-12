@@ -22,9 +22,12 @@ public final class EligibilityCheckedEventMapper {
 
                                 .setMetadata(
                                                 BaseEvent.newBuilder()
+                                                                .setEventId(UUID.randomUUID().toString())
                                                                 .setSubject(subject)
                                                                 .setOccurredAt(Instant.now().toString())
-                                                                .setEventId(UUID.randomUUID().toString())
+                                                                .setCorrelationId(UUID.randomUUID().toString())
+                                                                .setCausationId(null)
+                                                                .setProducer("eligibility-service")
                                                                 .build())
 
                                 .setEligibilities(

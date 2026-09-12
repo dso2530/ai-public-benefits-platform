@@ -78,5 +78,30 @@
     "name": "messaging.kafka.auto-offset-reset",
     "type": "java.lang.String",
     "description": "A description for 'messaging.kafka.auto-offset-reset'"
+  },
+  {
+    "name": "messaging.outbox.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.enabled'"
+  },
+  {
+    "name": "messaging.outbox.fixed-delay",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.fixed-delay'"
+  },
+  {
+    "name": "messaging.outbox.publishing-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.publishing-timeout'"
+  },
+  {
+    "name": "messaging.outbox.batch-size",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.batch-size'"
+  },
+  {
+    "name": "messaging.outbox.stale-after",
+    "type": "java.lang.String",
+    "description": "A description for 'messaging.outbox.stale-after'"
   }
 ]}

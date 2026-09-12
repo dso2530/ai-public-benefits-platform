@@ -2,18 +2,71 @@
   "type": "record",
   "name": "BaseEvent",
   "namespace": "com.govtech.events.common",
+  "doc": "Common metadata for all platform events.",
+
   "fields": [
+
     {
       "name": "eventId",
-      "type": "string"
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Unique event identifier."
     },
+
     {
       "name": "occurredAt",
-      "type": "string"
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Event creation timestamp in ISO-8601."
     },
+
+    {
+      "name": "correlationId",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Identifier used to trace a business workflow across services."
+    },
+
+    {
+      "name": "causationId",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Identifier of the event that caused this event."
+    },
+
+    {
+      "name": "producer",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Service that produced the event."
+    },
+
     {
       "name": "subject",
-      "type": "string"
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Business subject identifier when applicable."
     }
+
   ]
 }

@@ -2,8 +2,8 @@ package com.govtech.eligibility.api;
 
 import com.govtech.eligibility.api.dto.EligibilityDto;
 import com.govtech.eligibility.api.dto.EligibilitySummaryDto;
-import com.govtech.eligibility.application.usecase.GetEligibilityListService;
-import com.govtech.eligibility.application.usecase.GetEligibilitySummaryService;
+import com.govtech.eligibility.application.usecase.GetEligibilityListUsecase;
+import com.govtech.eligibility.application.usecase.GetEligibilitySummaryUsecase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EligibilityController {
 
-  private final GetEligibilitySummaryService summaryService;
-  private final GetEligibilityListService listService;
+  private final GetEligibilitySummaryUsecase summaryService;
+  private final GetEligibilityListUsecase listService;
 
   @GetMapping("/api/eligibility/summary")
   public EligibilitySummaryDto summary(@AuthenticationPrincipal Jwt jwt) {

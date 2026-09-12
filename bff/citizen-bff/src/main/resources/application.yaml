@@ -14,27 +14,58 @@ spring:
     oauth2:
       client:
         registration:
-          keycloak:
-            client-id: citizen-bff
-            client-secret: citizen-bff-secret
+
+          # ==========================================
+          # Citizen App mobile
+          # ==========================================
+          citizen-mobile:
+            provider: citizen-mobile
+            client-id: citizen-mobile
+            authorization-grant-type: authorization_code
+            redirect-uri: "citizenapp://oauth/callback"
             scope:
               - openid
               - profile
               - email
+
+          # ==========================================
+          # BFF Web
+          # ==========================================
+          keycloak:
+            provider: keycloak
+            client-id: citizen-bff
+            client-secret: citizen-bff-secret
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+            scope:
+              - openid
+              - profile
+              - email
+
         provider:
+
+          # ==========================================
+          # Keycloak utilisé par le BFF Web
+          # ==========================================
           keycloak:
-            issuer-uri: ${SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI:http://localhost:9090/realms/govtech}
+            issuer-uri: ${KEYCLOAK_ISSUER:http://localhost:9090/realms/govtech}
+
+          # ==========================================
+          # Keycloak accessible depuis Android Emulator
+          # ==========================================
+          citizen-mobile:
+            issuer-uri: ${KEYCLOAK_MOBILE_ISSUER:http://localhost:9090/realms/govtech}
 
 management:
   tracing:
     export:
       enabled: false
+
   endpoints:
     web:
       exposure:
         include: health,info,prometheus,metrics,env,conditions
+
   endpoint:
     health:
       show-details: always
@@ -44,9 +75,10 @@ management:
       export:
         otlp:
           endpoint: http://localhost:4318/v1/traces
+
 services:
   profile:
-    url: ${SERVICES_PROFILE_URL:http://localhost:8081}
+    url: ${SERVICES_PROFILE_URL:http://localhost:8061}
 
   eligibility:
     url: ${SERVICES_ELIGIBILITY_URL:http://localhost:8082}
@@ -60,6 +92,9 @@ services:
   application:
     url: ${SERVICES_APPLICATION:http://localhost:8093}
 
+  assitant:
+    url: ${SERVICES_ASSISTANT:http://localhost:9087}
+
 security:
   jwt:
     secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
@@ -67,6 +102,7 @@ security:
 logging:
   file:
     path: ${LOG_PATH:logs}
+
   level:
     logging.level.org.springframework.security: TRACE
     logging.level.org.springframework.web: DEBUG

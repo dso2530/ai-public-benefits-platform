@@ -31,6 +31,12 @@
             <artifactId>platform-database</artifactId>
             <version>${project.version}</version>       
         </dependency>
+
+        <dependency>
+            <groupId>com.govtech</groupId>
+            <artifactId>platform-document</artifactId>
+            <version>${project.version}</version> 
+        </dependency>
           
          <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -55,35 +61,15 @@
             <groupId>fi.solita.clamav</groupId>
             <artifactId>clamav-client</artifactId>
             <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-testcontainers</artifactId>
-            <scope>test</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
+        </dependency>             
+       
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.tika</groupId>
-            <artifactId>tika-core</artifactId>
-            <version>${tika.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tika</groupId>
-            <artifactId>tika-parsers-standard-package</artifactId>
-            <version>${tika.version}</version>
-        </dependency>
+       
     </dependencies>
 
     <build>

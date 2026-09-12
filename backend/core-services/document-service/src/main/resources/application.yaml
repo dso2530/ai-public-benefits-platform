@@ -1,27 +1,11 @@
 server:
   port: 8085
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,prometheus,metrics
-  endpoint:
-    health:
-      show-details: always
-
-  tracing:
-    sampling:
-      probability: 1.0
-
-  otlp:
-    tracing:
-      endpoint: http://jaeger:4317
-
 spring:
   application:
     name: document-service
-
+  config:
+    import: optional:classpath:observability.yml
   servlet:
     multipart:
       max-file-size: 50MB
@@ -64,14 +48,12 @@ messaging:
   kafka:
     bootstrap-servers: ${KAFKA_BRK:localhost:9092}
     schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
-    group-id: document-service-v1
+    group-id: document-service-v10
     auto-offset-reset: earliest
 
-logging:
-  level:
-    org.springframework.security: DEBUG # Logs globaux de Spring Security
-    org.springframework.security.oauth2: DEBUG # Logs OAuth2 (JWT, Resource Server, etc.)
-    org.springframework.security.web: DEBUG # Logs des requêtes HTTP et filtres
-    org.springframework.boot.context.config: DEBUG # Logs de configuration (optionnel)
-    org.apache.kafka: DEBUG
-    org.springframework.kafka: DEBUG
+  outbox:
+    enabled: true
+    fixed-delay: 5s
+    batch-size: 100
+    publishing-timeout: 30s
+    stale-after: 5m

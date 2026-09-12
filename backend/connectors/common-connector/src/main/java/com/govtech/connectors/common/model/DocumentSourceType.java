@@ -14,6 +14,8 @@ public enum DocumentSourceType {
 
     BUSINESS,
 
+    CAF,
+
     UNKNOWN
 
 }

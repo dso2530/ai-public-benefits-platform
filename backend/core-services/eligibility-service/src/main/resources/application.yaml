@@ -38,8 +38,17 @@ messaging:
   kafka:
     bootstrap-servers: ${KAFKA_BRK:localhost:9092}
     schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8091/apis/ccompat/v7}
-    group-id: eligibility-service-v17
+    group-id: eligibility-service-v23
     auto-offset-reset: earliest
+  
+  outbox:
+    enabled: true
+    fixed-delay: 5s
+    batch-size: 100
+    publishing-timeout: 30s
+    stale-after: 5m
+
+
 
 eligibility:
   ars:
@@ -66,7 +75,7 @@ eligibility:
 
 clients:
   profile:
-    base-url: ${PROFILE_SERVICE:http://localhost:8081}
+    base-url: ${PROFILE_SERVICE:http://localhost:8061}
 
 logging:
   level:

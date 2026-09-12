@@ -7,29 +7,20 @@
   "fields": [
 
     {
-      "name": "base",
+      "name": "baseEvent",
       "type": "com.govtech.events.common.DocumentBaseEvent"
     },
 
-    {
-      "name": "filename",
-      "type": "string"
-    },
-
-    {
-      "name": "size",
-      "type": "long"
-    },
-
-    {
-      "name": "checksum",
-      "type": "string"
-    },
 
     {
       "name": "storageProvider",
-      "type": "string"
+      "type": {
+        "type": "string",
+        "avro.java_string": "String"
+      },
+      "doc": "Storage provider used (MinIO, S3, GCS...)"
     },
+
 
     {
       "name": "version",

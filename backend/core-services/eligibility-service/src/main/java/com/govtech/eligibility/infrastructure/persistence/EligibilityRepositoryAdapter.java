@@ -1,7 +1,10 @@
 package com.govtech.eligibility.infrastructure.persistence;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -40,6 +43,13 @@ public class EligibilityRepositoryAdapter
         UUID latestCalculationId = entities.getFirst().getCalculationId();
 
         return repository.findByCalculationId(latestCalculationId)
+                .stream()
+                .collect(Collectors.toMap(
+                        EligibilityJpaEntity::getAidCode,
+                        Function.identity(),
+                        (first, second) -> first,
+                        LinkedHashMap::new))
+                .values()
                 .stream()
                 .map(EligibilityJpaMapper::toDomain)
                 .toList();

@@ -1,93 +1,112 @@
 package com.govtech.security.infrastructure.persistence.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
 
 import com.govtech.security.domain.model.SecurityScan;
 import com.govtech.security.domain.model.SecurityStatus;
 import com.govtech.security.infrastructure.persistence.SecurityScanJpaEntity;
 
-
-@Mapper(
-    componentModel = MappingConstants.ComponentModel.SPRING
-)
+@Mapper(componentModel = "spring")
 public interface SecurityScanMapper {
 
+        default SecurityScan toDomain(
+                        SecurityScanJpaEntity entity) {
 
-    default SecurityScan toDomain(
-            SecurityScanJpaEntity entity) {
+                if (entity == null) {
+                        return null;
+                }
 
+                return SecurityScan.builder()
 
-        if (entity == null) {
-            return null;
+                                .id(entity.getId())
+
+                                .documentId(
+                                                entity.getDocumentId())
+
+                                .sha256(
+                                                entity.getSha256())
+
+                                .status(
+                                                SecurityStatus.valueOf(
+                                                                entity.getStatus()))
+
+                                .scanEngine(
+                                                entity.getScanEngine())
+
+                                .scannedAt(
+                                                entity.getScannedAt())
+
+                                .origin(
+                                                entity.getOrigin())
+
+                                .documentType(
+                                                entity.getDocumentType())
+
+                                .detectedContentType(
+                                                entity.getDetectedContentType())
+
+                                .bucket(
+                                                entity.getBucket())
+
+                                .objectKey(
+                                                entity.getObjectKey())
+
+                                .contentType(
+                                                entity.getContentType())
+
+                                .fileName(
+                                                entity.getFileName())
+
+                                .build();
         }
 
+        default SecurityScanJpaEntity toEntity(
+                        SecurityScan domain) {
 
-        return SecurityScan.builder()
+                if (domain == null) {
+                        return null;
+                }
 
-                .id(entity.getId())
+                return SecurityScanJpaEntity.builder()
 
-                .documentId(
-                        entity.getDocumentId()
-                )
+                                .id(domain.getId())
 
-                .sha256(
-                        entity.getSha256()
-                )
+                                .documentId(
+                                                domain.getDocumentId())
 
-                .status(
-                        SecurityStatus.valueOf(
-                                entity.getStatus()
-                        )
-                )
+                                .sha256(
+                                                domain.getSha256())
 
-                .scanEngine(
-                        entity.getScanEngine()
-                )
+                                .status(
+                                                domain.getStatus().name())
 
-                .scannedAt(
-                        entity.getScannedAt()
-                )
+                                .scanEngine(
+                                                domain.getScanEngine())
 
-                .build();
-    }
+                                .scannedAt(
+                                                domain.getScannedAt())
 
+                                .origin(
+                                                domain.getOrigin())
 
+                                .documentType(
+                                                domain.getDocumentType())
 
-    default SecurityScanJpaEntity toEntity(
-            SecurityScan domain) {
+                                .detectedContentType(
+                                                domain.getDetectedContentType())
 
+                                .bucket(
+                                                domain.getBucket())
 
-        if (domain == null) {
-            return null;
+                                .objectKey(
+                                                domain.getObjectKey())
+
+                                .contentType(
+                                                domain.getContentType())
+
+                                .fileName(
+                                                domain.getFileName())
+
+                                .build();
         }
-
-
-        return SecurityScanJpaEntity.builder()
-
-                .id(domain.getId())
-
-                .documentId(
-                        domain.getDocumentId()
-                )
-
-                .sha256(
-                        domain.getSha256()
-                )
-
-                .status(
-                        domain.getStatus().name()
-                )
-
-                .scanEngine(
-                        domain.getScanEngine()
-                )
-
-                .scannedAt(
-                        domain.getScannedAt()
-                )
-
-                .build();
-    }
-
 }

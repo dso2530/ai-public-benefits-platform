@@ -10,38 +10,11 @@ public record DocumentContent(
 
         long size,
 
-        String checksum
+        String checksum,
+
+        String bucket,
+
+        String objectKey
 
 ) {
-
-    public DocumentContent {
-
-        if (content == null) {
-
-            throw new IllegalArgumentException(
-                    "Document content cannot be null");
-
-        }
-
-        if (fileName == null || fileName.isBlank()) {
-
-            fileName = "unknown";
-
-        }
-
-        if (contentType == null || contentType.isBlank()) {
-
-            contentType = "application/octet-stream";
-
-        }
-
-        if (checksum == null || checksum.isBlank()) {
-
-            throw new IllegalArgumentException(
-                    "Document checksum cannot be null");
-
-        }
-
-    }
-
 }

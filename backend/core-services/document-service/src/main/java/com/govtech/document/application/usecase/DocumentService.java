@@ -4,14 +4,21 @@ import com.govtech.document.api.dto.DocumentContractDto;
 import com.govtech.document.api.dto.DocumentDto;
 import com.govtech.document.api.dto.DocumentSummaryDto;
 import com.govtech.document.application.dto.DownloadedDocument;
+import com.govtech.document.application.event.DocumentEventFactory;
 import com.govtech.document.application.mapper.DocumentMapper;
-import com.govtech.document.domain.model.DocumentStatus;
-import com.govtech.document.domain.model.DocumentType;
-import com.govtech.document.domain.model.SecurityStatus;
+import com.govtech.document.application.service.DocumentOutboxService;
+
 import com.govtech.document.infrastructure.persistence.DocumentJpaEntity;
+import com.govtech.document.infrastructure.persistence.DocumentJpaMapper;
 import com.govtech.document.infrastructure.persistence.DocumentJpaRepository;
 import com.govtech.platform.storage.service.StorageService;
+import com.govtech.shared.model.DocumentOrigin;
+import com.govtech.shared.model.DocumentStatus;
+import com.govtech.shared.model.DocumentType;
+import com.govtech.shared.model.SecurityStatus;
+
 import jakarta.persistence.EntityNotFoundException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
@@ -19,6 +26,7 @@ import java.nio.file.AccessDeniedException;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -30,144 +38,263 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DocumentService implements DocumentServiceUsecase, InternalDocumentServiceUseCase {
+public class DocumentService
+                implements DocumentServiceUsecase, InternalDocumentServiceUseCase {
 
-  private final StorageService storageService;
-  private final DocumentJpaRepository repository;
-  private final DocumentMapper mapper;
-  private final DocumentEventService documentEventService;
+        private static final String USER_QUARANTINE_BUCKET = "documents-user-quarantine";
 
-  @Override
-  @Transactional(readOnly = true)
-  public List<DocumentDto> getDocuments(final @NonNull String subject) {
+        private static final String USER_DOCUMENT_BUCKET = "documents-user";
 
-    return repository.findBySubjectOrderByUploadedAtDesc(subject).stream()
-        .map(
-            doc -> new DocumentDto(
-                doc.getId(),
-                doc.getName(),
-                doc.getDocumentType().name(),
-                doc.getStatus(),
-                doc.getFileName(),
-                doc.getFileSize(),
-                doc.getUploadedAt()))
-        .toList();
-  }
+        private final StorageService storageService;
 
-  @Override
-  @Transactional(readOnly = true)
-  public List<DocumentContractDto> findBySubject(final @NonNull String subject) {
+        private final DocumentJpaRepository repository;
 
-    return repository.findBySubjectOrderByUploadedAtDesc(subject)
-        .stream()
-        .map(doc -> DocumentContractDto.builder()
-            .documentId(doc.getId())
-            .subject(doc.getSubject())
-            .name(doc.getName())
-            .documentType(doc.getDocumentType())
-            .status(doc.getStatus())
-            .fileName(doc.getFileName())
-            .contentType(doc.getContentType())
-            .objectKey(doc.getObjectKey())
-            .fileSize(doc.getFileSize())
-            .uploadedAt(doc.getUploadedAt())
-            .build())
-        .toList();
-  }
+        private final DocumentMapper mapper;
 
-  @Override
-  @Transactional(readOnly = true)
-  public DocumentSummaryDto getSummary(final @NonNull String subject) {
+        private final DocumentOutboxService outboxService;
 
-    long total = repository.countBySubject(subject);
+        private final DocumentEventFactory documentEventFactory;
 
-    long validated = repository.countBySubjectAndStatus(subject, "VALIDATED");
+        private final DocumentJpaMapper documentJpaMapper;
 
-    return new DocumentSummaryDto((int) total, (int) validated, (int) (total - validated));
-  }
+        // -------------------------------------------------------------------------
+        // READ
+        // -------------------------------------------------------------------------
 
-  @Override
-  public DocumentDto upload(
-      @NonNull String subject,
-      @NonNull MultipartFile file,
-      @NonNull String type,
-      UUID applicationId)
-      throws IOException {
+        @Override
+        @Transactional(readOnly = true)
+        public List<DocumentDto> getDocuments(
+                        final @NonNull String subject) {
 
-    String objectKey = "citizens/%s/%s-%s".formatted(
-        subject,
-        UUID.randomUUID(),
-        file.getOriginalFilename());
+                return repository
+                                .findBySubjectOrderByUploadedAtDesc(subject)
+                                .stream()
+                                .map(doc -> new DocumentDto(
+                                                doc.getId(),
+                                                doc.getName(),
+                                                doc.getDocumentType().name(),
+                                                doc.getStatus(),
+                                                doc.getFileName(),
+                                                doc.getFileSize(),
+                                                doc.getUploadedAt()))
+                                .toList();
+        }
 
-    storageService.upload(
-        file.getInputStream(),
-        file.getSize(),
-        file.getContentType(),
-        "documents-quarantine",
-        objectKey);
+        @Override
+        @Transactional(readOnly = true)
+        public List<DocumentContractDto> findBySubject(
+                        final @NonNull String subject) {
 
-    String sha256 = DigestUtils.sha256Hex(file.getBytes());
+                return repository
+                                .findBySubjectOrderByUploadedAtDesc(subject)
+                                .stream()
+                                .map(doc -> DocumentContractDto.builder()
+                                                .documentId(doc.getId())
+                                                .subject(doc.getSubject())
+                                                .name(doc.getName())
+                                                .documentType(doc.getDocumentType())
+                                                .status(doc.getStatus())
+                                                .fileName(doc.getFileName())
+                                                .contentType(doc.getContentType())
+                                                .objectKey(doc.getObjectKey())
+                                                .fileSize(doc.getFileSize())
+                                                .uploadedAt(doc.getUploadedAt())
+                                                .build())
+                                .toList();
+        }
 
-    DocumentJpaEntity document = DocumentJpaEntity.builder()
-        .subject(subject)
-        .applicationId(applicationId) // nouveau champ
-        .name(DocumentType.valueOf(type).getName())
-        .documentType(DocumentType.valueOf(type))
-        .status(DocumentStatus.UPLOADED.name())
-        .securityStatus(SecurityStatus.PENDING)
-        .fileName(file.getOriginalFilename())
-        .sha256(sha256)
-        .bucket("documents-quarantine")
-        .objectKey(objectKey)
-        .fileSize(file.getSize())
-        .contentType(file.getContentType())
-        .uploadedAt(Instant.now())
-        .build();
+        @Override
+        @Transactional(readOnly = true)
+        public DocumentSummaryDto getSummary(
+                        final @NonNull String subject) {
 
-    DocumentJpaEntity saved = repository.save(document);
+                long total = repository.countBySubject(subject);
 
-    documentEventService.publishScanRequested(saved);
+                long validated = repository.countBySubjectAndStatus(
+                                subject,
+                                "VALIDATED");
 
-    return mapper.toDto(saved);
-  }
+                return new DocumentSummaryDto(
+                                (int) total,
+                                (int) validated,
+                                (int) (total - validated));
+        }
 
-  @Override
-  public void delete(@NonNull Long id, @NonNull String subject) throws AccessDeniedException {
+        // -------------------------------------------------------------------------
+        // UPLOAD
+        // -------------------------------------------------------------------------
 
-    DocumentJpaEntity document = repository
-        .findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+        @Override
+        public DocumentDto upload(
+                        @NonNull String subject,
+                        @NonNull MultipartFile file,
+                        @NonNull String type,
+                        UUID applicationId)
+                        throws IOException {
 
-    if (!document.getSubject().equals(subject)) {
-      throw new AccessDeniedException("Document does not belong to user");
-    }
+                String objectKey = "citizens/%s/%s-%s".formatted(
+                                subject,
+                                UUID.randomUUID(),
+                                file.getOriginalFilename());
 
-    storageService.delete("documents", document.getObjectKey());
+                /*
+                 * 1. Upload dans le bucket de quarantaine.
+                 */
+                storageService.upload(
+                                file.getInputStream(),
+                                file.getSize(),
+                                file.getContentType(),
+                                USER_QUARANTINE_BUCKET,
+                                objectKey);
 
-    repository.delete(document);
-  }
+                /*
+                 * 2. Calcul du hash.
+                 */
+                String sha256 = DigestUtils.sha256Hex(
+                                file.getBytes());
 
-  @Override
-  @Transactional(readOnly = true)
-  public DownloadedDocument download(@NonNull Long id, @NonNull String subject)
-      throws AccessDeniedException {
+                DocumentType documentType = DocumentType.valueOf(type);
 
-    DocumentJpaEntity document = repository
-        .findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Document not found: " + id));
+                /*
+                 * 3. Construction de l'entité métier/persistence.
+                 */
+                DocumentJpaEntity document = DocumentJpaEntity.builder()
 
-    if (!document.getSubject().equals(subject)) {
-      throw new AccessDeniedException("Document does not belong to user");
-    }
+                                .subject(subject)
 
-    try (InputStream inputStream = storageService.download("documents", document.getObjectKey())) {
+                                .applicationId(applicationId)
 
-      byte[] content = inputStream.readAllBytes();
+                                .name(
+                                                documentType.getName())
 
-      return new DownloadedDocument(document.getFileName(), document.getContentType(), content);
+                                .documentType(
+                                                documentType)
 
-    } catch (IOException e) {
-      throw new UncheckedIOException(e);
-    }
-  }
+                                .status(
+                                                DocumentStatus.UPLOADED.name())
+
+                                .securityStatus(
+                                                SecurityStatus.PENDING)
+
+                                .fileName(
+                                                file.getOriginalFilename())
+
+                                .sha256(
+                                                sha256)
+
+                                .bucket(
+                                                USER_QUARANTINE_BUCKET)
+
+                                .objectKey(
+                                                objectKey)
+
+                                .fileSize(
+                                                file.getSize())
+
+                                .contentType(
+                                                file.getContentType())
+
+                                .uploadedAt(
+                                                Instant.now())
+
+                                .origin(
+                                                DocumentOrigin.USER_UPLOAD)
+
+                                .source(
+                                                "USER")
+
+                                .build();
+
+                /*
+                 * 4. Transaction DB :
+                 *
+                 * INSERT document
+                 * INSERT outbox_event
+                 *
+                 * Les deux sont dans la même transaction.
+                 */
+                DocumentJpaEntity saved = repository.save(document);
+
+                /*
+                 * 5. Création de l'événement Outbox.
+                 *
+                 * DocumentEventFactory construit le contrat Avro.
+                 * DocumentOutboxService le sérialise et le stocke
+                 * dans outbox_event.
+                 */
+                outboxService.publish(
+                                documentJpaMapper.toDomain(saved),
+                                documentEventFactory::buildScanRequested,
+                                "DocumentScanRequested",
+                                "document.scan.requested");
+
+                /*
+                 * 6. Retour API.
+                 */
+                return mapper.toDto(saved);
+        }
+
+        // -------------------------------------------------------------------------
+        // DELETE
+        // -------------------------------------------------------------------------
+
+        @Override
+        public void delete(
+                        @NonNull Long id,
+                        @NonNull String subject)
+                        throws AccessDeniedException {
+
+                DocumentJpaEntity document = repository.findById(id)
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                "Document not found: " + id));
+
+                if (!document.getSubject().equals(subject)) {
+                        throw new AccessDeniedException(
+                                        "Document does not belong to user");
+                }
+
+                storageService.delete(
+                                USER_DOCUMENT_BUCKET,
+                                document.getObjectKey());
+
+                repository.delete(document);
+        }
+
+        // -------------------------------------------------------------------------
+        // DOWNLOAD
+        // -------------------------------------------------------------------------
+
+        @Override
+        @Transactional(readOnly = true)
+        public DownloadedDocument download(
+                        @NonNull Long id,
+                        @NonNull String subject)
+                        throws AccessDeniedException {
+
+                DocumentJpaEntity document = repository.findById(id)
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                "Document not found: " + id));
+
+                if (!document.getSubject().equals(subject)) {
+                        throw new AccessDeniedException(
+                                        "Document does not belong to user");
+                }
+
+                try (InputStream inputStream = storageService.download(
+                                USER_DOCUMENT_BUCKET,
+                                document.getObjectKey())) {
+
+                        byte[] content = inputStream.readAllBytes();
+
+                        return new DownloadedDocument(
+                                        document.getFileName(),
+                                        document.getContentType(),
+                                        content);
+
+                } catch (IOException e) {
+                        throw new UncheckedIOException(e);
+                }
+        }
 }

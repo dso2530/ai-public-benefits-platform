@@ -1,11 +1,33 @@
 {
-    "maven.view": "hierarchical",
-    "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "editor.formatOnSave": true,
-    "[java]": {
-        "editor.defaultFormatter": "redhat.java"
-    },
-    "python-envs.defaultEnvManager": "ms-python.python:conda",
-    "python-envs.defaultPackageManager": "ms-python.python:conda"
+  "maven.view": "hierarchical",
+
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "automatic",
+
+  "editor.formatOnSave": true,
+
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+
+  "react-native.packager.port": 8081,
+
+  "files.exclude": {
+    "**/.gradle": true,
+    "**/build": true,
+    "**/.idea": true,
+    "**/node_modules": true
+  },
+
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda"
 }

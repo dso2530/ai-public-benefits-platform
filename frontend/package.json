@@ -1,0 +1,33 @@
+{
+    "name": "govtech-frontend",
+    "version": "1.0.0",
+    "private": true,
+    "description": "AI Public Benefits Platform Frontend",
+    "packageManager": "pnpm@10.0.0",
+    "engines": {
+        "node": ">=22 <23"
+    },
+    "workspaces": [
+        "admin-console",
+        "portal-web",
+        "mobile/*"
+    ],
+    "scripts": {
+        "dev:portal": "pnpm --filter portal-web dev",
+        "dev:admin": "pnpm --filter admin-console dev",
+        "dev:mobile": "pnpm --filter citizen-app start",
+        "build:portal": "pnpm --filter portal-web build",
+        "build:admin": "pnpm --filter admin-console build",
+        "lint": "pnpm -r lint",
+        "test": "pnpm -r test",
+        "clean": "pnpm -r exec rm -rf node_modules dist build"
+    },
+    "devDependencies": {
+        "@react-native/gradle-plugin": "0.86.2",
+        "@typescript-eslint/eslint-plugin": "^8.0.0",
+        "@typescript-eslint/parser": "^8.0.0",
+        "eslint": "^9.0.0",
+        "prettier": "^3.0.0",
+        "typescript": "^5.0.0"
+    }
+}

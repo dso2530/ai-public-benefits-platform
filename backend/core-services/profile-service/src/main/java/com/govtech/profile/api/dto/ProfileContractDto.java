@@ -39,6 +39,7 @@ public record ProfileContractDto(
                                 .firstName(citizen.getIdentity().firstName())
                                 .lastName(citizen.getIdentity().lastName())
                                 .nationality(citizen.getIdentity().nationality())
+                                .birthDate(citizen.getIdentity().birthDate())
 
                                 .city(citizen.getAddress().city())
                                 .postalCode(citizen.getAddress().postalCode())

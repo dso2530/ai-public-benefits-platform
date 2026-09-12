@@ -1,0 +1,57 @@
+{
+  "type": "record",
+  "name": "DocumentIngestedEvent",
+  "namespace": "com.govtech.events.document",
+  "doc": "Document successfully downloaded from an external source, stored in the platform and ready for registration by document-service.",
+
+  "fields": [
+
+    {
+      "name": "baseEvent",
+      "type": "com.govtech.events.common.DocumentBaseEvent",
+      "doc": "Common document metadata."
+    },
+
+    {
+      "name": "connectorName",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      },
+      "doc": "Unique connector identifier."
+    },
+
+    {
+      "name": "connectorType",
+      "type": "com.govtech.events.connector.ConnectorType",
+      "doc": "Connector category."
+    },
+
+    {
+      "name": "sourceUri",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Original document URI."
+    },
+
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      },
+      "default": {},
+      "doc": "Connector-specific metadata."
+    }
+
+  ]
+}

@@ -1,11 +1,5 @@
 import Link from "next/link";
-import {
-  FileText,
-  CheckCircle2,
-  Clock3,
-  ArrowRight,
-  Eye
-} from "lucide-react";
+import { FileText, CheckCircle2, Clock3, ArrowRight, Eye } from "lucide-react";
 
 import {
   Card,
@@ -20,17 +14,11 @@ interface Props {
   readonly pending: number;
 }
 
-export function DocumentsCard({
-  total,
-  validated,
-  pending,
-}: Props) {
+export function DocumentsCard({ total, validated, pending }: Props) {
   return (
     <Card className="h-full">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-lg font-bold">
-          📄 Documents
-        </CardTitle>
+        <CardTitle className="text-lg font-bold">📄 Documents</CardTitle>
 
         <Link
           href="/documents"
@@ -43,7 +31,7 @@ export function DocumentsCard({
       <CardContent className="space-y-3 text-sm">
         <div className="flex items-center justify-between font-semibold">
           <span>Total</span>
-          <span>{total}</span>
+          <span>{total ?? 0}</span>
         </div>
 
         <div className="flex items-center justify-between">
@@ -51,7 +39,7 @@ export function DocumentsCard({
             <Clock3 className="h-4 w-4 text-amber-500" />
             En attente
           </span>
-          <span>{pending}</span>
+          <span>{pending ?? 0}</span>
         </div>
 
         <div className="flex items-center justify-between">
@@ -59,7 +47,7 @@ export function DocumentsCard({
             <CheckCircle2 className="h-4 w-4 text-green-600" />
             Validés
           </span>
-          <span>{validated}</span>
+          <span>{validated ?? 0}</span>
         </div>
 
         <div className="flex items-center justify-between">
@@ -67,7 +55,7 @@ export function DocumentsCard({
             <FileText className="h-4 w-4 text-blue-600" />
             Restants
           </span>
-          <span>{Math.max(total - validated, 0)}</span>
+          <span>{Math.max(Number(total ?? 0) - Number(validated ?? 0))}</span>
         </div>
       </CardContent>
     </Card>

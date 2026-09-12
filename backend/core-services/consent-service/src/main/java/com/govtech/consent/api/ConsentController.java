@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.govtech.consent.api.dto.ConsentRequest;
 import com.govtech.consent.api.dto.ConsentResponse;
-import com.govtech.consent.application.usecase.ConsentService;
+import com.govtech.consent.application.usecase.ConsentUsecase;
 import com.govtech.consent.domain.model.Consent;
 
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ConsentController {
 
-    private final ConsentService service;
+    private final ConsentUsecase service;
 
     @PostMapping
     public ResponseEntity<ConsentResponse> grant(

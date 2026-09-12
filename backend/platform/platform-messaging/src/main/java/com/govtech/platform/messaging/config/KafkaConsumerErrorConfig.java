@@ -12,8 +12,8 @@ import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 
 import org.springframework.util.backoff.FixedBackOff;
 
-@ConditionalOnProperty(prefix = "kafka", name = "enabled", havingValue = "true", matchIfMissing = false)
 @Configuration
+@ConditionalOnProperty(prefix = "kafka", name = "enabled", havingValue = "true", matchIfMissing = false)
 public class KafkaConsumerErrorConfig {
 
         @Bean
@@ -22,16 +22,12 @@ public class KafkaConsumerErrorConfig {
 
                 DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(
                                 kafkaTemplate,
-                                (krecord, exception) -> DltTopicResolver.resolve(
-                                                krecord.topic(),
-                                                krecord.partition()));
+                                (record, exception) -> DltTopicResolver.resolve(
+                                                record.topic(),
+                                                record.partition()));
 
                 return new DefaultErrorHandler(
                                 recoverer,
-                                new FixedBackOff(
-                                                2000L,
-                                                3));
-
+                                new FixedBackOff(2_000L, 3L));
         }
-
 }

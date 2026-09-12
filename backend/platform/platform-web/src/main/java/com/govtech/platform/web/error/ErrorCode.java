@@ -1,0 +1,18 @@
+package com.govtech.platform.web.error;
+
+public enum ErrorCode {
+
+    BAD_REQUEST,
+    VALIDATION_ERROR,
+
+    RESOURCE_NOT_FOUND,
+    RESOURCE_CONFLICT,
+
+    UNAUTHORIZED,
+    FORBIDDEN,
+
+    EXTERNAL_SERVICE_ERROR,
+    EXTERNAL_SERVICE_UNAVAILABLE,
+
+    INTERNAL_SERVER_ERROR
+}

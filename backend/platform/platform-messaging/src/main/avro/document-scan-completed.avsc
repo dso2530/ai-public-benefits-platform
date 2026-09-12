@@ -1,0 +1,64 @@
+{
+  "type": "record",
+  "name": "DocumentScanCompletedEvent",
+  "namespace": "com.govtech.events.security",
+  "doc": "Security scan completed for a document.",
+
+  "fields": [
+    {
+      "name": "baseEvent",
+      "type": "com.govtech.events.common.DocumentBaseEvent"
+    },
+
+    {
+      "name": "securityStatus",
+      "type": "string",
+      "doc": "Result of the security scan."
+    },
+
+    {
+      "name": "scanEngine",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Security scan engine used to scan the document."
+    },
+
+    {
+      "name": "scannedAt",
+      "type": "string",
+      "doc": "Timestamp when the security scan was completed."
+    },
+
+    {
+      "name": "detectedContentType",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null,
+      "doc": "Content type detected during the security scan."
+    },
+
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      },
+      "default": {},
+      "doc": "Document metadata propagated through the document processing pipeline."
+    }
+  ]
+}

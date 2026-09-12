@@ -1,0 +1,51 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: assistant-bff
+
+  jackson:
+    serialization:
+      indent-output: false
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: assistant-bff
+            client-secret: assistant-bff-secret
+            scope:
+              - openid
+              - profile
+              - email
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+        provider:
+          keycloak:
+            issuer-uri: ${SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI:http://localhost:9090/realms/govtech}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+  swagger-ui:
+    path: /swagger-ui.html
+
+services:
+  territorial-rag:
+    url: ${TERRITORIAL_RAG_URL:http://localhost:9087}
+
+  profile:
+    url: ${PROFILE_SERVICE_URL:http://localhost:8081}
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:my-super-secret-key-for-local-development-at-least-48-chars-long}
+
+logging:
+  level:
+    com.govtech.assistant: INFO
+
+    org.springframework.security: INFO

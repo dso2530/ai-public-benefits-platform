@@ -1,0 +1,10 @@
+{
+  "type": "enum",
+  "name": "DocumentOrigin",
+  "namespace": "com.govtech.events.common",
+  "symbols": [
+    "USER_UPLOAD",
+    "CONNECTOR",
+    "SYSTEM_GENERATED"
+  ]
+}

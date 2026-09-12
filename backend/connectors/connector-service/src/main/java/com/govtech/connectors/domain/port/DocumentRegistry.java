@@ -2,14 +2,22 @@ package com.govtech.connectors.domain.port;
 
 import java.util.Optional;
 
-import com.govtech.connectors.common.model.ConnectorDocument;
+import com.govtech.connectors.common.model.RegisteredDocument;
 
 public interface DocumentRegistry {
 
-    boolean exists(String checksum);
+    boolean existsByExternalId(
+            String externalId);
 
-    Optional<ConnectorDocument> findByChecksum(String checksum);
+    boolean existsByChecksum(
+            String checksum);
 
-    void save(ConnectorDocument document);
+    void save(
+            String externalId,
+            String checksum,
+            String source);
+
+    Optional<RegisteredDocument> findByChecksum(
+            String checksum);
 
 }
