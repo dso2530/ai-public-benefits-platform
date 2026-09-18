@@ -4,11 +4,13 @@ on:
     pull_request:
         paths:
             - 'backend/core-services/**'
+            - 'bff/**'
     push:
         branches:
             - main
         paths:
             - 'backend/core-services/**'
+            - 'bff/**'
 
 jobs:
     spotless:
