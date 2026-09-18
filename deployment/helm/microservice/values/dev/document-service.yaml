@@ -5,7 +5,7 @@
 
   image:
     repository: demo.goharbor.io/ai-public-benefits/document-service  
-    tag: "sha-ac830cd"
+    tag: "sha-d68e470"
     pullPolicy: IfNotPresent
     
   imagePullSecrets:
