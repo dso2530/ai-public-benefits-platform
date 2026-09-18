@@ -5,12 +5,17 @@ WORKDIR /workspace
 
 COPY . .
 
-RUN mvn clean package -pl core-services/document-service -am -DskipTests -DskipIT=true
+RUN mvn clean package \
+    -pl core-services/document-service \
+    -am \
+    -DskipTests \
+    -DskipIT=true
 
 # ===== Runtime =====
 FROM eclipse-temurin:21-jre-alpine
 
-RUN addgroup -S springi && adduser -S springi -G springi
+RUN addgroup -S -g 10001 springi \
+    && adduser -S -D -H -u 10001 -G springi springi
 
 WORKDIR /app
 
@@ -18,6 +23,6 @@ COPY --from=builder \
     /workspace/core-services/document-service/target/*.jar \
     app.jar
 
-USER springi
+USER 10001:10001
 
-ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75","-XX:+UseContainerSupport", "-jar","app.jar"]
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-XX:+UseContainerSupport", "-jar", "app.jar"]

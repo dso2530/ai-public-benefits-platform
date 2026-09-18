@@ -1,58 +1,58 @@
-nameOverride: document-service
-fullnameOverride: document-service
+  nameOverride: document-service
+  fullnameOverride: document-service
 
-replicaCount: 1
+  replicaCount: 1
 
-image:
-  repository: demo.goharbor.io/ai-public-benefits/document-service  
-  tag: "sha-e7d0be8"
-  pullPolicy: IfNotPresent
-  
-imagePullSecrets:
-  - name: harbor-registry
-container:
-  port: 8085
-  portName: http
+  image:
+    repository: demo.goharbor.io/ai-public-benefits/document-service  
+    tag: "sha-e7d0be8"
+    pullPolicy: IfNotPresent
+    
+  imagePullSecrets:
+    - name: harbor-registry
+  container:
+    port: 8085
+    portName: http
 
-service:
-  port: 8085
+  service:
+    port: 8085
 
-resources:
-  requests:
-    cpu: 100m
-    memory: 256Mi
-  limits:
-    cpu: 500m
-    memory: 512Mi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
 
-env:
-  - name: SPRING_PROFILES_ACTIVE
-    value: kubernetes
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: kubernetes
 
-  - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-    value: "health,info,prometheus"
+    - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+      value: "health,info,prometheus"
 
-  - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
-    value: "true"
+    - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
+      value: "true"
 
-  - name: DB_URL
-    value: jdbc:postgresql://192.168.1.40:5432/documentdb
+    - name: DB_URL
+      value: jdbc:postgresql://192.168.1.40:5432/documentdb
 
-  - name: MESSAGING_KAFKA_BOOTSTRAP_SERVERS
-    value: 192.168.1.40:9092
+    - name: MESSAGING_KAFKA_BOOTSTRAP_SERVERS
+      value: 192.168.1.40:9092
 
-  - name: MESSAGING_KAFKA_SCHEMA_REGISTRY_URL
-    value: http://192.168.1.40:8091/apis/ccompat/v7
+    - name: MESSAGING_KAFKA_SCHEMA_REGISTRY_URL
+      value: http://192.168.1.40:8091/apis/ccompat/v7
 
-  - name: STORAGE_ENDPOINT
-    value: http://192.168.1.40:9000
+    - name: STORAGE_ENDPOINT
+      value: http://192.168.1.40:9000
 
-  - name: STORAGE_BUCKET_QUARANTINE
-    value: documents-user-quarantine
+    - name: STORAGE_BUCKET_QUARANTINE
+      value: documents-user-quarantine
 
-  - name: STORAGE_BUCKET_DOCUMENTS
-    value: documents-user
+    - name: STORAGE_BUCKET_DOCUMENTS
+      value: documents-user
 
-envFrom:
-  - secretRef:
-      name: document-service-secrets
+  envFrom:
+    - secretRef:
+        name: document-service-secrets
