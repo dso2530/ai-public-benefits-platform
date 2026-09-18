@@ -4,10 +4,12 @@ fullnameOverride: document-service
 replicaCount: 1
 
 image:
-  repository: ghcr.io/dso2530/document-service
-  tag: "1.0.0"
+  repository: demo.goharbor.io/ai-public-benefits/document-service  
+  tag: "sha-e7d0be8"
   pullPolicy: IfNotPresent
-
+  
+imagePullSecrets:
+  - name: harbor-registry
 container:
   port: 8085
   portName: http
@@ -26,18 +28,31 @@ resources:
 env:
   - name: SPRING_PROFILES_ACTIVE
     value: kubernetes
+
   - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
     value: "health,info,prometheus"
+
   - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
     value: "true"
-env:
-  - name: SPRING_PROFILES_ACTIVE
-    value: kubernetes
+
+  - name: DB_URL
+    value: jdbc:postgresql://192.168.1.40:5432/documentdb
+
   - name: MESSAGING_KAFKA_BOOTSTRAP_SERVERS
-    value: kafka:29092
+    value: 192.168.1.40:9092
+
   - name: MESSAGING_KAFKA_SCHEMA_REGISTRY_URL
-    value: http://apicurio:8080/apis/registry/v3
+    value: http://192.168.1.40:8091/apis/ccompat/v7
+
+  - name: STORAGE_ENDPOINT
+    value: http://192.168.1.40:9000
+
   - name: STORAGE_BUCKET_QUARANTINE
     value: documents-user-quarantine
+
   - name: STORAGE_BUCKET_DOCUMENTS
     value: documents-user
+
+envFrom:
+  - secretRef:
+      name: document-service-secrets
