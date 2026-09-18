@@ -56,14 +56,14 @@ jobs:
       fail-fast: false
       matrix:
         service:
-          - profile-service
-          - eligibility-service
-          - application-service
+          #- profile-service
+          #- eligibility-service
+          #- application-service
           - document-service
-          - security-service
-          - notification-service
-          - consent-service
-          - document-extraction-service
+          #- security-service
+          #- notification-service
+          #- consent-service
+          #- document-extraction-service
 
     steps:
       - name: Checkout
@@ -91,7 +91,7 @@ jobs:
       - name: Build and push ${{ matrix.service }}
         uses: docker/build-push-action@v6
         with:
-          context: backend/core-services/${{ matrix.service }}
+          context: backend
           file: backend/core-services/${{ matrix.service }}/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
