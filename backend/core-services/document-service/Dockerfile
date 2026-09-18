@@ -10,7 +10,7 @@ RUN mvn clean package -pl core-services/document-service -am -DskipTests -DskipI
 # ===== Runtime =====
 FROM eclipse-temurin:21-jre-alpine
 
-RUN addgroup -S spring && adduser -S spring -G spring
+RUN addgroup -S springi && adduser -S springi -G springi
 
 WORKDIR /app
 
@@ -18,6 +18,6 @@ COPY --from=builder \
     /workspace/core-services/document-service/target/*.jar \
     app.jar
 
-USER spring
+USER springi
 
 ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75","-XX:+UseContainerSupport", "-jar","app.jar"]
