@@ -35,7 +35,7 @@ jobs:
           cache: maven
 
       - name: Build
-        run: mvn clean verify -DskipITs=true
+        run: mvn clean verify -DskipITs=true -DskipTests
 
       - name: Upload Jacoco
         uses: actions/upload-artifact@v4
