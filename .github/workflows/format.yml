@@ -4,13 +4,11 @@ on:
     pull_request:
         paths:
             - 'backend/core-services/**'
-            - 'bff/**'
     push:
         branches:
             - main
         paths:
             - 'backend/core-services/**'
-            - 'bff/**'
 
 jobs:
     spotless:
@@ -18,7 +16,7 @@ jobs:
 
         defaults:
             run:
-                working-directory: backend/core-services
+                working-directory: backend
 
         steps:
             - uses: actions/checkout@v4
