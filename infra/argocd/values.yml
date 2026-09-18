@@ -1,0 +1,57 @@
+applicationController:
+  resources:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+
+configs:
+  cm:
+    accounts.backstage: apiKey,login
+    admin.enabled: "true"
+    url: https://argocd.example.com
+  params:
+    server.insecure: true
+  rbac:
+    policy.csv: |
+      # Autorisations minimales pour Backstage
+      p, backstage, applications, create, default/*, allow
+      p, backstage, applications, get, default/*, allow
+      p, backstage, applications, sync, default/*, allow
+
+      # (optionnel) lecture des projets
+      p, backstage, projects, get, *, allow
+    policy.default: role:readonly
+
+controller:
+  replicas: 1
+
+dex:
+  enabled: false
+
+global:
+  domain: argocd.example.com
+
+redis:
+  enabled: true
+
+repoServer:
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+  readinessProbe:
+    timeoutSeconds: 5
+
+  livenessProbe:
+    initialDelaySeconds: 30
+    timeoutSeconds: 5
+
+server:
+  replicas: 2
