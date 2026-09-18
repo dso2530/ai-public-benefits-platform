@@ -1,0 +1,43 @@
+nameOverride: citizen-bff
+fullnameOverride: citizen-bff
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/dso2530/citizen-bff
+  tag: "1.0.0"
+  pullPolicy: IfNotPresent
+
+container:
+  port: 8084
+  portName: http
+
+service:
+  port: 8084
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+env:
+  - name: SPRING_PROFILES_ACTIVE
+    value: kubernetes
+  - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+    value: "health,info,prometheus"
+  - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
+    value: "true"
+serviceMonitor:
+  enabled: false
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: aides-ia.local
+      paths:
+        - path: /
+          pathType: Prefix

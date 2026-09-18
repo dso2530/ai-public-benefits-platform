@@ -1,0 +1,6 @@
+apiVersion: v2
+name: microservice
+description: Generic Helm chart for Spring Boot microservices of the AI Public Benefits Platform
+version: 0.1.0
+appVersion: "1.0.0"
+type: application
