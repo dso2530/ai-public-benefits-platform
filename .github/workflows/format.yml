@@ -28,4 +28,4 @@ jobs:
                   cache: maven
 
             - name: Check formatting
-              run: mvn spotless:check
+              run: mvn validate
