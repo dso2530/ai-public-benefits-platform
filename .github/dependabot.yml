@@ -7,12 +7,12 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "maven"
-    directory: "/bff/citizens-bff"
+    directory: "/bff"
     schedule:
       interval: "weekly"
 
   - package-ecosystem: "maven"
-    directory: "/backend/core-services"
+    directory: "/backend"
     schedule:
       interval: "weekly"
 
