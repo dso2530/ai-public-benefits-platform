@@ -1,0 +1,5 @@
+Generic Helm chart: deploy/helm/microservice
+Dev values: deploy/helm/microservice/values/dev/*.yaml
+Argo CD project: deploy/argocd/project.yaml
+Argo CD App of Apps root: deploy/argocd/root.yaml
+Argo CD child Applications: deploy/argocd/applications/*.yaml

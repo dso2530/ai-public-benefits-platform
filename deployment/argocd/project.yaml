@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: public-benefits
+  namespace: argocd
+spec:
+  description: AI Public Benefits Platform
+  sourceRepos:
+    - https://github.com/dso2530/ai-public-benefits-platform.git
+  destinations:
+    - namespace: public-benefits
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
