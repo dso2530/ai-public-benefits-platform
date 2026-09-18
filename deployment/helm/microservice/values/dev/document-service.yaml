@@ -55,10 +55,41 @@
 
     - name: REDIS_HOST
       value: "192.168.1.40"
-      
+
     - name: REDIS_PORT
       value: "6379"
 
   envFrom:
     - secretRef:
         name: document-service-secrets
+
+  probes:
+    startup:
+      enabled: true
+      path: /actuator/health/liveness
+      port: http
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 2
+      failureThreshold: 30
+      successThreshold: 1
+
+    liveness:
+      enabled: true
+      path: /actuator/health/liveness
+      port: http
+      initialDelaySeconds: 20
+      periodSeconds: 10
+      timeoutSeconds: 2
+      failureThreshold: 3
+      successThreshold: 1
+
+    readiness:
+      enabled: true
+      path: /actuator/health/readiness
+      port: http
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 2
+      failureThreshold: 3
+      successThreshold: 1
