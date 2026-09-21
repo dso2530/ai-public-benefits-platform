@@ -58,10 +58,7 @@
 
     - name: REDIS_PORT
       value: "6379"
-
-  envFrom:
-    - secretRef:
-        name: document-service-secrets
+  
 
   probes:
     startup:
@@ -93,3 +90,37 @@
       timeoutSeconds: 2
       failureThreshold: 3
       successThreshold: 1
+
+  externalSecrets:
+    enabled: true
+    refreshInterval: 1h
+
+    secretStoreRef:
+      name: vault
+      kind: ClusterSecretStore
+
+    target:
+      name: document-service-secrets
+      creationPolicy: Owner
+      deletionPolicy: Retain
+
+    data:
+    - secretKey: STORAGE_ACCESS_KEY
+      remoteKey: ai-public-benefits/document-service
+      property: STORAGE_ACCESS_KEY
+
+    - secretKey: STORAGE_SECRET_KEY
+      remoteKey: ai-public-benefits/document-service
+      property: STORAGE_SECRET_KEY
+
+    - secretKey: JWT_SECRET
+      remoteKey: ai-public-benefits/document-service
+      property: JWT_SECRET
+
+    - secretKey: DB_USERNAME
+      remoteKey: ai-public-benefits/document-service
+      property: DB_USERNAME
+
+    - secretKey: DB_PASSWORD
+      remoteKey: ai-public-benefits/document-service
+      property: DB_PASSWORD
