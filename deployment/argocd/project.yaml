@@ -13,6 +13,9 @@ spec:
 
     - namespace: public-benefits
       name: floci-gke-dev
+
+    - namespace: external-secrets
+      name: floci-gke-dev
       
   clusterResourceWhitelist:
     - group: ""
