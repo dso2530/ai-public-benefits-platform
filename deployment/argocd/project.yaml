@@ -3,11 +3,18 @@ kind: AppProject
 metadata:
   name: public-benefits
   namespace: argocd
+
 spec:
   description: AI Public Benefits Platform
+
   sourceRepos:
     - https://github.com/dso2530/ai-public-benefits-platform.git
+    - https://charts.external-secrets.io
+
   destinations:
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+
     - namespace: public-benefits
       server: https://kubernetes.default.svc
 
@@ -16,10 +23,11 @@ spec:
 
     - namespace: external-secrets
       name: floci-gke-dev
-      
+
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
+
   namespaceResourceWhitelist:
     - group: "*"
-      kind: "*"
+      kind: "*" 
